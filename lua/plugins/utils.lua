@@ -27,6 +27,7 @@ return {
   },
   {
     "folke/flash.nvim",
+    event = "VeryLazy",
     keys = {
       {
         "s",
@@ -76,7 +77,7 @@ return {
     event = "VeryLazy",
     config = function()
       vim.g.spelunker_check_type = 2
-    end
+    end,
   },
   {
     "ellisonleao/glow.nvim",
@@ -89,7 +90,7 @@ return {
     config = true,
   },
   {
-    'echasnovski/mini.ai',
+    "echasnovski/mini.ai",
     event = "VeryLazy",
     config = true,
   },
@@ -106,19 +107,21 @@ return {
         autoselect_one = true,
         bo = {
           filetype = { "fidget", "nvim-tree" },
-          buftype = { "quickfix" }
-        }
-      }
+          buftype = { "quickfix" },
+        },
+      },
     },
     keys = {
       {
         "<C-w>p",
         function()
-          local window_number = require('window-picker').pick_window()
-          if window_number then vim.api.nvim_set_current_win(window_number) end
+          local window_number = require("window-picker").pick_window()
+          if window_number then
+            vim.api.nvim_set_current_win(window_number)
+          end
         end,
-        desc = "Pick a window"
-      }
-    }
+        desc = "Pick a window",
+      },
+    },
   },
 }
