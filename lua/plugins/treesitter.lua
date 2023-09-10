@@ -2,14 +2,14 @@ return {
   "nvim-treesitter/nvim-treesitter",
   event = "VeryLazy",
   dependencies = {
-    "p00f/nvim-ts-rainbow",   -- 括号着色
+    "p00f/nvim-ts-rainbow", -- 括号着色
     "windwp/nvim-ts-autotag", -- 自动补全tag
     "nvim-treesitter/nvim-treesitter-textobjects",
   },
   build = ":TSUpdate",
   config = function()
     -- require("nvim-treesitter.install").prefer_git = true
-    require('nvim-treesitter.configs').setup({
+    require("nvim-treesitter.configs").setup({
       -- 添加不同语言
       ensure_installed = {
         "vim",
@@ -21,7 +21,7 @@ return {
         "css",
         "html",
         "markdown",
-        "markdown_inline"
+        "markdown_inline",
       }, -- one of "all" or a list of languages
       ignore_install = {},
       sync_install = false,
@@ -33,10 +33,10 @@ return {
       },
       indent = {
         enable = true,
-        disable = {}
+        disable = {},
       },
       autotag = {
-        enable = true
+        enable = true,
       },
 
       -- 不同括号颜色区分
@@ -70,11 +70,13 @@ return {
           -- * method: eg 'v' or 'o'
           -- and should return the mode ('v', 'V', or '<c-v>') or a table
           -- mapping query_strings to modes.
+          -- FIXME: enhance visual mode
           selection_modes = {
-            ['@parameter.outer'] = 'v', -- charwise
-            ['@function.outer'] = 'V',  -- linewise
-            ['@class.outer'] = '<c-v>', -- blockwise
+            ["@parameter.outer"] = "v", -- charwise
+            ["@function.outer"] = "V", -- linewise
+            ["@class.outer"] = "<c-v>", -- blockwise
           },
+
           -- If you set this to `true` (default is `false`) then any textobject is
           -- extended to include preceding or succeeding whitespace. Succeeding
           -- whitespace has priority in order to act similarly to eg the built-in
@@ -85,8 +87,8 @@ return {
           -- * selection_mode: eg 'v'
           -- and should return true of false
           include_surrounding_whitespace = false,
-        }
-      }
+        },
+      },
     })
-  end
+  end,
 }

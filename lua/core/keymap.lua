@@ -1,4 +1,4 @@
-vim.g.mapleader = " " -- leader key
+vim.g.mapleader = " " -- space as leader key
 local keymap = vim.keymap
 
 -- ---------- 插入模式(insert) ---------- ---
@@ -22,11 +22,11 @@ keymap.set("n", "<leader>qf", "<cmd>q!<cr>")
 -- 保存
 keymap.set("n", "<leader>w", "<cmd>w<cr>")
 keymap.set("n", "<leader>x", "<cmd>x<cr>")
-
-keymap.set("n", "<c-a>", "gg<S-v>G")
+-- 选中所有文本: 跳转到顶部(gg), 进入visual line(S-v), 跳转到底部(G), 选中所有
+keymap.set("n", "<C-a>", "gg<S-v>G")
 
 keymap.set("n", "<leader>s", ":vsplit<Return><C-w>w", { silent = true })
-keymap.set("n", "f", "<C-w>w")
+-- keymap.set("n", "f", "<C-w>w")
 -- 窗口
 keymap.set("n", "<leader>sv", "<C-w>v") -- 水平新增窗口
 keymap.set("n", "<leader>sh", "<C-w>s") -- 垂直新增窗口
