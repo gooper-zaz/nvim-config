@@ -72,12 +72,12 @@ return {
       end, "[F]ormat code")
 
       -- format on save
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format()
-        end,
-      })
+      -- vim.api.nvim_create_autocmd("BufWritePre", {
+      --   buffer = bufnr,
+      --   callback = function()
+      --     vim.lsp.buf.format()
+      --   end,
+      -- })
       if client.server_capabilities.documentSymbolProvider then
         local navic = require("nvim-navic")
         navic.attach(client, bufnr)
