@@ -14,7 +14,9 @@ keymap.set("i", "<C-u>", "<C-G>u<C-U>")
 -- 单行或多行移动
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- 向左缩进
 keymap.set("v", "<", "<gv", { silent = true })
+-- 向右缩进
 keymap.set("v", ">", ">gv", { silent = true })
 -- WARN: 下面的这行配置在visual模式下会拖慢j键的响应速度
 -- keymap.set("v", "jk", "<ESC>")
@@ -42,7 +44,7 @@ keymap.set("n", "L", "$")
 keymap.set("n", "<leader>nl", "<cmd>nohl<CR>")
 
 -- buffer
-keymap.set("n", "<S-L>", "<cmd>bnext<CR>") -- 下一个buffer
-keymap.set("n", "<S-H>", "<cmd>bprevious<CR>") -- 上一个buffer
+keymap.set("n", "<leader>l", "<cmd>bnext<CR>") -- 下一个buffer
+keymap.set("n", "<leader>h", "<cmd>bprevious<CR>") -- 上一个buffer
 keymap.set("n", "<leader>bc", "<cmd>bd<CR>") -- 关闭当前buffer
 -- ---------- 插件 ---------- ---
