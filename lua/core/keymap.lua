@@ -7,13 +7,18 @@ keymap.set("i", "<A-j>", "<Down>") -- 在insert模式向下移动光标
 keymap.set("i", "<A-k>", "<Up>") -- 在insert模式向上移动光标
 keymap.set("i", "<A-h>", "<Left>") -- 在insert模式向左移动光标
 keymap.set("i", "<A-l>", "<Right>") -- 在insert模式向右移动光标
+keymap.set("i", "<C-s>", "<Esc>:w<CR>")
+keymap.set("i", "<C-u>", "<C-G>u<C-U>")
 
 -- ---------- 视觉模式(visual) ----------
 -- 单行或多行移动
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-keymap.set("v", "jk", "<ESC>")
-
+keymap.set("v", "<", "<gv", { silent = true })
+keymap.set("v", ">", ">gv", { silent = true })
+-- WARN: 下面的这行配置在visual模式下会拖慢j键的响应速度
+-- keymap.set("v", "jk", "<ESC>")
+--
 -- ---------- 正常模式(normal) ---------- ---
 -- 退出
 keymap.set("n", "<leader>q", "<cmd>q<cr>")
