@@ -2,8 +2,8 @@ return {
   "nvim-treesitter/nvim-treesitter",
   event = "VeryLazy",
   dependencies = {
-    "p00f/nvim-ts-rainbow", -- 括号着色
-    "windwp/nvim-ts-autotag", -- 自动补全tag
+    "hiphish/rainbow-delimiters.nvim", -- 括号着色(替代nvim-ts-rainbow)
+    "windwp/nvim-ts-autotag",        -- 自动补全tag
     "nvim-treesitter/nvim-treesitter-textobjects",
   },
   build = ":TSUpdate",
@@ -12,16 +12,20 @@ return {
     require("nvim-treesitter.configs").setup({
       -- 添加不同语言
       ensure_installed = {
-        "vim",
         "javascript",
         "json",
-        "lua",
         -- "typescript",
         -- "tsx",
         "css",
         "html",
         "markdown",
         "markdown_inline",
+        -- languages below should be always installed.
+        "c",
+        "lua",
+        "vim",
+        "vimdoc",
+        "query",
       }, -- one of "all" or a list of languages
       ignore_install = {},
       sync_install = false,
@@ -88,6 +92,27 @@ return {
           -- and should return true of false
           include_surrounding_whitespace = false,
         },
+      },
+    })
+    local rainbow_delimiters = require("rainbow-delimiters")
+    local rainbow = require("rainbow-delimiters.setup")
+    rainbow({
+      strategy = {
+        [""] = rainbow_delimiters.strategy["global"],
+        vim = rainbow_delimiters.strategy["local"],
+      },
+      query = {
+        [""] = "rainbow-delimiters",
+        lua = "rainbow-blocks",
+      },
+      highlight = {
+        "RainbowDelimiterRed",
+        "RainbowDelimiterYellow",
+        "RainbowDelimiterBlue",
+        "RainbowDelimiterOrange",
+        "RainbowDelimiterGreen",
+        "RainbowDelimiterViolet",
+        "RainbowDelimiterCyan",
       },
     })
   end,
