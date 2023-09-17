@@ -6,9 +6,9 @@ opt.number = true
 opt.relativenumber = true
 
 -- 编码
-vim.scriptencoding = 'utf-8'
-opt.encoding = 'utf-8'
-opt.fileencoding = 'utf-8'
+vim.scriptencoding = "utf-8"
+opt.encoding = "utf-8"
+opt.fileencoding = "utf-8"
 buffer.fileenconding = "utf-8"
 
 opt.scrolloff = 5
@@ -18,10 +18,10 @@ opt.hlsearch = true
 opt.incsearch = true
 
 -- 启用鼠标
-opt.mouse:append('a')
+opt.mouse:append("a")
 
 -- 剪切板
-opt.clipboard:append('unnamedplus')
+opt.clipboard:append("unnamedplus")
 
 -- 缩进
 opt.tabstop = 2
@@ -52,18 +52,18 @@ opt.cursorline = true
 
 -- 外观
 opt.termguicolors = true
-opt.signcolumn = 'yes'
+opt.signcolumn = "yes"
 
-vim.api.nvim_create_autocmd('TextYankPost', {
+vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank({
-      higroup = 'IncSearch',
-      timeout = 300
+      higroup = "IncSearch",
+      timeout = 300,
     })
-  end
+  end,
 })
 
-opt.whichwrap = 'h,l'
+opt.whichwrap = "h,l"
 
 opt.updatetime = 300
-opt.timeoutlen = 500
+opt.timeoutlen = 300

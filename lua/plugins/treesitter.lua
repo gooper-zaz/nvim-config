@@ -18,6 +18,8 @@ return {
         -- "tsx",
         "css",
         "html",
+        "comment",
+        "regex",
         "markdown",
         "markdown_inline",
         -- languages below should be always installed.
@@ -37,17 +39,40 @@ return {
       },
       indent = {
         enable = true,
-        disable = {},
+        disable = { "yaml", "python" },
       },
       autotag = {
         enable = true,
+      },
+      context_commentstring = {
+        enable = true,
+        enable_autocmd = false,
+        config = {
+          -- Languages that have a single comment style
+          typescript = "// %s",
+          css = "/* %s */",
+          scss = "/* %s */",
+          html = "<!-- %s -->",
+          svelte = "<!-- %s -->",
+          vue = "<!-- %s -->",
+          json = "",
+        },
       },
 
       -- 不同括号颜色区分
       rainbow = {
         enable = true,
         extended_mode = true,
-        max_file_lines = nil,
+        max_file_lines = 1000,
+      },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "gnn", -- set to `false` to disable one of the mappings
+          node_incremental = "grn",
+          scope_incremental = "grc",
+          node_decremental = "grm",
+        },
       },
       textobjects = {
         select = {
