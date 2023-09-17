@@ -119,6 +119,7 @@ return {
 					"javascript.jsx",
 					"typescript.tsx",
 					"vue",
+					-- "json",
 				},
 				init_options = {
 					documentFeatures = {
@@ -166,10 +167,11 @@ return {
 			},
 			bashls = {},
 			jsonls = {
-				filetypes = { "json" },
-				json = {
-					schemas = require("schemastore").json.schemas(),
-					validate = { enable = true },
+				settings = {
+					json = {
+						schemas = require("schemastore").json.schemas(),
+						validate = { enable = true },
+					},
 				},
 			},
 		}

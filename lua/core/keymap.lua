@@ -2,7 +2,8 @@ vim.g.mapleader = " " -- space as leader key
 local keymap = vim.keymap
 
 -- ---------- 插入模式(insert) ---------- ---
-keymap.set("i", "jk", "<ESC>") -- 在insert模式下快速连续按下jk, 可以退出insert模式
+-- 使用了better-escape插件来替代这个快捷键
+-- keymap.set("i", "jk", "<ESC>") -- 在insert模式下快速连续按下jk, 可以退出insert模式
 keymap.set("i", "<A-j>", "<Down>") -- 在insert模式向下移动光标
 keymap.set("i", "<A-k>", "<Up>") -- 在insert模式向上移动光标
 keymap.set("i", "<A-h>", "<Left>") -- 在insert模式向左移动光标

@@ -20,6 +20,7 @@ return {
 		})
 
 		null_ls.setup({
+			debug = false,
 			sources = {
 				formatting.prettier,
 				-- prettier不可用时用eslint格式化代码

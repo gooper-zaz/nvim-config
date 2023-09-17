@@ -5,6 +5,7 @@
   "aerial.nvim": { "branch": "master", "commit": "f34defe8f5c2d27f49d53fe0269b87a16f1fb1b9" },
   "alpha-nvim": { "branch": "main", "commit": "e4fc5e29b731bdf55d204c5c6a11dc3be70f3b65" },
   "barbecue.nvim": { "branch": "main", "commit": "cd7e7da622d68136e13721865b4d919efd6325ed" },
+  "better-escape.nvim": { "branch": "master", "commit": "7031dc734add47bb71c010e0551829fa5799375f" },
   "blame.nvim": { "branch": "main", "commit": "3e6b2ef4905982cd7d26eb5b18b0e761138eb5ab" },
   "bufferline.nvim": { "branch": "main", "commit": "99f0932365b34e22549ff58e1bea388465d15e99" },
   "catppuccin": { "branch": "main", "commit": "2e3e5ebcdc24ef0d5b14a0a999dbbe7936512c46" },
