@@ -67,6 +67,11 @@ return {
         end,
       }
 
+      opts.window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+      }
+
       -- cmdline 自动补全路径和命令
       cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
