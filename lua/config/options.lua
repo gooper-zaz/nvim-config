@@ -5,8 +5,19 @@
 -- neovide 配置
 if vim.g.neovide then
   -- 轨道动画
-  vim.g.neovide_cursor_vfx_mode = "railgun"
-  vim.o.guifont = "JetBrainsMono Nerd Font Mono"
+  vim.g.neovide_cursor_vfx_mode = 'railgun'
+  vim.o.guifont = 'JetBrainsMono Nerd Font Mono'
   -- 没有空闲
   vim.g.neovide_no_idle = true
+
+  -- dynamic scale
+  local change_scale_factor = function(delta)
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+  end
+  vim.keymap.set('n', '<D-=>', function()
+    change_scale_factor(1.25)
+  end)
+  vim.keymap.set('n', '<D-->', function()
+    change_scale_factor(1 / 1.25)
+  end)
 end
