@@ -9,7 +9,6 @@ keymap.set('i', '<A-j>', '<Down>') -- 在insert模式向下移动光标
 keymap.set('i', '<A-k>', '<Up>') -- 在insert模式向上移动光标
 keymap.set('i', '<A-h>', '<Left>') -- 在insert模式向左移动光标
 keymap.set('i', '<A-l>', '<Right>') -- 在insert模式向右移动光标
-keymap.set('i', '<C-s>', '<Esc>:w<CR>')
 keymap.set('i', '<C-u>', '<C-G>u<C-U>')
 
 -- Select all
@@ -32,3 +31,8 @@ keymap.set('n', 'sv', ':vsplit<Return>', opts)
 
 -- 只粘贴手动复制的内容, 不包含删除
 keymap.set({ 'n', 'x' }, '<leader>p', '"0p')
+
+-- 在插入模式下, 向下新增一行
+keymap.set('i', '<S-j>', '<Esc>o', opts)
+-- 在插入模式下, 向上新增一行
+keymap.set('i', '<S-k>', '<Esc>O', opts)
