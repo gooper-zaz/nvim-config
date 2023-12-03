@@ -1,12 +1,12 @@
 return {
   {
-    "folke/noice.nvim",
+    'folke/noice.nvim',
     opts = function(_, opts)
       opts.presets.lsp_doc_border = true
     end,
   },
   {
-    "nvimdev/dashboard-nvim",
+    'nvimdev/dashboard-nvim',
     opts = function(_, opts)
       local logo = [[
         
@@ -18,8 +18,8 @@ return {
  ╚═════╝  ╚═════╝  ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═╝    ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝
                                                                                           
       ]]
-      logo = string.rep("\n", 8) .. logo .. "\n\n"
-      opts.config.header = vim.split(logo, "\n")
+      logo = string.rep('\n', 8) .. logo .. '\n\n'
+      opts.config.header = vim.split(logo, '\n')
     end,
   },
 }
