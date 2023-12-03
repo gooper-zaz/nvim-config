@@ -29,3 +29,6 @@ keymap.set("n", "<leader>w", "<cmd>w<cr>")
 -- Split window
 keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)
+
+-- 只粘贴手动复制的内容, 不包含删除
+keymap.set({ "n", "x" }, "<leader>p", '"0p')
