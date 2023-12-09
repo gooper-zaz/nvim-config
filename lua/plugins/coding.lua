@@ -6,12 +6,37 @@ return {
     end,
   },
   {
+
+    'hrsh7th/cmp-cmdline', -- cmd 命令补全
+    dependencies = {
+      'hrsh7th/nvim-cmp',
+    },
+    event = { 'CmdlineEnter' },
+    config = function()
+      local cmp = require('cmp')
+      -- cmdline 自动补全路径和命令
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' },
+          { name = 'cmdline' },
+        }),
+      })
+      -- cmdline 输入":", 搜索buffer下的文本
+      cmp.setup.cmdline('/', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = 'buffer' },
+        },
+      })
+    end,
+  },
+  {
     'hrsh7th/nvim-cmp',
     version = false, -- last release is way too old
     event = 'InsertEnter',
     dependencies = {
       'hrsh7th/cmp-buffer', -- buffer 字符补全
-      'hrsh7th/cmp-cmdline', -- cmd 命令补全
       'saadparwaiz1/cmp_luasnip',
     },
     opts = function(_, opts)
@@ -71,22 +96,6 @@ return {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
       }
-
-      -- cmdline 自动补全路径和命令
-      cmp.setup.cmdline(':', {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = 'path' },
-          { name = 'cmdline' },
-        }),
-      })
-      -- cmdline 输入":", 搜索buffer下的文本
-      cmp.setup.cmdline('/', {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = 'buffer' },
-        },
-      })
     end,
   },
 }
