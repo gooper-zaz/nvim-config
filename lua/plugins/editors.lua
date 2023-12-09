@@ -35,4 +35,8 @@ return {
     'axelvc/template-string.nvim',
     opts = {},
   },
+  {
+    'mg979/vim-visual-multi',
+    opt = {},
+  },
 }
