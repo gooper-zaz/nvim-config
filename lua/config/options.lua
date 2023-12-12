@@ -2,11 +2,16 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
--- fold
 local opt = vim.opt
+
+-- fold
 opt.foldmethod = 'expr'
 opt.foldexpr = 'nvim_treesitter#foldexpr()'
 opt.foldenable = false
+
+opt.conceallevel = 0
+opt.showtabline = 3
+opt.laststatus = 3
 
 -- neovide 配置
 if vim.g.neovide then
