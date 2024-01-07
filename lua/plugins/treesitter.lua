@@ -14,4 +14,37 @@ return {
       }
     end,
   },
+  {
+    'hiphish/rainbow-delimiters.nvim',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
+    event = { 'BufReadPost' },
+    config = function()
+      local rainbow = require('rainbow-delimiters')
+      require('rainbow-delimiters.setup').setup({
+        strategy = {
+          [''] = rainbow.strategy['global'],
+          vim = rainbow.strategy['local'],
+        },
+        query = {
+          [''] = 'rainbow-delimiters',
+          lua = 'rainbow-blocks',
+        },
+        priority = {
+          [''] = 110,
+          lua = 210,
+        },
+        highlight = {
+          'RainbowDelimiterRed',
+          'RainbowDelimiterYellow',
+          'RainbowDelimiterBlue',
+          'RainbowDelimiterOrange',
+          'RainbowDelimiterGreen',
+          'RainbowDelimiterViolet',
+          'RainbowDelimiterCyan',
+        },
+      })
+    end,
+  },
 }
