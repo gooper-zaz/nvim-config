@@ -7,7 +7,7 @@ return {
         'css-lsp',
         'vue-language-server',
         'html-lsp',
-        -- "typescript-language-server",
+        'typescript-language-server',
         'json-lsp',
         'eslint-lsp',
         'eslint_d',
@@ -94,12 +94,19 @@ return {
             },
           },
         },
+        -- tsserver = {
+        --   enabled = false,
+        --   formatting = false,
+        --   settings = {},
+        -- },
         volar = {
+          -- enabled = false,
           root_dir = function(...)
             local util = require('lspconfig.util')
             return util.root_pattern('.git')(...)
           end,
-          filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+          -- filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+          filetypes = { 'vue' },
           settings = {
             volar = {
               codeLens = {
