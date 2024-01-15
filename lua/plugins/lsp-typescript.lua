@@ -27,6 +27,8 @@ return {
             allowRenameOfImportPath = false,
           },
           tsserver_plugins = {
+            -- 使用这个typescript插件, 让typescript认识`.vue`文件, 不然import vue文件会报错
+            -- 这个插件需要在你本地执行`npm i -g typescript-vue-plugin`, 全局安装
             'typescript-vue-plugin',
           },
         },

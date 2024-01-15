@@ -94,13 +94,14 @@ return {
             },
           },
         },
-        -- tsserver = {
-        --   enabled = false,
-        --   formatting = false,
-        --   settings = {},
-        -- },
+        -- 禁用tsserver, 由typescript-tools.nvim代替, 不然会在ts文件里会把两个服务都启动
+        tsserver = {
+          enabled = false,
+          formatting = false,
+          settings = {},
+        },
+        -- vue lsp
         volar = {
-          -- enabled = false,
           root_dir = function(...)
             local util = require('lspconfig.util')
             return util.root_pattern('.git')(...)
