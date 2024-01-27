@@ -7,7 +7,7 @@ return {
         'css-lsp',
         'vue-language-server',
         'html-lsp',
-        -- "typescript-language-server",
+        'typescript-language-server',
         'json-lsp',
         'eslint-lsp',
         'eslint_d',
@@ -94,12 +94,20 @@ return {
             },
           },
         },
+        -- 禁用tsserver, 由typescript-tools.nvim代替, 不然会在ts文件里会把两个服务都启动
+        tsserver = {
+          enabled = false,
+          formatting = false,
+          settings = {},
+        },
+        -- vue lsp
         volar = {
           root_dir = function(...)
             local util = require('lspconfig.util')
             return util.root_pattern('.git')(...)
           end,
-          filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+          -- filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+          filetypes = { 'vue' },
           settings = {
             volar = {
               codeLens = {
