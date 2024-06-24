@@ -5,13 +5,14 @@
 local opt = vim.opt
 
 -- fold
-opt.foldmethod = 'expr'
-opt.foldexpr = 'nvim_treesitter#foldexpr()'
-opt.foldenable = false
+-- opt.foldmethod = 'expr'
+-- opt.foldexpr = 'nvim_treesitter#foldexpr()'
+-- opt.foldenable = false
 
 opt.conceallevel = 0
 opt.showtabline = 3
 opt.laststatus = 3
+vim.g.lazyvim_prettier_needs_config = true
 
 -- neovide 配置
 if vim.g.neovide then
