@@ -22,9 +22,6 @@ keymap.set('v', '>', '>gv', { silent = true })
 keymap.set('n', 'H', '^')
 keymap.set('n', 'L', '$')
 
--- 保存
-keymap.set('n', '<leader>w', '<cmd>w<cr>')
-
 -- Split window
 keymap.set('n', 'ss', ':split<Return>', opts)
 keymap.set('n', 'sv', ':vsplit<Return>', opts)

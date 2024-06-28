@@ -28,7 +28,11 @@ return {
       })
       -- cmdline 输入":", 搜索buffer下的文本
       cmp.setup.cmdline('/', {
-        mapping = cmp.mapping.preset.cmdline(),
+        mapping = cmp.mapping.preset.cmdline({
+          ['<CR>'] = {
+            c = cmp.mapping.confirm({ select = false }),
+          },
+        }),
         sources = {
           { name = 'buffer' },
         },
@@ -51,6 +55,27 @@ return {
       end
       vim.api.nvim_set_hl(0, 'CmpGhostText', { link = 'Comment', default = true })
       table.insert(opts.sources, { name = 'buffer' })
+      table.insert(opts.sources, {
+        name = 'nvim_lsp',
+        entry_filter = function(entry, ctx)
+          -- Check if the buffer type is 'vue'
+          if ctx.filetype ~= 'vue' then
+            return true
+          end
+
+          local cursor_before_line = ctx.cursor_before_line
+          -- For events
+          if cursor_before_line:sub(-1) == '@' then
+            return entry.completion_item.label:match('^@')
+            -- For props also exclude events with `:on-` prefix
+          elseif cursor_before_line:sub(-1) == ':' then
+            return entry.completion_item.label:match('^:') and not entry.completion_item.label:match('^:on-')
+          else
+            return true
+          end
+        end,
+        priority = 1000,
+      })
 
       local cmp = require('cmp')
       local luasnip = require('luasnip')
@@ -97,9 +122,21 @@ return {
       }
 
       opts.window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered({
+          col_offset = 1,
+          side_padding = 1,
+          scrollbar = false,
+        }),
+        documentation = cmp.config.window.bordered({
+          col_offset = 1,
+          side_padding = 1,
+          scrollbar = false,
+        }),
       }
+      -- cmp.event:on('menu_closed', function()
+      --   local bufnr = vim.api.nvim_get_current_buf()
+      --   vim.b[bufnr]._vue_ts_cached_is_in_start_tag = nil
+      -- end)
     end,
   },
 }
