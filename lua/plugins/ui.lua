@@ -3,6 +3,10 @@ return {
     'folke/noice.nvim',
     opts = function(_, opts)
       opts.presets.lsp_doc_border = true
+      -- for vue
+      opts.lsp.hover = {
+        silent = true,
+      }
     end,
   },
   {
@@ -28,7 +32,7 @@ return {
     config = function()
       require('colorizer').setup({
         user_default_options = {
-          mode = 'foreground',
+          mode = 'virtualtext',
         },
       })
     end,
