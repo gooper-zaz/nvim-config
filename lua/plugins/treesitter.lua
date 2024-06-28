@@ -2,7 +2,7 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     opts = function(_, opts)
-      table.insert(opts.ensure_installed, { 'css', 'vue' })
+      table.insert(opts.ensure_installed, { 'css', 'vue', 'scss' })
       opts.incremental_selection = {
         enable = true,
         keymaps = {
