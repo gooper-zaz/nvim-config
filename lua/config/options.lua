@@ -4,10 +4,7 @@
 
 local opt = vim.opt
 
--- fold
--- opt.foldmethod = 'expr'
--- opt.foldexpr = 'nvim_treesitter#foldexpr()'
--- opt.foldenable = false
+vim.opt.termguicolors = true
 
 opt.conceallevel = 0
 opt.showtabline = 3
