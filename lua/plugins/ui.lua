@@ -29,11 +29,27 @@ return {
   {
     'NvChad/nvim-colorizer.lua',
     event = { 'BufReadPost' },
+    -- NOTE: disable `nvim-colorizer`
+    enabled = false,
     config = function()
       require('colorizer').setup({
         user_default_options = {
           mode = 'virtualtext',
         },
+      })
+    end,
+  },
+  {
+    'brenoprata10/nvim-highlight-colors',
+    event = { 'BufReadPost' },
+    cmd = { 'HighlightColors' },
+    config = function()
+      require('nvim-highlight-colors').setup({
+        enabled_named_colors = false,
+        render = 'virtual',
+        virtual_symbol = '',
+        virtual_symbol_position = 'inline',
+        enable_tailwind = false,
       })
     end,
   },
