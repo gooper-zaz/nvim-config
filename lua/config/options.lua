@@ -19,6 +19,11 @@ if vim.g.neovide then
   -- 没有空闲
   vim.g.neovide_no_idle = true
 
+  -- fullscreen
+  vim.g.neovide_fullscreen = true
+
+  vim.g.neovide_remember_window_size = true
+
   -- dynamic scale
   local change_scale_factor = function(delta)
     vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
