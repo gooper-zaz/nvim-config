@@ -1,13 +1,16 @@
 return {
   {
     'folke/noice.nvim',
-    opts = function(_, opts)
-      opts.presets.lsp_doc_border = true
-      -- for vue
-      opts.lsp.hover = {
-        silent = true,
-      }
-    end,
+    opts = {
+      presets = {
+        lsp_doc_border = true,
+      },
+      lsp = {
+        hover = {
+          silent = true,
+        },
+      },
+    },
   },
   {
     'nvimdev/dashboard-nvim',
