@@ -7,6 +7,13 @@ return {
         'html-lsp',
         'emmet-ls',
       })
+      if opts.ui then
+        opts.ui.border = 'rounded'
+      else
+        opts.ui = {
+          border = 'rounded',
+        }
+      end
     end,
   },
   {
@@ -19,6 +26,11 @@ return {
       'nvimdev/lspsaga.nvim',
     },
     opts = {
+      diagnostics = {
+        float = {
+          border = 'rounded',
+        },
+      },
       inlay_hints = { enabled = true },
       -- Enable lsp cursor word highlighting
       document_highlight = {
