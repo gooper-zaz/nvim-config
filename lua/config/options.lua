@@ -4,23 +4,18 @@
 
 local opt = vim.opt
 
-vim.opt.termguicolors = true
-
-opt.conceallevel = 0
-opt.showtabline = 3
-opt.laststatus = 3
-vim.g.lazyvim_prettier_needs_config = true
-
 -- neovide 配置
 if vim.g.neovide then
   -- 轨道动画
   vim.g.neovide_cursor_vfx_mode = 'railgun'
-  vim.o.guifont = 'JetBrainsMono Nerd Font Mono'
+  -- 指定neovide字体
+  vim.o.guifont = 'FiraCode Nerd Font,LXGW WenKai Mono,JetBrainsMono Nerd Font'
+  -- vim.o.guifont = 'Fira Code Nerd Font'
   -- 没有空闲
   vim.g.neovide_no_idle = true
 
   -- fullscreen
-  vim.g.neovide_fullscreen = true
+  vim.g.neovide_fullscreen = false
 
   vim.g.neovide_remember_window_size = true
 
