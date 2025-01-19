@@ -27,11 +27,11 @@ return {
     },
     init = function()
       -- 使用lspsaga来替换一部分功能
-      local keys = require('lazyvim.plugins.lsp.keymaps').get()
-      keys[#keys + 1] = { 'K', '<cmd>Lspsaga hover_doc<cr>' }
-      keys[#keys + 1] = { '<leader>cr', '<cmd>Lspsaga rename<cr>' }
-      keys[#keys + 1] = { '<leader>ol', '<cmd>Lspsaga outline<cr>' }
-      keys[#keys + 1] = { '<leader>ca', '<cmd>Lspsaga code_action<cr>' }
+      -- local keys = require('lazyvim.plugins.lsp.keymaps').get()
+      -- keys[#keys + 1] = { 'K', '<cmd>Lspsaga hover_doc<cr>' }
+      -- keys[#keys + 1] = { '<leader>cr', '<cmd>Lspsaga rename<cr>' }
+      -- keys[#keys + 1] = { '<leader>ol', '<cmd>Lspsaga outline<cr>' }
+      -- keys[#keys + 1] = { '<leader>ca', '<cmd>Lspsaga code_action<cr>' }
     end,
     -- opts = {
     --   inlay_hints = { enabled = true },
