@@ -41,4 +41,15 @@ return {
     'mg979/vim-visual-multi',
     opt = {},
   },
+  {
+    'ibhagwan/fzf-lua',
+    opts = {
+      keymap = {
+        fzf = {
+          ['tab'] = 'down',
+          ['shift-tab'] = 'up',
+        },
+      },
+    },
+  },
 }
