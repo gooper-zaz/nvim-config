@@ -2,6 +2,9 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
+
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 
@@ -12,19 +15,20 @@ keymap.set('i', '<A-l>', '<Right>') -- 在insert模式向右移动光标
 keymap.set('i', '<C-u>', '<C-G>u<C-U>')
 
 -- Select all
-keymap.set('n', '<C-a>', 'gg<S-v>G')
+keymap.set('n', '<C-a>', 'gg<S-v>G', opts)
 
 -- 向左缩进
-keymap.set('v', '<', '<gv', { silent = true })
+keymap.set('v', '<', '<gv', opts)
 -- 向右缩进
-keymap.set('v', '>', '>gv', { silent = true })
+keymap.set('v', '>', '>gv', opts)
 
-keymap.set('n', 'H', '^')
-keymap.set('n', 'L', '$')
+keymap.set('n', 'H', '^', opts)
+keymap.set('n', 'L', '$', opts)
 
 -- Split window
 keymap.set('n', 'ss', ':split<Return>', opts)
 keymap.set('n', 'sv', ':vsplit<Return>', opts)
 
--- 只粘贴手动复制的内容, 不包含删除
-keymap.set({ 'n', 'x' }, '<leader>p', '"0p')
+keymap.set('n', 'te', ':tabedit<Return>', opts)
+keymap.set('n', '<tab>', ':tabnext<Return>', opts)
+keymap.set('n', '<s-tab>', ':tabprev<Return>', opts)
