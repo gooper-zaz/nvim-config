@@ -3,15 +3,15 @@ return {
     'folke/tokyonight.nvim',
     priority = 1000,
     opts = {
-      transparent = true,
+      -- transparent = true,
       styles = {
-        sidebars = 'transparent',
-        floats = 'transparent',
+        sidebars = 'dark',
+        floats = 'dark',
       },
     },
     config = function(_, opts)
       require('tokyonight').setup(opts)
-      vim.cmd([[colorscheme tokyonight-storm]])
+      vim.cmd([[colorscheme tokyonight-moon]])
     end,
   }
 }
