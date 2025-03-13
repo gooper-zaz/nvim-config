@@ -23,7 +23,7 @@ return {
       options = {
         mode = 'tabs',
         show_close_icon = true,
-        always_show_bufferline = true,
+        always_show_bufferline = false,
       },
     },
   },
@@ -37,6 +37,7 @@ return {
       scope = { enabled = true },
       input = { enabled = true },
       words = { enabled = true },
+      scroll = { enabled = false },
       dashboard = {
         sections = {
           { section = 'header' },

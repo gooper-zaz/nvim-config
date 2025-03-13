@@ -5,11 +5,12 @@ return {
       'nvim-lua/plenary.nvim',
     },
     keys = {
-      { '<leader>ff', '<cmd>Telescope find_files<cr>' },
-      { '<leader>fg', '<cmd>Telescope live_grep<cr>' },
-      { '<leader>fr', '<cmd>Telescope resume<cr>' },
-      { '<leader>fd', '<cmd>Telescope diagnostics<cr>' },
-      { '<leader>fv', '<cmd>Telescope vim_options<cr>' },
+      { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = '[f]ind [f]iles' },
+      { '<leader>fg', '<cmd>Telescope live_grep<cr>', desc = '[f]ile [g]rep' },
+      { '<leader>fr', '<cmd>Telescope resume<cr>', desc = '[f]ile [r]esume' },
+      { '<leader>fd', '<cmd>Telescope diagnostics<cr>', desc = '[f]ind [d]iagnostisc' },
+      { '<leader>fv', '<cmd>Telescope vim_options<cr>', desc = '[f]ind [v]im opts' },
+      { '<leader>fb', '<cmd>Telescope buffers<cr>', desc = '[f]ind [b]uffers' },
     },
     opts = function()
       local action = require('telescope.actions')
