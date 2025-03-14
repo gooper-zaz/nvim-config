@@ -1,10 +1,11 @@
 return {
  {
    'nvim-treesitter/nvim-treesitter',
+   version = false,
    event = 'VeryLazy',
+   build = ':TSUpdate',
    opts_extend = { 'ensure_installed' },
    opts = {
-    auto_install = true,
     highlight = { enable = true },
     indent = { enable = true },
     ensure_installed = {
@@ -20,6 +21,15 @@ return {
       'css',
       'json',
       'yaml',
+    },
+    textobjects = {
+      move = {
+        enable = true,
+        goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer", ["]a"] = "@parameter.inner" },
+        goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
+        goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer", ["[a"] = "@parameter.inner" },
+        goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[A"] = "@parameter.inner" },
+      },
     },
    },
    config = function(_, opts)

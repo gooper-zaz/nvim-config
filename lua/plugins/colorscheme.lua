@@ -7,6 +7,8 @@ return {
       styles = {
         sidebars = 'dark',
         floats = 'dark',
+        comments = { italic = false },
+        keywords = { italic = false },
       },
     },
     config = function(_, opts)
