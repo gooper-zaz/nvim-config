@@ -22,7 +22,7 @@ require('lazy').setup({
     { import = 'plugins' },
 
     -- enable all languages
-    -- { import = 'plugins.languages' },
+    { import = 'plugins.lang' },
 
     -- { import = "dev" },
   },

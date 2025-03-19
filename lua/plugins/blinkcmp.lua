@@ -1,30 +1,30 @@
 return {
   {
-    "saghen/blink.cmp",
-    version = "*",
-    -- build = "cargo build --release",
+    'saghen/blink.cmp',
+    version = '*',
+    build = 'cargo build --release',
     opts_extend = {
-      "sources.completion.enabled_providers",
-      "sources.compat",
-      "sources.default",
+      'sources.completion.enabled_providers',
+      'sources.compat',
+      'sources.default',
     },
     dependencies = {
-    "rafamadriz/friendly-snippets",
-    -- add blink.compat to dependencies
+      'rafamadriz/friendly-snippets',
+      -- add blink.compat to dependencies
       {
-        "saghen/blink.compat",
+        'saghen/blink.compat',
         optional = true, -- make optional so it's only enabled if any extras need it
         opts = {},
-        version = "*",
+        version = '*',
       },
     },
-    event = "InsertEnter",
+    event = 'InsertEnter',
     opts = {
       sources = {
         -- adding any nvim-cmp sources here will enable them
         -- with blink.compat
         compat = {},
-        default = { "lsp", "path", "snippets", "buffer" },
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
       },
       keymap = {
         preset = 'none',
@@ -64,6 +64,6 @@ return {
         list = { selection = { preselect = true, auto_insert = false } },
       },
       signature = { window = { border = 'single' } },
-    }
-  }
+    },
+  },
 }

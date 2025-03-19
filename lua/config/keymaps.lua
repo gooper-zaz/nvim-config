@@ -17,6 +17,7 @@ keymap.set('i', '<C-u>', '<C-G>u<C-U>')
 -- Select all
 keymap.set('n', '<C-a>', 'gg<S-v>G', opts)
 -- Save
+keymap.set('i', '<C-s>', '<cmd>w<cr><esc>', opts)
 keymap.set('n', '<C-s>', '<cmd>w<cr>', opts)
 
 -- 向左缩进

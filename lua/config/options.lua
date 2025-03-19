@@ -4,8 +4,8 @@
 
 local opt = vim.opt
 
-opt.encoding = "utf-8"
-opt.fileencoding = "utf-8"
+opt.encoding = 'utf-8'
+opt.fileencoding = 'utf-8'
 opt.number = true
 opt.relativenumber = true
 opt.cursorline = true
@@ -24,6 +24,9 @@ opt.expandtab = true
 opt.autoindent = true
 opt.smartindent = true
 opt.breakindent = true
+
+-- vim.wo.foldmethod = 'expr'
+-- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
 -- neovide 配置
 if vim.g.neovide then

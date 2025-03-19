@@ -6,24 +6,24 @@ return {
   {
     'nvim-lualine/lualine.nvim',
     dependencies = {
-    'nvim-tree/nvim-web-devicons',
+      'nvim-tree/nvim-web-devicons',
     },
     event = 'VeryLazy',
     opts = {
       options = {
-        theme = "auto",
+        theme = 'auto',
         globalstatus = vim.o.laststatus == 3,
-        disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },
+        disabled_filetypes = { statusline = { 'dashboard', 'alpha', 'ministarter', 'snacks_dashboard' } },
       },
       sections = {
         lualine_x = { 'filetype' },
         lualine_y = {
-          { 'progress', separator = " ", padding = { left = 1, right = 0 } },
+          { 'progress', separator = ' ', padding = { left = 1, right = 0 } },
           { 'location', padding = { left = 0, right = 1 } },
         },
         lualine_z = {
           function()
-            return " " .. os.date("%R")
+            return ' ' .. os.date('%R')
           end,
         },
       },
@@ -38,8 +38,8 @@ return {
       { ']b', '<cmd>BufferLineCycleNext<cr>', desc = 'Next Buffer' },
       { '[B', '<cmd>BufferLineMovePrev<cr>', desc = 'Move Buffer Prev' },
       { ']B', '<cmd>BufferLineMoveNext<cr>', desc = 'Move Buffer Next' },
-      { "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete Buffers to the Right" },
-      { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete Buffers to the Left" },
+      { '<leader>br', '<Cmd>BufferLineCloseRight<CR>', desc = 'Delete Buffers to the Right' },
+      { '<leader>bl', '<Cmd>BufferLineCloseLeft<CR>', desc = 'Delete Buffers to the Left' },
     },
     opts = {
       options = {
@@ -77,7 +77,7 @@ return {
             { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
             { icon = " ", key = "q", desc = "Quit", action = ":qa" },
           },
-        }
+        },
       },
     },
   },
