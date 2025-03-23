@@ -40,6 +40,13 @@ return {
       { ']B', '<cmd>BufferLineMoveNext<cr>', desc = 'Move Buffer Next' },
       { '<leader>br', '<Cmd>BufferLineCloseRight<CR>', desc = 'Delete Buffers to the Right' },
       { '<leader>bl', '<Cmd>BufferLineCloseLeft<CR>', desc = 'Delete Buffers to the Left' },
+      {
+        '<leader>bd',
+        function()
+          require('snacks.bufdelete').delete()
+        end,
+        desc = 'Delete Current Buffer',
+      },
     },
     opts = {
       options = {

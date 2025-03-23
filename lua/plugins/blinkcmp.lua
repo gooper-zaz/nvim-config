@@ -23,7 +23,7 @@ return {
       sources = {
         -- adding any nvim-cmp sources here will enable them
         -- with blink.compat
-        compat = {},
+        -- compat = {},
         default = { 'lsp', 'path', 'snippets', 'buffer' },
       },
       keymap = {
