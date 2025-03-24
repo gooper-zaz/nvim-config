@@ -26,6 +26,18 @@ return {
         -- compat = {},
         default = { 'lsp', 'path', 'snippets', 'buffer' },
       },
+      cmdline = {
+        keymap = {
+          -- 选择并接受预选择的第一个
+          ['<CR>'] = { 'select_and_accept', 'fallback' },
+        },
+        completion = {
+          -- 自动显示补全窗口
+          menu = { auto_show = true },
+          -- 不在当前行上显示所选项目的预览
+          ghost_text = { enabled = false },
+        },
+      },
       keymap = {
         preset = 'none',
 
