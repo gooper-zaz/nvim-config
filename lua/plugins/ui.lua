@@ -47,6 +47,13 @@ return {
         end,
         desc = 'Delete Current Buffer',
       },
+      {
+        '<leader>bo',
+        function()
+          require('snacks.bufdelete').other()
+        end,
+        desc = 'Delete Other Buffers',
+      },
     },
     opts = {
       options = {

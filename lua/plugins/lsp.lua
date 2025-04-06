@@ -11,10 +11,30 @@ return {
         lua_ls = {
           settings = {
             Lua = {
+              -- workspace = {
+              --   library = vim.list_extend(vim.api.nvim_get_runtime_file('', true), {
+              --     vim.fn.stdpath('data') .. '/lazy',
+              --   }),
+              -- },
               workspace = {
-                library = vim.list_extend(vim.api.nvim_get_runtime_file('', true), {
-                  vim.fn.stdpath('data') .. '/lazy',
-                }),
+                checkThirdParty = false,
+              },
+              codeLens = {
+                enable = true,
+              },
+              completion = {
+                callSnippet = 'Replace',
+              },
+              doc = {
+                privateName = { '^_' },
+              },
+              hint = {
+                enable = true,
+                setType = false,
+                paramType = true,
+                paramName = 'Disable',
+                semicolon = 'Disable',
+                arrayIndex = 'Disable',
               },
             },
           },
@@ -109,5 +129,16 @@ return {
         end
       end)
     end,
+  },
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua', -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+      },
+    },
   },
 }
