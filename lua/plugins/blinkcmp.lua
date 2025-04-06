@@ -2,7 +2,7 @@ return {
   {
     'saghen/blink.cmp',
     version = '*',
-    build = 'cargo build --release',
+    -- build = 'cargo build --release',
     opts_extend = {
       'sources.completion.enabled_providers',
       'sources.compat',
@@ -19,6 +19,8 @@ return {
       },
     },
     event = 'InsertEnter',
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
     opts = {
       sources = {
         -- adding any nvim-cmp sources here will enable them

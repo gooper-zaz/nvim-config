@@ -58,6 +58,7 @@ return {
   {
     'folke/snacks.nvim',
     priority = 1000,
+    ---@type snacks.Config
     opts = {
       indent = { enabled = true },
       bigfile = { enabled = true },
@@ -67,10 +68,6 @@ return {
       words = { enabled = true },
       scroll = { enabled = false },
       dashboard = {
-        -- sections = {
-        --   { section = 'header' },
-        --   { section = 'startup' },
-        -- },
         presets = {
           -- stylua: ignore
           ---@type snacks.dashboard.Item[]

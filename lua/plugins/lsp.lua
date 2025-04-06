@@ -34,9 +34,9 @@ return {
 
       -- setup keymaps
       local keymaps = {
-        { key = 'gd', cmd = '<cmd>lua vim.lsp.buf.definition()<cr>' },
+        { key = 'gd', cmd = '<cmd>Telescope lsp_definitions<cr>' },
         { key = 'K', cmd = '<cmd>lua vim.lsp.buf.hover()<cr>' },
-        { key = 'gr', cmd = '<cmd>lua vim.lsp.buf.references()<cr>' },
+        { key = 'gr', cmd = '<cmd>Telescope lsp_references<cr>' },
         -- { key = "[e", cmd = "<cmd>lua vim.diagnostic.goto_prev()<cr>" },
         -- { key = "]e", cmd = "<cmd>lua vim.diagnostic.goto_next()<cr>" },
       }
