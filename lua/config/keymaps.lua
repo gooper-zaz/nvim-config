@@ -32,15 +32,24 @@ keymap.set('n', 'ss', ':split<Return>', opts)
 keymap.set('n', 'sv', ':vsplit<Return>', opts)
 
 -- quickfix
-keymap.set('n', '<leader>xq', function()
-  local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
-  if not success and err then
-    vim.notify(err, vim.log.levels.ERROR)
-  end
-end, { desc = 'Quickfix List' })
 keymap.set('n', '[q', vim.cmd.cprev, opts)
 keymap.set('n', ']q', vim.cmd.cnext, opts)
 
 keymap.set('n', 'te', ':tabedit<Return>', opts)
 keymap.set('n', '<tab>', ':tabnext<Return>', opts)
 keymap.set('n', '<s-tab>', ':tabprev<Return>', opts)
+
+-- diagnostic
+local diagnostic_goto = function(next, severity)
+  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  severity = severity and vim.diagnostic.severity[severity] or nil
+  return function()
+    go({ severity = severity })
+  end
+end
+keymap.set('n', ']d', diagnostic_goto(true), { desc = 'Next Diagnostic' })
+keymap.set('n', '[d', diagnostic_goto(false), { desc = 'Prev Diagnostic' })
+keymap.set('n', ']e', diagnostic_goto(true, 'ERROR'), { desc = 'Next Error' })
+keymap.set('n', '[e', diagnostic_goto(false, 'ERROR'), { desc = 'Prev Error' })
+keymap.set('n', ']w', diagnostic_goto(true, 'WARN'), { desc = 'Next Warning' })
+keymap.set('n', '[w', diagnostic_goto(false, 'WARN'), { desc = 'Prev Warning' })

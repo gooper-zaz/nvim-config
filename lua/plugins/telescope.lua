@@ -23,6 +23,23 @@ return {
       { '<leader>st', '<cmd>Telescope treesitter<cr>', desc = 'treesitter' },
       { '<leader>sd', '<cmd>Telescope diagnostics bufnr=0<cr>', desc = 'Document Diagnostics' },
       { '<leader>sD', '<cmd>Telescope diagnostics<cr>', desc = 'Workspace Diagnostics' },
+      {
+        '<leader>ss',
+        function()
+          require('telescope.builtin').lsp_document_symbols()
+        end,
+        desc = 'Goto Symbol',
+      },
+      {
+        '<leader>sS',
+        function()
+          require('telescope.builtin').lsp_dynamic_workspace_symbols()
+        end,
+        desc = 'Goto Symbol (Workspace)',
+      },
+      -- git
+      { '<leader>gc', '<cmd>Telescope git_commits<CR>', desc = 'Commits' },
+      { '<leader>gs', '<cmd>Telescope git_status<CR>', desc = 'Status' },
     },
     opts = function()
       local action = require('telescope.actions')
@@ -32,7 +49,7 @@ return {
           theme = 'dropdown',
           sorting_strategy = 'ascending',
           layout_config = { prompt_position = 'top' },
-          file_ignore_patterns = { '.git', 'node_modules' },
+          file_ignore_patterns = { '.git', 'node_modules', 'lazy-lock.json' },
           mapping = {
             n = {
               ['q'] = action.close,
