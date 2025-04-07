@@ -35,6 +35,11 @@ keymap.set('n', 'sv', ':vsplit<Return>', opts)
 keymap.set('n', '[q', vim.cmd.cprev, opts)
 keymap.set('n', ']q', vim.cmd.cnext, opts)
 
+-- code action
+keymap.set('n', '<leader>ca', function()
+  return vim.lsp.buf.code_action()
+end, opts)
+
 keymap.set('n', 'te', ':tabedit<Return>', opts)
 keymap.set('n', '<tab>', ':tabnext<Return>', opts)
 keymap.set('n', '<s-tab>', ':tabprev<Return>', opts)
