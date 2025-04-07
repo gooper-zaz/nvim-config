@@ -36,6 +36,12 @@ return {
           },
         },
       },
+      fuzzy = {
+        implementation = 'prefer_rust',
+        prebuilt_binaries = {
+          download = true,
+        },
+      },
       cmdline = {
         keymap = {
           -- 选择并接受预选择的第一个

@@ -8,10 +8,10 @@ return {
     opts = {
       lsp = {
         hover = { silent = true },
-      },
-      override = {
-        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-				["vim.lsp.util.stylize_markdown"] = true,
+        override = {
+          ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+          ['vim.lsp.util.stylize_markdown'] = true,
+        },
       },
       presets = {
         bottom_search = true,
@@ -21,5 +21,21 @@ return {
         lsp_doc_border = true,
       },
     },
+    config = function(_, opts)
+      require('noice').setup(opts)
+
+      -- hover doc scroll keymaps
+      vim.keymap.set({ 'n', 'i', 's' }, '<c-f>', function()
+        if not require('noice.lsp').scroll(4) then
+          return '<c-f>'
+        end
+      end, { silent = true, expr = true })
+
+      vim.keymap.set({ 'n', 'i', 's' }, '<c-b>', function()
+        if not require('noice.lsp').scroll(-4) then
+          return '<c-b>'
+        end
+      end, { silent = true, expr = true })
+    end,
   },
 }
