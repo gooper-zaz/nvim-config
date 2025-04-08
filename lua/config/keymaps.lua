@@ -39,6 +39,8 @@ keymap.set('n', ']q', vim.cmd.cnext, opts)
 keymap.set('n', '<leader>ca', function()
   return vim.lsp.buf.code_action()
 end, opts)
+-- lsp rename(see noice.lua)
+-- keymap.set('n', '<leader>cr', vim.lsp.buf.rename, opts)
 
 keymap.set('n', 'te', ':tabedit<Return>', opts)
 keymap.set('n', '<tab>', ':tabnext<Return>', opts)
@@ -58,3 +60,10 @@ keymap.set('n', ']e', diagnostic_goto(true, 'ERROR'), { desc = 'Next Error' })
 keymap.set('n', '[e', diagnostic_goto(false, 'ERROR'), { desc = 'Prev Error' })
 keymap.set('n', ']w', diagnostic_goto(true, 'WARN'), { desc = 'Next Warning' })
 keymap.set('n', '[w', diagnostic_goto(false, 'WARN'), { desc = 'Prev Warning' })
+
+-- lazy
+keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy' })
+
+-- commenting
+keymap.set('n', 'gco', 'o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Below' })
+keymap.set('n', 'gcO', 'O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Above' })

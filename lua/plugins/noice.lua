@@ -36,6 +36,16 @@ return {
           return '<c-b>'
         end
       end, { silent = true, expr = true })
+
+      vim.keymap.set('n', '<leader>cr', function()
+        local inc = require('inc_rename')
+        return ':' .. inc.config.cmd_name .. ' ' .. vim.fn.expand('<cword>')
+      end, { expr = true })
     end,
+  },
+  {
+    'smjonas/inc-rename.nvim',
+    cmd = 'IncRename',
+    opts = {},
   },
 }

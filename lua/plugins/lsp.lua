@@ -11,11 +11,6 @@ return {
         lua_ls = {
           settings = {
             Lua = {
-              -- workspace = {
-              --   library = vim.list_extend(vim.api.nvim_get_runtime_file('', true), {
-              --     vim.fn.stdpath('data') .. '/lazy',
-              --   }),
-              -- },
               workspace = {
                 checkThirdParty = false,
               },

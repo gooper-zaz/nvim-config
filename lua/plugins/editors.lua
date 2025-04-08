@@ -1,20 +1,20 @@
 return {
   {
     'windwp/nvim-ts-autotag',
-    event = 'VeryLazy',
-    opts = {}
+    event = 'BufReadPost',
+    opts = {},
   },
   {
     'folke/ts-comments.nvim',
-    event = 'VeryLazy',
+    event = 'BufReadPost',
     opts = {},
   },
   {
     'folke/trouble.nvim',
     keys = {
-      { '<leader>td', '<cmd>Trouble diagnostics toggle<cr>', desc ='[t]rouble [d]iagnostics' }
+      { '<leader>td', '<cmd>Trouble diagnostics toggle<cr>', desc = '[t]rouble [d]iagnostics' },
     },
-    opts = {}
+    opts = {},
   },
   {
     -- 使用'jk'退出insert mode
