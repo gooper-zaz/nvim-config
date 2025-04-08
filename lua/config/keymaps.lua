@@ -76,3 +76,17 @@ keymap.set('o', 'n', "'Nn'[v:searchforward]", { expr = true, desc = 'Next Search
 keymap.set('n', 'N', "'nN'[v:searchforward].'zv'", { expr = true, desc = 'Prev Search Result' })
 keymap.set('x', 'N', "'nN'[v:searchforward]", { expr = true, desc = 'Prev Search Result' })
 keymap.set('o', 'N', "'nN'[v:searchforward]", { expr = true, desc = 'Prev Search Result' })
+
+-- 在normal模式下, 将当前行向上移或向下移; 支持数字前缀, 表示移动的行数, 比如'2[a'.
+keymap.set(
+  'n',
+  '[a',
+  ":<c-u>execute 'move -1-'. v:count1<cr>",
+  { desc = 'Move current line above', noremap = true, silent = true }
+)
+keymap.set(
+  'n',
+  ']a',
+  ":<c-u>execute 'move +'. v:count1<cr>",
+  { desc = 'Move current line below', noremap = true, silent = true }
+)
