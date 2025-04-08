@@ -87,11 +87,19 @@ return {
         ['<C-t>'] = { 'snippet_backward', 'fallback' },
       },
       completion = {
-        menu = { border = 'single' },
-        documentation = { auto_show = true, auto_show_delay_ms = 500, window = { border = 'single' } },
+        menu = {
+          border = 'rounded',
+        },
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 500,
+          window = { border = 'rounded' },
+        },
         list = { selection = { preselect = true, auto_insert = false } },
       },
-      signature = { window = { border = 'single' } },
+      signature = {
+        window = { border = 'rounded' },
+      },
     },
   },
 }
