@@ -49,7 +49,7 @@ return {
           theme = 'dropdown',
           sorting_strategy = 'ascending',
           layout_config = { prompt_position = 'top' },
-          file_ignore_patterns = { '.git', 'node_modules', 'lazy-lock.json' },
+          file_ignore_patterns = { '.git\\', 'node_modules', 'lazy-lock.json' },
           mapping = {
             n = {
               ['q'] = action.close,
