@@ -89,6 +89,12 @@ return {
       completion = {
         menu = {
           border = 'rounded',
+          draw = {
+            columns = {
+              { 'label', 'label_description', gap = 4 },
+              { 'kind_icon', 'kind', gap = 1 },
+            },
+          },
         },
         documentation = {
           auto_show = true,
