@@ -81,7 +81,7 @@ return {
           'fallback',
         },
 
-        ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+        ['<C-l>'] = { 'show', 'show_documentation', 'hide_documentation' },
         ['<C-e>'] = { 'hide', 'fallback' },
         ['<CR>'] = { 'accept', 'fallback' },
 
@@ -109,6 +109,11 @@ return {
           window = { border = 'rounded' },
         },
         list = { selection = { preselect = true, auto_insert = false } },
+        accept = {
+          auto_brackets = {
+            enabled = false,
+          },
+        },
       },
       signature = {
         window = { border = 'rounded' },
