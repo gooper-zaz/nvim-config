@@ -58,15 +58,4 @@ if vim.g.neovide then
   vim.g.neovide_fullscreen = false
 
   vim.g.neovide_remember_window_size = true
-
-  -- dynamic scale
-  local change_scale_factor = function(delta)
-    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
-  end
-  vim.keymap.set('n', '<D-=>', function()
-    change_scale_factor(1.25)
-  end)
-  vim.keymap.set('n', '<D-->', function()
-    change_scale_factor(1 / 1.25)
-  end)
 end

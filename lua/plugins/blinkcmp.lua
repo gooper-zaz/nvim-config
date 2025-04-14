@@ -113,6 +113,9 @@ return {
           auto_brackets = {
             enabled = false,
           },
+          -- 在neovide中, accept时光标会从左上角跳到当前位置
+          -- 故使用neovide时, 将此配置设置为false
+          dot_repeat = not vim.g.neovide,
         },
       },
       signature = {
