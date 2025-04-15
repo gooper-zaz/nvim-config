@@ -95,15 +95,107 @@ return {
         function()
           local mini = require('mini.files')
           if not mini.close() then
-            mini.open()
+            mini.open(vim.uv.cwd(), true)
+          end
+        end,
+        desc = 'Open Dir/File with mini.files (cwd)',
+      },
+      {
+        '<leader>E',
+        function()
+          local mini = require('mini.files')
+          if not mini.close() then
+            mini.open(vim.api.nvim_buf_get_name(0), true)
           end
         end,
         desc = 'Open Dir/File with mini.files',
       },
     },
-    opts = {},
+    opts = {
+      -- Module mappings created only inside explorer.
+      -- Use `''` (empty string) to not create one.
+      mappings = {
+        close = 'q',
+        -- 把默认的go_in 和 go_in_plus快捷键调换了
+        go_in = 'L',
+        go_in_plus = 'l',
+        -- 把默认的go_out 和 go_out_plus快捷键调换了
+        go_out = 'H',
+        go_out_plus = 'h',
+        mark_goto = "'",
+        mark_set = 'm',
+        reset = '<BS>',
+        reveal_cwd = '@',
+        show_help = 'g?',
+        synchronize = '=',
+        trim_left = '<',
+        trim_right = '>',
+      },
+    },
     config = function(_, opts)
       require('mini.files').setup(opts)
+
+      local show_dotfiles = true
+
+      local filter_show = function(fs_entry)
+        return true
+      end
+
+      local filter_hide = function(fs_entry)
+        return not vim.startswith(fs_entry.name, '.')
+      end
+
+      local toggle_dotfiles = function()
+        show_dotfiles = not show_dotfiles
+        local new_filter = show_dotfiles and filter_show or filter_hide
+        MiniFiles.refresh({ content = { filter = new_filter } })
+      end
+
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'MiniFilesBufferCreate',
+        callback = function(args)
+          local buf_id = args.data.buf_id
+          -- Tweak left-hand side of mapping to your liking
+          vim.keymap.set('n', 'g.', toggle_dotfiles, { buffer = buf_id, desc = 'Toggle Dotfiles' })
+        end,
+      })
+
+      local map_split = function(buf_id, lhs, direction)
+        local rhs = function()
+          -- Make new window and set it as target
+          local cur_target = MiniFiles.get_explorer_state().target_window
+          local new_target = vim.api.nvim_win_call(cur_target, function()
+            vim.cmd(direction .. ' split')
+            return vim.api.nvim_get_current_win()
+          end)
+
+          MiniFiles.set_target_window(new_target)
+
+          -- This intentionally doesn't act on file under cursor in favor of
+          -- explicit "go in" action (`l` / `L`). To immediately open file,
+          -- add appropriate `MiniFiles.go_in()` call instead of this comment.
+        end
+
+        -- Adding `desc` will result into `show_help` entries
+        local desc = 'Split ' .. direction
+        vim.keymap.set('n', lhs, rhs, { buffer = buf_id, desc = desc })
+      end
+
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'MiniFilesBufferCreate',
+        callback = function(args)
+          local buf_id = args.data.buf_id
+          -- Tweak keys to your liking
+          map_split(buf_id, 'sp', 'belowright horizontal')
+          map_split(buf_id, 'sv', 'belowright vertical')
+          -- map_split(buf_id, '<C-t>', 'tab')
+        end,
+      })
     end,
+  },
+  {
+    'echasnovski/mini.jump',
+    event = 'BufReadPost',
+    opts = {},
   },
 }
