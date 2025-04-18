@@ -74,7 +74,7 @@ return {
       local setup = function(server)
         local server_opts = vim.tbl_deep_extend('force', {
           capabilities = vim.deepcopy(capabilities),
-          on_attach = function(_, buffer)
+          on_attach = function(client, buffer)
             setup_keymaps(buffer)
           end,
         }, servers[server] or {})
