@@ -99,9 +99,15 @@ return {
     'williamboman/mason.nvim',
     build = ':MasonUpdate',
     opts_extend = { 'ensure_installed' },
+    ---@type MasonSettings
     opts = {
       ensure_installed = {
         'stylua',
+      },
+      ui = {
+        border = 'rounded',
+        width = 0.8,
+        height = 0.8,
       },
     },
     config = function(_, opts)

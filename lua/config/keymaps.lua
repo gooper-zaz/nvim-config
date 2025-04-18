@@ -63,6 +63,8 @@ keymap.set('n', '[w', diagnostic_goto(false, 'WARN'), { desc = 'Prev Warning' })
 
 -- lazy
 keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy' })
+-- mason
+keymap.set('n', '<leader>m', '<cmd>Mason<cr>', { desc = 'Mason' })
 
 -- commenting
 keymap.set('n', 'gco', 'o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Below' })

@@ -32,3 +32,12 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     end
   end,
 })
+
+-- 复制文本时高亮内容
+vim.api.nvim_create_autocmd('TextYankPost', {
+  pattern = '*',
+  group = augroup('highlight_yank'),
+  callback = function()
+    (vim.hl or vim.highlight).on_yank()
+  end,
+})

@@ -27,7 +27,6 @@ return {
           end,
         },
       },
-      theme = 'tokyonight',
     },
   },
   {
@@ -57,10 +56,16 @@ return {
     },
     opts = {
       options = {
-        show_close_icon = true,
-        -- always_show_bufferline = false,
+        show_buffer_close_icons = true,
       },
     },
+    config = function(_, opts)
+      if (vim.g.colors_name or ''):find('catppuccin') then
+        opts.highlights = require('catppuccin.groups.integrations.bufferline').get()
+      end
+
+      require('bufferline').setup(opts)
+    end,
   },
   {
     'folke/snacks.nvim',
