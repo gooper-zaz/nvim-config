@@ -18,6 +18,8 @@ keymap.set('i', '<C-u>', '<C-G>u<C-U>')
 keymap.set('n', '<C-a>', 'gg<S-v>G', opts)
 -- Save
 keymap.set({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', opts)
+-- Quit
+keymap.set('n', '<leader>qq', '<cmd>qa<CR>', { desc = 'Quit All' })
 
 -- 向左缩进
 keymap.set('v', '<', '<gv', opts)

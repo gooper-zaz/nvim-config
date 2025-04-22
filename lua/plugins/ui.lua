@@ -47,6 +47,7 @@ return {
       { ']B', '<cmd>BufferLineMoveNext<cr>', desc = 'Move Buffer Next' },
       { '<leader>br', '<Cmd>BufferLineCloseRight<CR>', desc = 'Delete Buffers to the Right' },
       { '<leader>bl', '<Cmd>BufferLineCloseLeft<CR>', desc = 'Delete Buffers to the Left' },
+      { '<leader>bp', '<Cmd>BufferLinePick<CR>', desc = 'Buffer Pick' },
       {
         '<leader>bd',
         function()
