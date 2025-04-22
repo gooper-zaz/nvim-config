@@ -16,6 +16,16 @@ return {
         '<cmd>Telescope buffers sort_mru=true sort_lastused=true ignore_current_buffer=false<cr>',
         desc = '[f]ind [b]uffers',
       },
+      {
+        '<leader>ft',
+        '<cmd>Telescope file_browser<cr>',
+        desc = '[f]ile [t]ree',
+      },
+      {
+        '<leader>fT',
+        '<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>',
+        desc = '[f]ile [t]ree with the path of the current buffer',
+      },
       { '<leader>sb', '<cmd>Telescope current_buffer_fuzzy_find<cr>', desc = '[s]earch in current [b]uffer' },
       { '<leader>sj', '<cmd>Telescope jumplist<cr>', desc = 'jumplist' },
       { '<leader>sk', '<cmd>Telescope keymaps<cr>', desc = 'keymaps' },
@@ -60,11 +70,21 @@ return {
         pickers = {
           find_files = { hidden = true },
         },
+        extensions = {
+          file_browser = {
+            grouped = true,
+          },
+        },
       }
     end,
     config = function(_, opts)
-      local t = require('telescope')
-      t.setup(opts)
+      local telescope = require('telescope')
+      telescope.setup(opts)
+      telescope.load_extension('file_browser') -- 文件浏览器
     end,
+  },
+  {
+    'nvim-telescope/telescope-file-browser.nvim',
+    dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
   },
 }
