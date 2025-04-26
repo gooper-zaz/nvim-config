@@ -1,55 +1,39 @@
 return {
-  -- {
-  --   'telescope.nvim',
-  --   dependencies = {
-  --     'nvim-telescope/telescope-fzf-native.nvim',
-  --     build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
-  --     opts = function(_, opts)
-  --       table.insert(opts, {
-  --         extensions = {
-  --           fzf = {
-  --             fuzzy = true, -- false will only do exact matching
-  --             override_generic_sorter = true, -- override the generic sorter
-  --             override_file_sorter = true, -- override the file sorter
-  --             case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
-  --           },
-  --         },
-  --       })
-  --     end,
-  --     config = function()
-  --       require('telescope').load_extension('fzf')
-  --     end,
-  --   },
-  -- },
   {
-    'nvim-neo-tree/neo-tree.nvim',
-    opts = {
-      filesystem = {
-        filtered_items = {
-          hide_dotfiles = false,
-          hide_gitignored = false,
-          hide_by_name = { '.git', '.DS_Store' },
-        },
-      },
-    },
-  },
-  {
-    'axelvc/template-string.nvim',
+    'windwp/nvim-ts-autotag',
+    event = 'BufReadPost',
     opts = {},
   },
   {
-    'mg979/vim-visual-multi',
-    opt = {},
+    'folke/ts-comments.nvim',
+    event = 'BufReadPost',
+    opts = {},
   },
   {
-    'ibhagwan/fzf-lua',
-    opts = {
-      keymap = {
-        fzf = {
-          ['tab'] = 'down',
-          ['shift-tab'] = 'up',
-        },
-      },
+    'folke/trouble.nvim',
+    keys = {
+      { '<leader>td', '<cmd>Trouble diagnostics toggle<cr>', desc = '[t]rouble [d]iagnostics' },
     },
+    opts = {},
+  },
+  {
+    -- 使用'jk'退出insert mode
+    'max397574/better-escape.nvim',
+    event = 'VeryLazy',
+    config = function()
+      require('better_escape').setup()
+    end,
+  },
+  -- 在bufferline下边显示面包屑状态栏, 包含当前文件路径, 当前所在符号等
+  {
+    'Bekaboo/dropbar.nvim',
+    event = 'BufReadPost',
+    opts = {},
+    -- config = function(_, opts)
+    --   local dropbar_api = require('dropbar.api')
+    --   vim.keymap.set('n', '<Leader>;', dropbar_api.pick, { desc = 'Pick symbols in winbar' })
+    --   vim.keymap.set('n', '[;', dropbar_api.goto_context_start, { desc = 'Go to start of current context' })
+    --   vim.keymap.set('n', '];', dropbar_api.select_next_context, { desc = 'Select next context' })
+    -- end
   },
 }

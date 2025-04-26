@@ -1,51 +1,48 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    opts = function(_, opts)
-      table.insert(opts.ensure_installed, { 'css', 'vue', 'scss' })
-      opts.incremental_selection = {
+    version = false,
+    event = 'VeryLazy',
+    build = ':TSUpdate',
+    opts_extend = { 'ensure_installed' },
+    opts = {
+      highlight = { enable = true },
+      indent = { enable = true },
+      ensure_installed = {
+        'vim',
+        'vimdoc',
+        'regex',
+        'lua',
+        'luadoc',
+        'bash',
+        'markdown',
+        'markdown_inline',
+        'html',
+        'css',
+        'json',
+        'yaml',
+      },
+      textobjects = {
+        move = {
+          enable = true,
+          goto_next_start = { [']f'] = '@function.outer', [']c'] = '@class.outer', [']a'] = '@parameter.inner' },
+          goto_next_end = { [']F'] = '@function.outer', [']C'] = '@class.outer', [']A'] = '@parameter.inner' },
+          goto_previous_start = { ['[f'] = '@function.outer', ['[c'] = '@class.outer', ['[a'] = '@parameter.inner' },
+          goto_previous_end = { ['[F'] = '@function.outer', ['[C'] = '@class.outer', ['[A'] = '@parameter.inner' },
+        },
+      },
+      incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = 'gnn', -- set to `false` to disable one of the mappings
-          node_incremental = 'ni',
-          scope_incremental = 'si',
-          node_decremental = 'nd',
+          init_selection = 'gnn',
+          node_incremental = 'gna',
+          scope_incremental = false,
+          node_decremental = '<bs>',
         },
-      }
+      },
+    },
+    config = function(_, opts)
+      require('nvim-treesitter.configs').setup(opts)
     end,
   },
-  -- NOTE: use snacks
-  -- {
-  --   'hiphish/rainbow-delimiters.nvim',
-  --   dependencies = {
-  --     'nvim-treesitter/nvim-treesitter',
-  --   },
-  --   event = { 'BufReadPost' },
-  --   config = function()
-  --     local rainbow = require('rainbow-delimiters')
-  --     require('rainbow-delimiters.setup').setup({
-  --       strategy = {
-  --         [''] = rainbow.strategy['global'],
-  --         vim = rainbow.strategy['local'],
-  --       },
-  --       query = {
-  --         [''] = 'rainbow-delimiters',
-  --         lua = 'rainbow-blocks',
-  --       },
-  --       priority = {
-  --         [''] = 110,
-  --         lua = 210,
-  --       },
-  --       highlight = {
-  --         'RainbowDelimiterRed',
-  --         'RainbowDelimiterYellow',
-  --         'RainbowDelimiterBlue',
-  --         'RainbowDelimiterOrange',
-  --         'RainbowDelimiterGreen',
-  --         'RainbowDelimiterViolet',
-  --         'RainbowDelimiterCyan',
-  --       },
-  --     })
-  --   end,
-  -- },
 }

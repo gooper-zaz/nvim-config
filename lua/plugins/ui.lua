@@ -1,120 +1,109 @@
 return {
   {
-    'folke/noice.nvim',
+    'nvim-tree/nvim-web-devicons',
+    lazy = true,
+  },
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    event = 'VeryLazy',
     opts = {
-      presets = {
-        lsp_doc_border = true,
+      options = {
+        theme = 'auto',
+        globalstatus = vim.o.laststatus == 3,
+        disabled_filetypes = { statusline = { 'dashboard', 'alpha', 'ministarter', 'snacks_dashboard' } },
       },
-      lsp = {
-        hover = {
-          silent = true,
+      sections = {
+        lualine_x = { 'filetype' },
+        lualine_y = {
+          { 'progress', separator = ' ', padding = { left = 1, right = 0 } },
+          { 'location', padding = { left = 0, right = 1 } },
+        },
+        lualine_z = {
+          function()
+            return ' ' .. os.date('%R')
+          end,
         },
       },
+      -- winbar = {
+      --   lualine_a = {},
+      --   lualine_b = {},
+      --   lualine_c = { 'filename' },
+      --   lualine_x = {},
+      --   lualine_y = {},
+      --   lualine_z = {},
+      -- },
     },
+  },
+  {
+    'akinsho/bufferline.nvim',
+    event = 'VeryLazy',
+    keys = {
+      { '[b', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev Buffer' },
+      { ']b', '<cmd>BufferLineCycleNext<cr>', desc = 'Next Buffer' },
+      { '[B', '<cmd>BufferLineMovePrev<cr>', desc = 'Move Buffer Prev' },
+      { ']B', '<cmd>BufferLineMoveNext<cr>', desc = 'Move Buffer Next' },
+      { '<leader>br', '<Cmd>BufferLineCloseRight<CR>', desc = 'Delete Buffers to the Right' },
+      { '<leader>bl', '<Cmd>BufferLineCloseLeft<CR>', desc = 'Delete Buffers to the Left' },
+      { '<leader>bp', '<Cmd>BufferLinePick<CR>', desc = 'Buffer Pick' },
+      {
+        '<leader>bd',
+        function()
+          require('snacks.bufdelete').delete()
+        end,
+        desc = 'Delete Current Buffer',
+      },
+      {
+        '<leader>bo',
+        function()
+          require('snacks.bufdelete').other()
+        end,
+        desc = 'Delete Other Buffers',
+      },
+    },
+    opts = {
+      options = {
+        show_buffer_close_icons = true,
+      },
+    },
+    config = function(_, opts)
+      if (vim.g.colors_name or ''):find('catppuccin') then
+        opts.highlights = require('catppuccin.groups.integrations.bufferline').get()
+      end
+
+      require('bufferline').setup(opts)
+    end,
   },
   {
     'folke/snacks.nvim',
-    --- @type snacks.Config
+    priority = 1000,
+    ---@type snacks.Config
     opts = {
+      indent = { enabled = true },
+      bigfile = { enabled = true },
+      notifier = { enabled = true },
+      scope = { enabled = true },
+      input = { enabled = true },
+      words = { enabled = true },
+      scroll = { enabled = false },
       dashboard = {
         preset = {
-          header = [[
-
-          ██████╗  ██████╗  ██████╗ ██████╗ ███████╗██████╗     ███████╗ ██████╗ ███╗   ██╗███████╗
-          ██╔════╝ ██╔═══██╗██╔═══██╗██╔══██╗██╔════╝██╔══██╗    ╚══███╔╝██╔═══██╗████╗  ██║██╔════╝
-          ██║  ███╗██║   ██║██║   ██║██████╔╝█████╗  ██████╔╝      ███╔╝ ██║   ██║██╔██╗ ██║█████╗  
-          ██║   ██║██║   ██║██║   ██║██╔═══╝ ██╔══╝  ██╔══██╗     ███╔╝  ██║   ██║██║╚██╗██║██╔══╝  
-          ╚██████╔╝╚██████╔╝╚██████╔╝██║     ███████╗██║  ██║    ███████╗╚██████╔╝██║ ╚████║███████╗
-          ╚═════╝  ╚═════╝  ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═╝    ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝
-
-        ]],
-        },
-      },
-      scroll = { enabled = false },
-      indent = {
-        scope = {
-          enabled = true, -- enable highlighting the current scope
-          priority = 200,
-          char = '│',
-          underline = false, -- underline the start of the scope
-          only_current = true, -- only show scope in the current window
-          -- hl = "SnacksIndentScope", ---@type string|string[] hl group for scopes
-          hl = {
-            'RainbowRed',
-            'RainbowYellow',
-            'RainbowBlue',
-            'RainbowOrange',
-            'RainbowGreen',
-            'RainbowViolet',
-            'RainbowCyan',
+          -- stylua: ignore
+          ---@type snacks.dashboard.Item[]
+          keys = {
+            { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+            -- { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+            { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+            { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+            { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+            { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
+            { icon = "󰰑 ", key = "m", desc = "Mason", action = ":Mason" },
+            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
           },
         },
       },
-    },
-  },
-  {
-    'NvChad/nvim-colorizer.lua',
-    event = { 'BufReadPost' },
-    -- NOTE: disable `nvim-colorizer`
-    enabled = false,
-    config = function()
-      require('colorizer').setup({
-        user_default_options = {
-          mode = 'virtualtext',
-        },
-      })
-    end,
-  },
-  {
-    'HiPhish/rainbow-delimiters.nvim',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-    },
-    event = { 'BufReadPost' },
-    config = function()
-      local rainbow = require('rainbow-delimiters')
-      require('rainbow-delimiters.setup').setup({
-        strategy = {
-          [''] = rainbow.strategy['global'],
-          vim = rainbow.strategy['local'],
-        },
-        query = {
-          [''] = 'rainbow-delimiters',
-          lua = 'rainbow-blocks',
-        },
-        priority = {
-          [''] = 110,
-          lua = 210,
-        },
-        highlight = {
-          'RainbowDelimiterRed',
-          'RainbowDelimiterYellow',
-          'RainbowDelimiterBlue',
-          'RainbowDelimiterOrange',
-          'RainbowDelimiterGreen',
-          'RainbowDelimiterViolet',
-          'RainbowDelimiterCyan',
-        },
-      })
-    end,
-  },
-  {
-    'catppuccin/nvim',
-    lazy = true,
-    name = 'catppuccin',
-    opts = {
-      term_colors = true,
-      custom_highlights = function()
-        return {
-          RainbowRed = { fg = '#E06C75' },
-          RainbowYellow = { fg = '#E5C07B' },
-          RainbowBlue = { fg = '#61AFEF' },
-          RainbowOrange = { fg = '#D19A66' },
-          RainbowGreen = { fg = '#98C379' },
-          RainbowViolet = { fg = '#C678DD' },
-          RainbowCyan = { fg = '#56B6C2' },
-        }
-      end,
     },
   },
 }
