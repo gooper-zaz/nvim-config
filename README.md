@@ -1,11 +1,10 @@
-# My Neovim configuration based on [LazyVim](https://github.com/LazyVim/LazyVim)
+# My Neovim Configuration 
 
 ## ⚡️ Requirements
 
 - Neovim >= 0.9.0 (needs to be built with LuaJIT)
 - Git >= 2.19.0 (for partial clones support)
 - [Nerd Font](https://www.nerdfonts.com/)
-- [lazygit](https://github.com/jesseduffield/lazygit)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [fd](https://github.com/sharkdp/fd)
 
@@ -15,4 +14,4 @@
 - Neovim 0.9.4
 - gcc version 12.2.0 (Built by MinGW-W64)
 - cmake version 3.27.0
-- nodejs v16.18.0
+- nodejs v20.10.0
