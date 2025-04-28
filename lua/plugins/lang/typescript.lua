@@ -74,9 +74,11 @@ return {
       ensure_installed = {
         'javascript',
         'typescript',
+        'tsx',
         'html',
         'css',
         'scss',
+        'jsdoc',
       },
     },
   },

@@ -11,16 +11,22 @@ return {
       ensure_installed = {
         'vim',
         'vimdoc',
+        'diff',
         'regex',
+        'query',
         'lua',
         'luadoc',
         'bash',
+        'printf',
         'markdown',
         'markdown_inline',
         'html',
         'css',
         'json',
+        'jsonc',
         'yaml',
+        'toml',
+        'xml',
       },
       textobjects = {
         move = {
