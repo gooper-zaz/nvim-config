@@ -7,10 +7,31 @@ return {
     event = 'VeryLazy',
     opts = {
       lsp = {
-        hover = { silent = true },
         override = {
           ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
           ['vim.lsp.util.stylize_markdown'] = true,
+          ['cmp.entry.get_documentation'] = true,
+        },
+        hover = {
+          enabled = true,
+          silent = true,
+          opts = {
+            border = { style = 'rounded' },
+            size = {
+              max_width = math.floor(vim.o.columns * 0.7), -- 最大宽度 屏幕的70%
+              max_height = math.floor(vim.o.lines * 0.5), -- 最大高度 屏幕的50%
+            },
+          },
+        },
+        signature = {
+          enabled = true,
+          opts = {
+            border = { style = 'rounded' },
+            size = {
+              max_width = math.floor(vim.o.columns * 0.7), -- 最大宽度 屏幕的70%
+              max_height = math.floor(vim.o.lines * 0.5), -- 最大高度 屏幕的50%
+            },
+          },
         },
       },
       presets = {
