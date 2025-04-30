@@ -107,6 +107,10 @@ return {
     'williamboman/mason.nvim',
     build = ':MasonUpdate',
     opts_extend = { 'ensure_installed' },
+    cmd = { 'Mason', 'MasonInstall', 'MasonUpdate', 'MasonUninstall', 'MasonLog', 'MasonUninstallAll' },
+    keys = {
+      { '<leader>m', '<cmd>Mason<cr>', desc = 'Mason' },
+    },
     ---@type MasonSettings
     opts = {
       ensure_installed = {

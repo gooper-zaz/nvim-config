@@ -69,11 +69,12 @@ return {
     config = function(_, opts)
       local telescope = require('telescope')
       telescope.setup(opts)
-      telescope.load_extension('file_browser') -- 文件浏览器
+      -- telescope.load_extension('file_browser') -- 文件浏览器
     end,
   },
   {
     'nvim-telescope/telescope-file-browser.nvim',
+    enabled = false,
     cmd = 'Telescope',
     keys = {
       {
