@@ -15,16 +15,6 @@ return {
         '<cmd>Telescope buffers sort_mru=true sort_lastused=true ignore_current_buffer=false<cr>',
         desc = '[f]ind [b]uffers',
       },
-      {
-        '<leader>ft',
-        '<cmd>Telescope file_browser<cr>',
-        desc = '[f]ile [t]ree',
-      },
-      {
-        '<leader>fT',
-        '<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>',
-        desc = '[f]ile [t]ree with the path of the current buffer',
-      },
       { '<leader>sb', '<cmd>Telescope current_buffer_fuzzy_find<cr>', desc = '[s]earch in current [b]uffer' },
       { '<leader>sj', '<cmd>Telescope jumplist<cr>', desc = 'jumplist' },
       { '<leader>sk', '<cmd>Telescope keymaps<cr>', desc = 'keymaps' },
@@ -84,6 +74,19 @@ return {
   },
   {
     'nvim-telescope/telescope-file-browser.nvim',
+    cmd = 'Telescope',
+    keys = {
+      {
+        '<leader>ft',
+        '<cmd>Telescope file_browser<cr>',
+        desc = '[f]ile [t]ree',
+      },
+      {
+        '<leader>fT',
+        '<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>',
+        desc = '[f]ile [t]ree with the path of the current buffer',
+      },
+    },
     dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
   },
 }

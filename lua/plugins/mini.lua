@@ -198,4 +198,9 @@ return {
     event = 'BufReadPost',
     opts = {},
   },
+  {
+    'echasnovski/mini.jump2d',
+    event = 'BufReadPost',
+    opts = {},
+  },
 }
