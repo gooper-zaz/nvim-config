@@ -75,6 +75,14 @@ return {
         local server_opts = vim.tbl_deep_extend('force', {
           capabilities = vim.deepcopy(capabilities),
           on_attach = function(client, buffer)
+            local filetype = vim.api.nvim_buf_get_option(buffer, 'filetype')
+
+            -- 只在 vue 文件中禁用 documentHighlight
+            if filetype == 'vue' then
+              if client.server_capabilities.documentHighlightProvider then
+                client.server_capabilities.documentHighlightProvider = false
+              end
+            end
             setup_keymaps(buffer)
           end,
         }, servers[server] or {})
