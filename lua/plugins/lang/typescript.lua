@@ -64,7 +64,19 @@ return {
     'stevearc/conform.nvim',
     opts = {
       formatters_by_ft = {
-        typescriptreact = { 'prettier' },
+        javascript = { 'custom_prettier' },
+        javascriptreact = { 'custom_prettier' },
+        typescript = { 'custom_prettier' },
+        typescriptreact = { 'custom_prettier' },
+      },
+    },
+  },
+  {
+    'williamboman/mason.nvim',
+    opts = {
+      ensure_installed = {
+        'prettier',
+        'prettierd',
       },
     },
   },
