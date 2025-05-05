@@ -20,8 +20,18 @@ return {
     -- 使用'jk'退出insert mode
     'max397574/better-escape.nvim',
     event = 'VeryLazy',
-    config = function()
-      require('better_escape').setup()
+    opts = {
+      mappings = {
+        i = {
+          j = {
+            k = '<Esc>',
+            j = false, -- disable 'jj'
+          },
+        },
+      },
+    },
+    config = function(_, opts)
+      require('better_escape').setup(opts)
     end,
   },
   -- 在bufferline下边显示面包屑状态栏, 包含当前文件路径, 当前所在符号等
