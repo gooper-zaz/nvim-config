@@ -7,7 +7,9 @@ return {
     cmd = 'Telescope',
     keys = {
       { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = '[f]ind [f]iles' },
+      { '<leader>fF', '<cmd>Telescope find_files theme=ivy<cr>', desc = '[f]ind [f]iles [ivy]' },
       { '<leader>fg', '<cmd>Telescope live_grep<cr>', desc = '[f]ile [g]rep' },
+      { '<leader>fG', '<cmd>Telescope live_grep theme=ivy<cr>', desc = '[f]ile [g]rep [ivy]' },
       { '<leader>fr', '<cmd>Telescope resume<cr>', desc = '[f]ile [r]esume' },
       { '<leader>fv', '<cmd>Telescope vim_options<cr>', desc = '[f]ind [v]im opts' },
       {

@@ -4,7 +4,7 @@ return {
     event = 'BufReadPost',
     dependencies = {
       { 'saghen/blink.cmp' },
-      { 'williamboman/mason-lspconfig.nvim', config = function() end },
+      { 'williamboman/mason-lspconfig.nvim' },
     },
     opts = {
       servers = {
@@ -45,7 +45,7 @@ return {
       local blink = require('blink.cmp')
 
       local capabilities = blink.get_lsp_capabilities()
-      local all_mlsp_servers = vim.tbl_keys(require('mason-lspconfig.mappings.server').lspconfig_to_package)
+      -- local all_mlsp_servers = vim.tbl_keys(require('mason-lspconfig.mappings.server').lspconfig_to_package)
 
       -- setup keymaps
       local keymaps = {
@@ -66,9 +66,9 @@ return {
 
       local ensure_installed = {}
       for server, _ in pairs(servers) do
-        if vim.tbl_contains(all_mlsp_servers, server) then
-          ensure_installed[#ensure_installed + 1] = server
-        end
+        -- if vim.tbl_contains(all_mlsp_servers, server) then
+        ensure_installed[#ensure_installed + 1] = server
+        -- end
       end
 
       local setup = function(server)
@@ -102,6 +102,10 @@ return {
         handlers = { setup },
       })
     end,
+  },
+  {
+    'williamboman/mason-lspconfig.nvim',
+    opts = {},
   },
   {
     'williamboman/mason.nvim',
