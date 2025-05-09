@@ -4,6 +4,12 @@ return {
     version = false,
     event = 'VeryLazy',
     build = ':TSUpdate',
+    lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+    cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
+    keys = {
+      { 'gnn', desc = 'Increment Selection' },
+      { '<bs>', desc = 'Decrement Selection', mode = 'x' },
+    },
     opts_extend = { 'ensure_installed' },
     opts = {
       highlight = { enable = true },
