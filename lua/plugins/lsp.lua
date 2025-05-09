@@ -6,98 +6,206 @@ return {
       { 'saghen/blink.cmp' },
       { 'williamboman/mason-lspconfig.nvim' },
     },
-    opts = {
-      servers = {
-        lua_ls = {
-          settings = {
-            Lua = {
-              workspace = {
-                checkThirdParty = false,
-              },
-              codeLens = {
-                enable = true,
-              },
-              completion = {
-                callSnippet = 'Replace',
-              },
-              doc = {
-                privateName = { '^_' },
-              },
-              hint = {
-                enable = true,
-                setType = false,
-                paramType = true,
-                paramName = 'Disable',
-                semicolon = 'Disable',
-                arrayIndex = 'Disable',
+    opts = function()
+      local icons = require('config.icons')
+      local diagnostic_icons = icons.get_icons()
+      ---@class PluginLspOpts
+      local ret = {
+        ---@type vim.diagnostic.Opts
+        diagnostics = {
+          underline = true,
+          update_in_insert = false,
+          virtual_text = {
+            spaces = 4,
+            source = 'if_many',
+            prefix = '●',
+          },
+          serverity_sort = true,
+          signs = {
+            text = {
+              [vim.diagnostic.severity.ERROR] = diagnostic_icons.diagnostics.Error,
+              [vim.diagnostic.severity.WARN] = diagnostic_icons.diagnostics.Warn,
+              [vim.diagnostic.severity.HINT] = diagnostic_icons.diagnostics.Hint,
+              [vim.diagnostic.severity.INFO] = diagnostic_icons.diagnostics.Info,
+            },
+          },
+        },
+        inlay_hints = {
+          enabled = true,
+          exclude = { 'vue' },
+        },
+        codelens = {
+          enabled = true,
+        },
+        capabilities = {
+          workspace = {
+            fileOperations = {
+              didRename = true,
+              willRename = true,
+            },
+          },
+        },
+        ---@type lspconfig.options
+        servers = {
+          lua_ls = {
+            -- mason = false, -- set to false if you don't want this server to be installed with mason
+            -- Use this to add any additional keymaps
+            -- for specific lsp servers
+            -- ---@type LazyKeysSpec[]
+            -- keys = {},
+            settings = {
+              Lua = {
+                workspace = {
+                  checkThirdParty = false,
+                },
+                codeLens = {
+                  enable = true,
+                },
+                completion = {
+                  callSnippet = 'Replace',
+                },
+                doc = {
+                  privateName = { '^_' },
+                },
+                hint = {
+                  enable = true,
+                  setType = false,
+                  paramType = true,
+                  paramName = 'Disable',
+                  semicolon = 'Disable',
+                  arrayIndex = 'Disable',
+                },
               },
             },
           },
         },
-      },
-      setup = {},
-    },
-    config = function(_, opts)
-      local servers = opts.servers
+        -- you can do any additional lsp server setup here
+        -- return true if you don't want this server to be setup with lspconfig
+        ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
+        setup = {},
+      }
 
-      local lsp = require('lspconfig')
+      return ret
+    end,
+    ---@param opts PluginLspOpts
+    config = function(_, opts)
+      vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
+
+      local servers = opts.servers
       local mlsp = require('mason-lspconfig')
       local blink = require('blink.cmp')
 
-      local capabilities = blink.get_lsp_capabilities()
-      -- local all_mlsp_servers = vim.tbl_keys(require('mason-lspconfig.mappings.server').lspconfig_to_package)
+      local capabilities = vim.tbl_deep_extend(
+        'force',
+        {},
+        vim.lsp.protocol.make_client_capabilities(),
+        blink.get_lsp_capabilities() or {},
+        opts.capabilities or {}
+      )
 
-      -- setup keymaps
-      local keymaps = {
-        { key = 'gd', cmd = '<cmd>Telescope lsp_definitions<cr>' },
-        {
-          key = 'K',
-          cmd = '<cmd>lua vim.lsp.buf.hover({max_width = math.floor(vim.o.columns * 0.7)})<cr>',
-        },
-        { key = 'gr', cmd = '<cmd>Telescope lsp_references<cr>' },
-        -- { key = "[e", cmd = "<cmd>lua vim.diagnostic.goto_prev()<cr>" },
-        -- { key = "]e", cmd = "<cmd>lua vim.diagnostic.goto_next()<cr>" },
-      }
-      local function setup_keymaps(bufnr)
-        for _, map in ipairs(keymaps) do
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', map.key, map.cmd, { noremap = true, silent = true })
-        end
-      end
-
-      local ensure_installed = {}
-      for server, _ in pairs(servers) do
-        -- if vim.tbl_contains(all_mlsp_servers, server) then
-        ensure_installed[#ensure_installed + 1] = server
-        -- end
-      end
-
-      local setup = function(server)
+      -- setup function
+      ---@param server string
+      local function setup(server)
         local server_opts = vim.tbl_deep_extend('force', {
           capabilities = vim.deepcopy(capabilities),
           on_attach = function(client, buffer)
             local filetype = vim.api.nvim_buf_get_option(buffer, 'filetype')
-
             -- 只在 vue 文件中禁用 documentHighlight
             if filetype == 'vue' then
               if client.server_capabilities.documentHighlightProvider then
                 client.server_capabilities.documentHighlightProvider = false
               end
             end
-            setup_keymaps(buffer)
+
+            -- 注册快捷键
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {
+              desc = 'Goto definition',
+              buffer = buffer,
+            })
+            vim.keymap.set('n', 'gr', vim.lsp.buf.references, {
+              desc = 'References',
+              buffer = buffer,
+            })
+            vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, {
+              desc = 'Goto Implementation',
+              buffer = buffer,
+            })
+            vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, {
+              desc = 'Goto T[y]pe Definition',
+              buffer = buffer,
+            })
+            vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {
+              desc = 'Goto Declaration',
+              buffer = buffer,
+            })
+
+            vim.keymap.set('n', 'K', function()
+              vim.lsp.buf.hover()
+            end, {
+              desc = 'Hover',
+              buffer = buffer,
+            })
+            vim.keymap.set('i', '<c-k>', function()
+              return vim.lsp.buf.signature_help()
+            end, {
+              desc = 'Signature help',
+              buffer = buffer,
+            })
+            vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {
+              desc = 'Code action',
+              buffer = buffer,
+            })
+            -- see 'noice.lua'
+            -- vim.keymap.set('n', '<leader>cr', function()
+            --   -- 如果当前filetype是'vue', 则使用vim内置的rename行为
+            --   if vim.bo.filetype == 'vue' then
+            --     return ':lua vim.lsp.buf.rename()<CR>'
+            --   end
+            --   local inc = require('inc_rename')
+            --   return ':' .. inc.config.cmd_name .. ' ' .. vim.fn.expand('<cword>')
+            -- end, {
+            --   desc = 'Rename',
+            --   expr = true,
+            -- })
           end,
         }, servers[server] or {})
+        if server_opts.enabled == false then
+          return
+        end
 
         if opts.setup[server] then
-          if opts.setup[server](server_opts) then
+          if opts.setup[server](server, server_opts) then
+            return
+          end
+        elseif opts.setup['*'] then
+          if opts.setup['*'](server, server_opts) then
             return
           end
         end
 
-        lsp[server].setup(server_opts)
+        require('lspconfig')[server].setup(server_opts)
+      end
+
+      local all_mslp_servers = vim.tbl_keys(require('mason-lspconfig.mappings').get_all().lspconfig_to_package)
+
+      local ensure_installed = {} ---@type string[]
+      for server, server_opts in pairs(servers) do
+        if server_opts then
+          server_opts = server_opts == true and {} or server_opts
+          if server_opts.enabled ~= false then
+            -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
+            if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
+              setup(server)
+            else
+              ensure_installed[#ensure_installed + 1] = server
+            end
+          end
+        end
       end
 
       mlsp.setup({
         automatic_installation = true,
+        automatic_enable = false,
         ensure_installed = ensure_installed,
         handlers = { setup },
       })
@@ -119,6 +227,7 @@ return {
     opts = {
       ensure_installed = {
         'stylua',
+        'shfmt',
       },
       ui = {
         border = 'rounded',
