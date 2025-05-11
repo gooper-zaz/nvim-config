@@ -58,14 +58,14 @@ return {
         end
       end, { silent = true, expr = true })
 
-      vim.keymap.set('n', '<leader>cr', function()
-        -- 如果当前filetype是'vue', 则使用vim内置的rename行为
-        if vim.bo.filetype == 'vue' then
-          return ':lua vim.lsp.buf.rename()<CR>'
-        end
-        local inc = require('inc_rename')
-        return ':' .. inc.config.cmd_name .. ' ' .. vim.fn.expand('<cword>')
-      end, { expr = true })
+      -- vim.keymap.set('n', '<leader>cr', function()
+      --   -- 如果当前filetype是'vue', 则使用vim内置的rename行为
+      --   if vim.bo.filetype == 'vue' then
+      --     return ':lua vim.lsp.buf.rename()<CR>'
+      --   end
+      --   local inc = require('inc_rename')
+      --   return ':' .. inc.config.cmd_name .. ' ' .. vim.fn.expand('<cword>')
+      -- end, { expr = true })
     end,
   },
   {

@@ -19,7 +19,7 @@ return {
       },
       { 'giuxtaposition/blink-cmp-copilot' },
     },
-    event = 'InsertEnter',
+    event = { 'InsertEnter', 'CmdlineEnter' },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {

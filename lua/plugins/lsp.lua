@@ -20,7 +20,7 @@ return {
             source = 'if_many',
             prefix = '●',
           },
-          serverity_sort = true,
+          severity_sort = true,
           signs = {
             text = {
               [vim.diagnostic.severity.ERROR] = diagnostic_icons.diagnostics.Error,
@@ -94,6 +94,7 @@ return {
       local servers = opts.servers
       local mlsp = require('mason-lspconfig')
       local blink = require('blink.cmp')
+      local lspconfig = require('lspconfig')
 
       local capabilities = vim.tbl_deep_extend(
         'force',
@@ -103,72 +104,77 @@ return {
         opts.capabilities or {}
       )
 
+      local function on_attach(client, buffer)
+        local filetype = vim.api.nvim_buf_get_option(buffer, 'filetype')
+        -- 只在 vue 文件中禁用 documentHighlight
+        if filetype == 'vue' then
+          if client.server_capabilities.documentHighlightProvider then
+            client.server_capabilities.documentHighlightProvider = false
+          end
+        end
+
+        -- 注册快捷键
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {
+          desc = 'Goto definition',
+          noremap = true,
+        })
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, {
+          desc = 'References',
+          noremap = true,
+          buffer = buffer,
+        })
+        vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, {
+          desc = 'Goto Implementation',
+          noremap = true,
+          buffer = buffer,
+        })
+        vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, {
+          desc = 'Goto T[y]pe Definition',
+          noremap = true,
+          buffer = buffer,
+        })
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {
+          desc = 'Goto Declaration',
+          noremap = true,
+          buffer = buffer,
+        })
+
+        vim.keymap.set('n', 'K', function()
+          vim.lsp.buf.hover()
+        end, {
+          desc = 'Hover',
+          noremap = true,
+          buffer = buffer,
+        })
+        vim.keymap.set('i', '<c-k>', function()
+          return vim.lsp.buf.signature_help()
+        end, {
+          desc = 'Signature help',
+          noremap = true,
+          buffer = buffer,
+        })
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {
+          desc = 'Code action',
+          noremap = true,
+          buffer = buffer,
+        })
+        vim.keymap.set('n', '<leader>cr', function()
+          -- 如果当前filetype是'vue', 则使用vim内置的rename行为
+          if vim.bo.filetype == 'vue' then
+            return ':lua vim.lsp.buf.rename()<CR>'
+          end
+          local inc = require('inc_rename')
+          return ':' .. inc.config.cmd_name .. ' ' .. vim.fn.expand('<cword>')
+        end, { expr = true, buffer = buffer })
+      end
+
       -- setup function
       ---@param server string
       local function setup(server)
         local server_opts = vim.tbl_deep_extend('force', {
           capabilities = vim.deepcopy(capabilities),
-          on_attach = function(client, buffer)
-            local filetype = vim.api.nvim_buf_get_option(buffer, 'filetype')
-            -- 只在 vue 文件中禁用 documentHighlight
-            if filetype == 'vue' then
-              if client.server_capabilities.documentHighlightProvider then
-                client.server_capabilities.documentHighlightProvider = false
-              end
-            end
-
-            -- 注册快捷键
-            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {
-              desc = 'Goto definition',
-              buffer = buffer,
-            })
-            vim.keymap.set('n', 'gr', vim.lsp.buf.references, {
-              desc = 'References',
-              buffer = buffer,
-            })
-            vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, {
-              desc = 'Goto Implementation',
-              buffer = buffer,
-            })
-            vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, {
-              desc = 'Goto T[y]pe Definition',
-              buffer = buffer,
-            })
-            vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {
-              desc = 'Goto Declaration',
-              buffer = buffer,
-            })
-
-            vim.keymap.set('n', 'K', function()
-              vim.lsp.buf.hover()
-            end, {
-              desc = 'Hover',
-              buffer = buffer,
-            })
-            vim.keymap.set('i', '<c-k>', function()
-              return vim.lsp.buf.signature_help()
-            end, {
-              desc = 'Signature help',
-              buffer = buffer,
-            })
-            vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {
-              desc = 'Code action',
-              buffer = buffer,
-            })
-            -- see 'noice.lua'
-            -- vim.keymap.set('n', '<leader>cr', function()
-            --   -- 如果当前filetype是'vue', 则使用vim内置的rename行为
-            --   if vim.bo.filetype == 'vue' then
-            --     return ':lua vim.lsp.buf.rename()<CR>'
-            --   end
-            --   local inc = require('inc_rename')
-            --   return ':' .. inc.config.cmd_name .. ' ' .. vim.fn.expand('<cword>')
-            -- end, {
-            --   desc = 'Rename',
-            --   expr = true,
-            -- })
-          end,
         }, servers[server] or {})
+
         if server_opts.enabled == false then
           return
         end
@@ -177,13 +183,9 @@ return {
           if opts.setup[server](server, server_opts) then
             return
           end
-        elseif opts.setup['*'] then
-          if opts.setup['*'](server, server_opts) then
-            return
-          end
         end
 
-        require('lspconfig')[server].setup(server_opts)
+        lspconfig[server].setup(server_opts)
       end
 
       local all_mslp_servers = vim.tbl_keys(require('mason-lspconfig.mappings').get_all().lspconfig_to_package)
@@ -205,15 +207,24 @@ return {
 
       mlsp.setup({
         automatic_installation = true,
-        automatic_enable = false,
+        automatic_enable = true,
         ensure_installed = ensure_installed,
         handlers = { setup },
+      })
+
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('lsp_config_attach', { clear = true }),
+        callback = function(event)
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
+          local buffer = event.buf
+          return on_attach(client, buffer)
+        end,
       })
     end,
   },
   {
     'williamboman/mason-lspconfig.nvim',
-    opts = {},
+    config = function() end,
   },
   {
     'williamboman/mason.nvim',

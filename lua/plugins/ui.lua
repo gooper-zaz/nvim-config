@@ -27,19 +27,11 @@ return {
           end,
         },
       },
-      -- winbar = {
-      --   lualine_a = {},
-      --   lualine_b = {},
-      --   lualine_c = { 'filename' },
-      --   lualine_x = {},
-      --   lualine_y = {},
-      --   lualine_z = {},
-      -- },
     },
   },
   {
     'akinsho/bufferline.nvim',
-    event = 'VeryLazy',
+    event = 'BufReadPost',
     keys = {
       { '[b', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev Buffer' },
       { ']b', '<cmd>BufferLineCycleNext<cr>', desc = 'Next Buffer' },
