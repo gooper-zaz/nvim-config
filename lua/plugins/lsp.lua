@@ -168,9 +168,12 @@ return {
         end, { expr = true, buffer = buffer })
       end
 
+      local all_mslp_servers = vim.tbl_keys(require('mason-lspconfig.mappings').get_all().lspconfig_to_package)
+      local exclude_automatic_enable = {} ---@type string[]
+
       -- setup function
       ---@param server string
-      local function setup(server)
+      local function configure(server)
         local server_opts = vim.tbl_deep_extend('force', {
           capabilities = vim.deepcopy(capabilities),
         }, servers[server] or {})
@@ -185,10 +188,15 @@ return {
           end
         end
 
-        lspconfig[server].setup(server_opts)
+        -- lspconfig[server].setup(server_opts)
+        vim.lsp.config(server, server_opts)
+        if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
+          -- configure(server)
+          vim.lsp.enable(server)
+          return true
+        end
+        return false
       end
-
-      local all_mslp_servers = vim.tbl_keys(require('mason-lspconfig.mappings').get_all().lspconfig_to_package)
 
       local ensure_installed = {} ---@type string[]
       for server, server_opts in pairs(servers) do
@@ -196,8 +204,9 @@ return {
           server_opts = server_opts == true and {} or server_opts
           if server_opts.enabled ~= false then
             -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
-            if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
-              setup(server)
+            if configure(server) then
+              -- configure(server)
+              exclude_automatic_enable[#exclude_automatic_enable + 1] = server
             else
               ensure_installed[#ensure_installed + 1] = server
             end
@@ -207,9 +216,11 @@ return {
 
       mlsp.setup({
         automatic_installation = true,
-        automatic_enable = true,
+        automatic_enable = {
+          enable = true,
+          exclude = exclude_automatic_enable,
+        },
         ensure_installed = ensure_installed,
-        handlers = { setup },
       })
 
       vim.api.nvim_create_autocmd('LspAttach', {

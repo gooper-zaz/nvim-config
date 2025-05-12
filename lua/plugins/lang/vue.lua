@@ -7,6 +7,7 @@ return {
     'neovim/nvim-lspconfig',
     opts = {
       servers = {
+        ---@type vim.lsp.Config
         volar = {
           init_options = {
             vue = {
@@ -19,6 +20,14 @@ return {
                 maxOldSpaceSize = 8192,
               },
             },
+          },
+          root_markers = {
+            'tsconfig.json',
+            'package.json',
+            '.git/',
+            'jsconfig.json',
+            'vite.config.js',
+            'vite.config.ts',
           },
         },
         vtsls = {},

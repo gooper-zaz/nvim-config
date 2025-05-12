@@ -30,7 +30,7 @@ function M.get_pkg_path(pkg, path)
   pcall(require, 'mason') -- make sure Mason is loaded. Will fail when generating docs
   local root = vim.env.MASON or (vim.fn.stdpath('data') .. '/mason')
   path = path or ''
-  local ret = root .. '/packages/' .. pkg .. '/' .. path
+  local ret = root .. '/packages/' .. pkg .. path
   return ret
 end
 
