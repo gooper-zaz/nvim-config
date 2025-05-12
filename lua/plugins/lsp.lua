@@ -160,11 +160,11 @@ return {
         })
         vim.keymap.set('n', '<leader>cr', function()
           -- 如果当前filetype是'vue', 则使用vim内置的rename行为
-          if vim.bo.filetype == 'vue' then
-            return ':lua vim.lsp.buf.rename()<CR>'
+          local use_inc, inc = pcall(require, 'inc_rename')
+          if use_inc and vim.bo.filetype ~= 'vue' then
+            return ':' .. inc.config.cmd_name .. ' ' .. vim.fn.expand('<cword>')
           end
-          local inc = require('inc_rename')
-          return ':' .. inc.config.cmd_name .. ' ' .. vim.fn.expand('<cword>')
+          return ':lua vim.lsp.buf.rename()<CR>'
         end, { expr = true, buffer = buffer })
       end
 
