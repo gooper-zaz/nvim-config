@@ -2,7 +2,7 @@
 
 ## ⚡️ Requirements
 
-- Neovim >= 0.9.0 (needs to be built with LuaJIT)
+- Neovim >= 0.11.0 
 - Git >= 2.19.0 (for partial clones support)
 - [Nerd Font](https://www.nerdfonts.com/)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
@@ -10,8 +10,7 @@
 
 ## ✨ What I use
 
-- Windows 11, i5-12600KF, 32GB
-- Neovim 0.9.4
+- Neovim 0.11.1
 - gcc version 12.2.0 (Built by MinGW-W64)
 - cmake version 3.27.0
 - nodejs v20.10.0

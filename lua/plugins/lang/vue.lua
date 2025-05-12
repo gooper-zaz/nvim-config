@@ -1,11 +1,3 @@
----@param pkg string 包名
----@param path string 包下的路径
-local function get_pkg_path(pkg, path)
-  pcall(require, 'mason')
-  local root = vim.fn.stdpath('data') .. '/mason/packages/'
-
-  return root .. pkg .. path
-end
 return {
   {
     'nvim-treesitter/nvim-treesitter',
@@ -15,6 +7,7 @@ return {
     'neovim/nvim-lspconfig',
     opts = {
       servers = {
+        ---@type vim.lsp.Config
         volar = {
           init_options = {
             vue = {
@@ -24,9 +17,17 @@ return {
           settings = {
             vue = {
               server = {
-                maxOldSpaceSize = 8092,
+                maxOldSpaceSize = 8192,
               },
             },
+          },
+          root_markers = {
+            'tsconfig.json',
+            'package.json',
+            '.git/',
+            'jsconfig.json',
+            'vite.config.js',
+            'vite.config.ts',
           },
         },
         vtsls = {},
@@ -36,13 +37,16 @@ return {
   {
     'neovim/nvim-lspconfig',
     opts = function(_, opts)
+      local util = require('config.util')
       table.insert(opts.servers.vtsls.filetypes, 'vue')
-      table.insert(opts.servers.vtsls.settings.vtsls.tsserver.globalPlugins, {
-        name = '@vue/typescript-plugin',
-        location = get_pkg_path('vue-language-server', '/node_modules/@vue/language-server'),
-        languages = { 'vue' },
-        configNamespace = 'typescript',
-        enableForWorkspaceTypeScriptVersions = true,
+      util.extend(opts.servers.vtsls, 'settings.vtsls.tsserver.globalPlugins', {
+        {
+          name = '@vue/typescript-plugin',
+          location = util.get_pkg_path('vue-language-server', '/node_modules/@vue/language-server'),
+          languages = { 'vue' },
+          configNamespace = 'typescript',
+          enableForWorkspaceTypeScriptVersions = true,
+        },
       })
     end,
   },
@@ -58,6 +62,7 @@ return {
     'williamboman/mason.nvim',
     opts = {
       ensure_installed = {
+        'prettier',
         'prettierd',
       },
     },
