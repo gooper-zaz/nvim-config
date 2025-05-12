@@ -26,8 +26,8 @@ keymap.set('v', '<', '<gv', opts)
 -- 向右缩进
 keymap.set('v', '>', '>gv', opts)
 
-keymap.set('n', 'H', '^', opts)
-keymap.set('n', 'L', '$', opts)
+keymap.set({ 'n', 'v' }, 'H', '^', opts)
+keymap.set({ 'n', 'v' }, 'L', '$', opts)
 
 -- Split window
 keymap.set('n', 'ss', ':split<Return>', opts)
@@ -37,14 +37,7 @@ keymap.set('n', 'sv', ':vsplit<Return>', opts)
 keymap.set('n', '[q', vim.cmd.cprev, opts)
 keymap.set('n', ']q', vim.cmd.cnext, opts)
 
--- code action
-keymap.set('n', '<leader>ca', function()
-  return vim.lsp.buf.code_action()
-end, opts)
--- lsp rename(see noice.lua)
--- keymap.set('n', '<leader>cr', vim.lsp.buf.rename, opts)
-
-keymap.set('n', 'te', ':tabedit<Return>', opts)
+keymap.set('n', '<leader>te', ':tabedit<Return>', opts)
 keymap.set('n', '<tab>', ':tabnext<Return>', opts)
 keymap.set('n', '<s-tab>', ':tabprev<Return>', opts)
 
