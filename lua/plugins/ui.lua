@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 return {
   {
     'nvim-tree/nvim-web-devicons',
@@ -55,9 +56,23 @@ return {
         desc = 'Delete Other Buffers',
       },
     },
+    ---@type bufferline.Config
     opts = {
       options = {
+        close_command = function(n)
+          require('snacks.bufdelete').delete({
+            buf = n.bufnr,
+          })
+        end,
         show_buffer_close_icons = true,
+        diagnostics = 'nvim_lsp',
+        diagnostics_indicator = function(count, level, diag)
+          local all_icons = require('config.icons').get_icons()
+          local icons = all_icons.diagnostics
+          local ret = (diag.error and icons.Error .. diag.error .. ' ' or '')
+            .. (diag.warning and icons.Warn .. diag.warning or '')
+          return vim.trim(ret)
+        end,
       },
     },
     config = function(_, opts)
