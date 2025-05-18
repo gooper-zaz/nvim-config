@@ -182,13 +182,21 @@ return {
       end
 
       vim.api.nvim_create_autocmd('User', {
-        pattern = 'MiniFilesBufferCreate',
+        pattern = 'MiniFilesBufgerCreate',
         callback = function(args)
           local buf_id = args.data.buf_id
           -- Tweak keys to your liking
           map_split(buf_id, 'sp', 'belowright horizontal')
-          map_split(buf_id, 'sv', 'belowright vertical')
+          map_split(buf_id, 'sl', 'belowright vertical')
           -- map_split(buf_id, '<C-t>', 'tab')
+        end,
+      })
+
+      -- LSP-integrated file renaming
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'MiniFilesActionRename',
+        callback = function(event)
+          Snacks.rename.on_rename_file(event.data.from, event.data.to)
         end,
       })
     end,

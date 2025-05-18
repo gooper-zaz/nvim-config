@@ -40,9 +40,12 @@ opt.autoindent = true
 opt.smartindent = true
 opt.breakindent = true
 opt.signcolumn = 'yes' -- Always show the signcolumn, otherwise it would shift the text each time
+opt.smoothscroll = true
 
--- vim.wo.foldmethod = 'expr'
--- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+opt.foldmethod = 'expr'
+opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+opt.foldlevel = 99
+opt.foldtext = ''
 
 -- neovide 配置
 if vim.g.neovide then

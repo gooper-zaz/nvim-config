@@ -34,4 +34,19 @@ function M.get_pkg_path(pkg, path)
   return ret
 end
 
+-- set custom keymaps
+---@param mode string|string[] vim mode
+---@param lhs string lhs
+---@param rhs string|function rhs
+---@param desc_or_opt? string|vim.keymap.set.Opts keymap desc or keymap opt
+function M.set_keymap(mode, lhs, rhs, desc_or_opt)
+  local opt = { noremap = true, silent = true }
+  if type(desc_or_opt) == 'string' then
+    opt.desc = desc_or_opt
+  elseif type(desc_or_opt) == 'table' then
+    opt = vim.tbl_deep_extend('force', opt, desc_or_opt)
+  end
+  vim.keymap.set(mode, lhs, rhs, opt)
+end
+
 return M
