@@ -5,41 +5,40 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
-local keymap = vim.keymap
-local opts = { noremap = true, silent = true }
+local util = require('config.util')
 
-keymap.set('i', '<A-j>', '<Down>') -- 在insert模式向下移动光标
-keymap.set('i', '<A-k>', '<Up>') -- 在insert模式向上移动光标
-keymap.set('i', '<A-h>', '<Left>') -- 在insert模式向左移动光标
-keymap.set('i', '<A-l>', '<Right>') -- 在insert模式向右移动光标
-keymap.set('i', '<C-u>', '<C-G>u<C-U>')
+util.set_keymap('i', '<A-j>', '<Down>', 'Move Cursor Down in insert mode') -- 在insert模式向下移动光标
+util.set_keymap('i', '<A-k>', '<Up>', 'Move Cursor Up in insert mode') -- 在insert模式向上移动光标
+util.set_keymap('i', '<A-h>', '<Left>', 'Move Cursor Left in insert mode') -- 在insert模式向左移动光标
+util.set_keymap('i', '<A-l>', '<Right>', 'Move Cursor Right in insert mode') -- 在insert模式向右移动光标
+util.set_keymap('i', '<C-u>', '<C-G>u<C-U>', '<C-G>u<C-U>')
 
 -- Select all
-keymap.set('n', '<C-a>', 'gg<S-v>G', opts)
+util.set_keymap('n', '<C-a>', 'gg<S-v>G', 'Select All')
 -- Save
-keymap.set({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', opts)
+util.set_keymap({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', 'Save')
 -- Quit
-keymap.set('n', '<leader>qq', '<cmd>qa<CR>', { desc = 'Quit All' })
+util.set_keymap('n', '<leader>qq', '<cmd>qa<CR>', 'Quit All')
 
 -- 向左缩进
-keymap.set('v', '<', '<gv', opts)
+util.set_keymap('v', '<', '<gv', 'Indent Left')
 -- 向右缩进
-keymap.set('v', '>', '>gv', opts)
+util.set_keymap('v', '>', '>gv', 'Indent Right')
 
-keymap.set({ 'n', 'v' }, 'H', '^', opts)
-keymap.set({ 'n', 'v' }, 'L', '$', opts)
+util.set_keymap({ 'n', 'v', 'o' }, 'H', '^', 'Start Of Line')
+util.set_keymap({ 'n', 'v', 'o' }, 'L', '$', 'End Of Line')
 
 -- Split window
-keymap.set('n', 'ss', ':split<Return>', opts)
-keymap.set('n', 'sv', ':vsplit<Return>', opts)
+util.set_keymap('n', 'ss', ':split<Return>', { desc = 'Split Window', noremap = false })
+util.set_keymap('n', 'sv', ':vsplit<Return>', { desc = 'Split Window Vertical', noremap = false })
 
 -- quickfix
-keymap.set('n', '[q', vim.cmd.cprev, opts)
-keymap.set('n', ']q', vim.cmd.cnext, opts)
+util.set_keymap('n', '[q', vim.cmd.cprev, 'Prev Quickfix')
+util.set_keymap('n', ']q', vim.cmd.cnext, 'Next Quickfix')
 
-keymap.set('n', '<leader>te', ':tabedit<Return>', opts)
-keymap.set('n', '<tab>', ':tabnext<Return>', opts)
-keymap.set('n', '<s-tab>', ':tabprev<Return>', opts)
+util.set_keymap('n', '<leader>te', ':tabedit<Return>', 'Tab Edit')
+util.set_keymap('n', '<tab>', ':tabnext<Return>', 'Next Tab')
+util.set_keymap('n', '<s-tab>', ':tabprev<Return>', 'Prev Tab')
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
@@ -49,39 +48,29 @@ local diagnostic_goto = function(next, severity)
     go({ severity = severity })
   end
 end
-keymap.set('n', ']d', diagnostic_goto(true), { desc = 'Next Diagnostic' })
-keymap.set('n', '[d', diagnostic_goto(false), { desc = 'Prev Diagnostic' })
-keymap.set('n', ']e', diagnostic_goto(true, 'ERROR'), { desc = 'Next Error' })
-keymap.set('n', '[e', diagnostic_goto(false, 'ERROR'), { desc = 'Prev Error' })
-keymap.set('n', ']w', diagnostic_goto(true, 'WARN'), { desc = 'Next Warning' })
-keymap.set('n', '[w', diagnostic_goto(false, 'WARN'), { desc = 'Prev Warning' })
+util.set_keymap('n', ']d', diagnostic_goto(true), 'Next Diagnostic')
+util.set_keymap('n', '[d', diagnostic_goto(false), 'Prev Diagnostic')
+util.set_keymap('n', ']e', diagnostic_goto(true, 'ERROR'), 'Next Error')
+util.set_keymap('n', '[e', diagnostic_goto(false, 'ERROR'), 'Prev Error')
+util.set_keymap('n', ']w', diagnostic_goto(true, 'WARN'), 'Next Warning')
+util.set_keymap('n', '[w', diagnostic_goto(false, 'WARN'), 'Prev Warning')
 
 -- lazy
-keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy' })
+util.set_keymap('n', '<leader>l', '<cmd>Lazy<cr>', 'Lazy')
 
 -- commenting
-keymap.set('n', 'gco', 'o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Below' })
-keymap.set('n', 'gcO', 'O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Above' })
+util.set_keymap('n', 'gco', 'o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', 'Add Comment Below')
+util.set_keymap('n', 'gcO', 'O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', 'Add Comment Above')
 
 -- 在查找内容时, 总是使用`n`查找下一个, `N`查找上一个
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-keymap.set('n', 'n', "'Nn'[v:searchforward].'zv'", { expr = true, desc = 'Next Search Result' })
-keymap.set('x', 'n', "'Nn'[v:searchforward]", { expr = true, desc = 'Next Search Result' })
-keymap.set('o', 'n', "'Nn'[v:searchforward]", { expr = true, desc = 'Next Search Result' })
-keymap.set('n', 'N', "'nN'[v:searchforward].'zv'", { expr = true, desc = 'Prev Search Result' })
-keymap.set('x', 'N', "'nN'[v:searchforward]", { expr = true, desc = 'Prev Search Result' })
-keymap.set('o', 'N', "'nN'[v:searchforward]", { expr = true, desc = 'Prev Search Result' })
+util.set_keymap('n', 'n', "'Nn'[v:searchforward].'zv'", { expr = true, desc = 'Next Search Result' })
+util.set_keymap('x', 'n', "'Nn'[v:searchforward]", { expr = true, desc = 'Next Search Result' })
+util.set_keymap('o', 'n', "'Nn'[v:searchforward]", { expr = true, desc = 'Next Search Result' })
+util.set_keymap('n', 'N', "'nN'[v:searchforward].'zv'", { expr = true, desc = 'Prev Search Result' })
+util.set_keymap('x', 'N', "'nN'[v:searchforward]", { expr = true, desc = 'Prev Search Result' })
+util.set_keymap('o', 'N', "'nN'[v:searchforward]", { expr = true, desc = 'Prev Search Result' })
 
 -- 在normal模式下, 将当前行向上移或向下移; 支持数字前缀, 表示移动的行数, 比如'2[a'.
-keymap.set(
-  'n',
-  '[a',
-  ":<c-u>execute 'move -1-'. v:count1<cr>",
-  { desc = 'Move current line above', noremap = true, silent = true }
-)
-keymap.set(
-  'n',
-  ']a',
-  ":<c-u>execute 'move +'. v:count1<cr>",
-  { desc = 'Move current line below', noremap = true, silent = true }
-)
+util.set_keymap('n', '[a', ":<c-u>execute 'move -1-'. v:count1<cr>", 'Move current line above')
+util.set_keymap('n', ']a', ":<c-u>execute 'move +'. v:count1<cr>", 'Move current line below')

@@ -29,6 +29,9 @@ return {
               [vim.diagnostic.severity.INFO] = diagnostic_icons.diagnostics.Info,
             },
           },
+          float = {
+            border = 'rounded',
+          },
         },
         inlay_hints = {
           enabled = true,
@@ -95,6 +98,7 @@ return {
       local mlsp = require('mason-lspconfig')
       local blink = require('blink.cmp')
       local lspconfig = require('lspconfig')
+      local util = require('config.util')
 
       local capabilities = vim.tbl_deep_extend(
         'force',
@@ -114,58 +118,50 @@ return {
         end
 
         -- 注册快捷键
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {
-          desc = 'Goto definition',
-          noremap = true,
+        util.set_keymap('n', 'gd', vim.lsp.buf.definition, {
+          desc = 'Goto Definition',
         })
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, {
+        util.set_keymap('n', 'gr', vim.lsp.buf.references, {
           desc = 'References',
-          noremap = true,
           buffer = buffer,
         })
-        vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, {
+        util.set_keymap('n', 'gI', vim.lsp.buf.implementation, {
           desc = 'Goto Implementation',
-          noremap = true,
           buffer = buffer,
         })
-        vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, {
+        util.set_keymap('n', 'gy', vim.lsp.buf.type_definition, {
           desc = 'Goto T[y]pe Definition',
-          noremap = true,
           buffer = buffer,
         })
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {
+        util.set_keymap('n', 'gD', vim.lsp.buf.declaration, {
           desc = 'Goto Declaration',
-          noremap = true,
           buffer = buffer,
         })
 
-        vim.keymap.set('n', 'K', function()
+        util.set_keymap('n', 'K', function()
           vim.lsp.buf.hover()
         end, {
           desc = 'Hover',
-          noremap = true,
           buffer = buffer,
         })
-        vim.keymap.set('i', '<c-k>', function()
+        util.set_keymap('i', '<c-k>', function()
           return vim.lsp.buf.signature_help()
         end, {
-          desc = 'Signature help',
-          noremap = true,
+          desc = 'Signature Help',
           buffer = buffer,
         })
-        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {
-          desc = 'Code action',
-          noremap = true,
+        util.set_keymap('n', '<leader>ca', vim.lsp.buf.code_action, {
+          desc = 'Code Action',
           buffer = buffer,
         })
-        vim.keymap.set('n', '<leader>cr', function()
+        util.set_keymap('n', '<leader>cr', function()
           -- 如果当前filetype是'vue', 则使用vim内置的rename行为
           local use_inc, inc = pcall(require, 'inc_rename')
           if use_inc and vim.bo.filetype ~= 'vue' then
             return ':' .. inc.config.cmd_name .. ' ' .. vim.fn.expand('<cword>')
           end
           return ':lua vim.lsp.buf.rename()<CR>'
-        end, { expr = true, buffer = buffer })
+        end, { expr = true, buffer = buffer, desc = 'Code Rename' })
       end
 
       local all_mslp_servers = vim.tbl_keys(require('mason-lspconfig.mappings').get_all().lspconfig_to_package)
