@@ -12,7 +12,7 @@ return {
       },
     },
     config = function(_, opts)
-      require('tokyonight').setup(opts)
+      -- require('tokyonight').setup(opts)
       -- vim.cmd([[colorscheme tokyonight-moon]])
     end,
   },
@@ -52,8 +52,43 @@ return {
       },
     },
     config = function(_, opts)
-      require('catppuccin').setup(opts)
-      vim.cmd([[colorscheme catppuccin]])
+      -- require('catppuccin').setup(opts)
+      -- vim.cmd([[colorscheme catppuccin]])
+    end,
+  },
+  {
+    'AlexvZyl/nordic.nvim',
+    lazy = false,
+    priority = 1000,
+    ---@type NordicOptions
+    opts = {
+      italic = false,
+      bright_border = true,
+      telescope = {
+        style = 'classic',
+      },
+      cursorline = {
+        theme = 'light',
+      },
+    },
+    config = function(_, opts)
+      require('nordic').load(opts)
+      vim.cmd([[colorscheme nordic]])
+
+      -- 等待主题加载完后再修改高亮组
+      vim.api.nvim_create_autocmd('ColorScheme', {
+        pattern = 'nordic',
+        callback = function()
+          -- 获取 nordic 提供的颜色表
+          local colors = require('nordic.colors')
+
+          -- 设置普通行号颜色为灰色（如 comment 色）
+          vim.api.nvim_set_hl(0, 'LineNr', { fg = colors.blue2 })
+
+          -- 设置当前行号颜色为主色调之一（如 nord_blue 或 yellow）
+          vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = colors.yellow.base, bold = true })
+        end,
+      })
     end,
   },
 }
