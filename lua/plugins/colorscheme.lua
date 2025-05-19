@@ -12,7 +12,7 @@ return {
       },
     },
     config = function(_, opts)
-      require('tokyonight').setup(opts)
+      -- require('tokyonight').setup(opts)
       -- vim.cmd([[colorscheme tokyonight-moon]])
     end,
   },
@@ -52,8 +52,33 @@ return {
       },
     },
     config = function(_, opts)
-      require('catppuccin').setup(opts)
-      vim.cmd([[colorscheme catppuccin]])
+      -- require('catppuccin').setup(opts)
+      -- vim.cmd([[colorscheme catppuccin]])
+    end,
+  },
+  {
+    'AlexvZyl/nordic.nvim',
+    lazy = false,
+    priority = 1000,
+    ---@type NordicOptions
+    opts = {
+      italic = false,
+      bright_border = true,
+      telescope = {
+        style = 'classic',
+      },
+      cursorline = {
+        theme = 'light',
+      },
+      after_palette = function(palette)
+        local U = require('nordic.utils')
+        palette.bg_visual = U.blend(palette.green.base, palette.bg, 0.15)
+        palette.fg_sidebar = palette.blue1
+      end,
+    },
+    config = function(_, opts)
+      require('nordic').load(opts)
+      vim.cmd([[colorscheme nordic]])
     end,
   },
 }
