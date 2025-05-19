@@ -70,25 +70,15 @@ return {
       cursorline = {
         theme = 'light',
       },
+      after_palette = function(palette)
+        local U = require('nordic.utils')
+        palette.bg_visual = U.blend(palette.green.base, palette.bg, 0.15)
+        palette.fg_sidebar = palette.blue1
+      end,
     },
     config = function(_, opts)
       require('nordic').load(opts)
       vim.cmd([[colorscheme nordic]])
-
-      -- 等待主题加载完后再修改高亮组
-      vim.api.nvim_create_autocmd('ColorScheme', {
-        pattern = 'nordic',
-        callback = function()
-          -- 获取 nordic 提供的颜色表
-          local colors = require('nordic.colors')
-
-          -- 设置普通行号颜色为灰色（如 comment 色）
-          vim.api.nvim_set_hl(0, 'LineNr', { fg = colors.blue2 })
-
-          -- 设置当前行号颜色为主色调之一（如 nord_blue 或 yellow）
-          vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = colors.yellow.base, bold = true })
-        end,
-      })
     end,
   },
 }
