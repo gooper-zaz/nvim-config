@@ -68,12 +68,18 @@ return {
         style = 'classic',
       },
       cursorline = {
-        theme = 'light',
+        theme = 'dark',
+        bold_number = true,
       },
       after_palette = function(palette)
         local U = require('nordic.utils')
         palette.bg_visual = U.blend(palette.green.base, palette.bg, 0.15)
-        palette.fg_sidebar = palette.blue1
+      end,
+      on_highlight = function(hl, c)
+        local U = require('nordic.utils')
+        hl.CursorLineNr = { fg = c.green.base, bold = true }
+        -- 加强一点行号的颜色, 默认的颜色有点看不清~
+        hl.LineNr = { fg = U.blend(c.white0_normal, c.bg, 0.50), bold = false }
       end,
     },
     config = function(_, opts)
