@@ -6,7 +6,7 @@ return {
     ---@type Gitsigns.Config
     opts = {
       signs = {
-        add = { text = '▎' },
+        add = { text = '' },
         change = { text = '▎' },
         delete = { text = '' },
         topdelete = { text = '' },
@@ -14,7 +14,7 @@ return {
         untracked = { text = '▎' },
       },
       signs_staged = {
-        add = { text = '▎' },
+        add = { text = '' },
         change = { text = '▎' },
         delete = { text = '' },
         topdelete = { text = '' },
