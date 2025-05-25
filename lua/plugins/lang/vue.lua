@@ -8,7 +8,7 @@ return {
     opts = {
       servers = {
         ---@type vim.lsp.Config
-        volar = {
+        vue_ls = {
           init_options = {
             vue = {
               hybridMode = true,
