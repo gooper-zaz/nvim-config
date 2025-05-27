@@ -42,6 +42,15 @@ return {
       -- git
       { '<leader>gc', '<cmd>Telescope git_commits<CR>', desc = 'Commits' },
       { '<leader>gs', '<cmd>Telescope git_status<CR>', desc = 'Status' },
+      -- search word under cursor
+      {
+        '<leader>sw',
+        function()
+          local text = vim.fn.expand('<cword>')
+          require('telescope.builtin').grep_string({ search = text })
+        end,
+        desc = 'Search word under cursor',
+      },
     },
     opts = function()
       local action = require('telescope.actions')
