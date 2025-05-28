@@ -40,6 +40,7 @@ end
 ---@param rhs string|function rhs
 ---@param desc_or_opt? string|vim.keymap.set.Opts keymap desc or keymap opt
 function M.set_keymap(mode, lhs, rhs, desc_or_opt)
+  ---@type vim.keymap.set.Opts
   local opt = { noremap = true, silent = true }
   if type(desc_or_opt) == 'string' then
     opt.desc = desc_or_opt
@@ -47,6 +48,29 @@ function M.set_keymap(mode, lhs, rhs, desc_or_opt)
     opt = vim.tbl_deep_extend('force', opt, desc_or_opt)
   end
   vim.keymap.set(mode, lhs, rhs, opt)
+end
+
+-- 搜索关键词
+---@param word string 关键词
+---@param pattern string|nil 搜索模式, 传入文件路径或文件匹配规则, `nil`时默认在当前buffer搜索
+function M.search_keyword(word, pattern)
+  local p = pattern or vim.fn.expand('%:p')
+  local has_rg = vim.fn.executable('rg') == 1
+  local has_grep = vim.fn.executable('grep') == 1
+
+  if has_rg then
+    -- 使用 ripgrep 搜索
+    vim.cmd('silent! execute "!" . "rg --vimgrep --color=always ' .. word .. ' ' .. p .. '"')
+  elseif has_grep then
+    -- 使用 grep 搜索
+    vim.cmd('silent! execute "!" . "grep -n --color=always ' .. word .. ' ' .. p .. '"')
+  else
+    -- 如果没有可用的搜索工具，使用vimgrep
+    vim.cmd('silent! vimgrep /' .. word .. '/ ' .. p)
+  end
+
+  -- 打开 quickfix 窗口
+  vim.cmd('copen')
 end
 
 return M

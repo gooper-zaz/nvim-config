@@ -73,6 +73,21 @@ return {
             .. (diag.warning and icons.Warn .. diag.warning or '')
           return vim.trim(ret)
         end,
+        custom_filter = function(buf_number, _)
+          -- filter out the terminal buffers
+          if vim.bo[buf_number].buftype == 'terminal' then
+            return false
+          end
+          -- filter out the dashboard buffer
+          if vim.bo[buf_number].filetype == 'dashboard' then
+            return false
+          end
+          -- filter out the quickfix buffer
+          if vim.bo[buf_number].filetype == 'qf' then
+            return false
+          end
+          return true
+        end,
       },
     },
     config = function(_, opts)
