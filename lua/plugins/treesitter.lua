@@ -2,7 +2,7 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     version = false,
-    -- event = 'VeryLazy',
+    event = 'BufReadPost',
     build = ':TSUpdate',
     lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
     cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
@@ -50,5 +50,10 @@ return {
     config = function(_, opts)
       require('nvim-treesitter.configs').setup(opts)
     end,
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    event = 'BufReadPost',
   },
 }
