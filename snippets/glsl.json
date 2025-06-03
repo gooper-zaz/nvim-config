@@ -1,0 +1,80 @@
+{
+  "GLSL version": {
+    "prefix": "ves",
+    "body": [
+      "#version 300 es"
+    ],
+    "description": "GLSL version directive"
+  },
+  "GLSL precision": {
+    "prefix": "prec",
+    "body": [
+      "precision mediump float;"
+    ],
+    "description": "Set float precision"
+  },
+  "Vertex shader main": {
+    "prefix": "vmain",
+    "body": [
+      "in vec4 a_position;",
+      "",
+      "void main() {",
+      "  gl_Position = a_position;",
+      "}"
+    ],
+    "description": "Basic vertex shader"
+  },
+  "Fragment shader main": {
+    "prefix": "fmain",
+    "body": [
+      "out vec4 outColor;",
+      "",
+      "void main() {",
+      "  outColor = vec4(${1:1.0}, ${2:0.0}, ${3:0.0}, ${4:1.0});",
+      "}"
+    ],
+    "description": "Basic fragment shader"
+  },
+  "Uniform declaration": {
+    "prefix": "uni",
+    "body": [
+      "uniform ${1:type} ${2:name};"
+    ],
+    "description": "Uniform declaration"
+  },
+  "Attribute declaration (in)": {
+    "prefix": "in",
+    "body": [
+      "in ${1:type} ${2:var};"
+    ],
+    "description": "Input attribute"
+  },
+  "Varying declaration (out)": {
+    "prefix": "out",
+    "body": [
+      "out ${1:type} ${2:var};"
+    ],
+    "description": "Output variable"
+  },
+  "Common vec2 func": {
+    "prefix": "vec2",
+    "body": [
+      "vec2(${1:x}, ${2:y})"
+    ],
+    "description": "vec2 constructor"
+  },
+  "Common vec3 func": {
+    "prefix": "vec3",
+    "body": [
+      "vec3(${1:x}, ${2:y}, ${3:z})"
+    ],
+    "description": "vec3 constructor"
+  },
+  "GLSL mix": {
+    "prefix": "mix",
+    "body": [
+      "mix(${1:value1}, ${2:value2}, ${3:factor})"
+    ],
+    "description": "Linear interpolation"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "Console log": {
+    "prefix": "log",
+    "body": [
+      "console.log('$1');"
+    ],
+    "description": "Console log output"
+  },
+  "Arrow function": {
+    "prefix": "afn",
+    "body": [
+      "const ${1:name} = (${2:params}) => {",
+      "  $0",
+      "};"
+    ],
+    "description": "Arrow function"
+  },
+  "Function": {
+    "prefix": "fn",
+    "body": [
+      "function ${1:name}(${2:params}) {",
+      "  $0",
+      "}"
+    ],
+    "description": "Function declaration"
+  },
+  "Import module": {
+    "prefix": "imp",
+    "body": [
+      "import ${1:module} from '${2:module-name}';"
+    ],
+    "description": "Import module"
+  },
+  "Export default": {
+    "prefix": "exd",
+    "body": [
+      "export default ${1:name};"
+    ],
+    "description": "Export default"
+  },
+  "Export named": {
+    "prefix": "exn",
+    "body": [
+      "export const ${1:name} = ${2:value};"
+    ],
+    "description": "Named export"
+  },
+  "Set timeout": {
+    "prefix": "st",
+    "body": [
+      "setTimeout(() => {",
+      "  $0",
+      "}, ${1:1000});"
+    ],
+    "description": "Set timeout"
+  },
+  "Set interval": {
+    "prefix": "si",
+    "body": [
+      "setInterval(() => {",
+      "  $0",
+      "}, ${1:1000});"
+    ],
+    "description": "Set interval"
+  },
+  "Add Event Listener": {
+    "prefix": "ael",
+    "body": [
+      "document.addEventListener('${1:event}', (event) => {",
+      "  $0",
+      "});"
+    ],
+    "description": "Add event listener"
+  }
+}
