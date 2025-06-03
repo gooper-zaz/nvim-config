@@ -108,6 +108,9 @@ return {
         opts.capabilities or {}
       )
 
+      -- lsp on_attach callback
+      ---@param client vim.lsp.Client
+      ---@param buffer number
       local function on_attach(client, buffer)
         local filetype = vim.api.nvim_buf_get_option(buffer, 'filetype')
         -- 只在 vue 文件中禁用 documentHighlight
@@ -120,6 +123,7 @@ return {
         -- 注册快捷键
         util.set_keymap('n', 'gd', vim.lsp.buf.definition, {
           desc = 'Goto Definition',
+          buffer = buffer,
         })
         util.set_keymap('n', 'gr', vim.lsp.buf.references, {
           desc = 'References',
@@ -144,6 +148,16 @@ return {
           desc = 'Hover',
           buffer = buffer,
         })
+        -- hover diagnostic
+        util.set_keymap('n', '<leader>hd', function()
+          vim.diagnostic.open_float({
+            source = true,
+            bufnr = buffer,
+          })
+        end, {
+          desc = 'Hover Diagnostic',
+          buffer = buffer,
+        })
         util.set_keymap('i', '<c-k>', function()
           return vim.lsp.buf.signature_help()
         end, {
@@ -157,10 +171,10 @@ return {
         util.set_keymap('n', '<leader>cr', function()
           -- 如果当前filetype是'vue', 则使用vim内置的rename行为
           local use_inc, inc = pcall(require, 'inc_rename')
-          if use_inc and vim.bo.filetype ~= 'vue' then
-            return ':' .. inc.config.cmd_name .. ' ' .. vim.fn.expand('<cword>')
+          if use_inc ~= true or vim.bo.filetype == 'vue' then
+            return ':lua vim.lsp.buf.rename()<CR>'
           end
-          return ':lua vim.lsp.buf.rename()<CR>'
+          return ':' .. inc.config.cmd_name .. ' ' .. vim.fn.expand('<cword>')
         end, { expr = true, buffer = buffer, desc = 'Code Rename' })
       end
 
