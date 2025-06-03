@@ -1,0 +1,74 @@
+{
+  "Console log": {
+    "prefix": "log",
+    "body": [
+      "console.log('$1');"
+    ],
+    "description": "Console log output"
+  },
+  "Import module": {
+    "prefix": "imp",
+    "body": [
+      "import ${1:module} from '${2:module-name}';"
+    ],
+    "description": "Import module"
+  },
+  "Function": {
+    "prefix": "fn",
+    "body": [
+      "function ${1:name}(${2:params}): ${3:void} {",
+      "  $0",
+      "}"
+    ],
+    "description": "Function declaration"
+  },
+  "Arrow function": {
+    "prefix": "afn",
+    "body": [
+      "const ${1:name} = (${2:params}): ${3:void} => {",
+      "  $0",
+      "};"
+    ],
+    "description": "Arrow function"
+  },
+  "Class": {
+    "prefix": "cla",
+    "body": [
+      "class ${1:ClassName} {",
+      "  constructor(${2:args}) {",
+      "    $0",
+      "  }",
+      "}"
+    ],
+    "description": "TypeScript class"
+  },
+  "Interface": {
+    "prefix": "iface",
+    "body": [
+      "interface ${1:Name} {",
+      "  ${2:key}: ${3:type};",
+      "}"
+    ],
+    "description": "TypeScript interface"
+  },
+  "Type alias": {
+    "prefix": "type",
+    "body": [
+      "type ${1:Name} = {",
+      "  ${2:key}: ${3:type};",
+      "};"
+    ],
+    "description": "Type alias"
+  },
+  "Try Catch": {
+    "prefix": "try",
+    "body": [
+      "try {",
+      "  $1",
+      "} catch (${2:error}) {",
+      "  console.error(${2:error});",
+      "}"
+    ],
+    "description": "Try catch block"
+  }
+}

@@ -9,6 +9,18 @@
       {
         "language": "vue",
         "path": "./vue.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./javascript.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./typescript.json"
+      },
+      {
+        "language": "glsl",
+        "path": "./glsl.json"
       }
     ]
   }

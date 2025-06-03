@@ -36,5 +36,60 @@
       "</style>"
     ],
     "description": "Base for Vue File Setup Composition API - Typescript"
+  },
+  "Vue ref": {
+    "prefix": "ref",
+    "body": [
+      "const ${1:variable} = ref(${2:initialValue});"
+    ],
+    "description": "Vue Ref"
+  },
+  "Vue reactive": {
+    "prefix": "reactive",
+    "body": [
+      "const ${1:state} = reactive({",
+      "  $2",
+      "});"
+    ],
+    "description": "Vue Reactive"
+  },
+  "Vue computed": {
+    "prefix": "computed",
+    "body": [
+      "const ${1:computedValue} = computed(() => {",
+      "  return $0;",
+      "});"
+    ],
+    "description": "Vue Computed"
+  },
+  "Vue props": {
+    "prefix": "props",
+    "body": [
+      "const props = defineProps<${1:PropsType}>();"
+    ],
+    "description": "Vue DefineProps"
+  },
+  "Vue emit": {
+    "prefix": "emit",
+    "body": [
+      "const emit = defineEmits<${1:EmitType}>();"
+    ],
+    "description": "Vue DefineEmits"
+  },
+  "Vue onMounted": {
+    "prefix": "mounted",
+    "body": [
+      "onMounted(() => {",
+      "  $0",
+      "});"
+    ],
+    "description": "Vue OnMounted Lifecycle"
+  },
+  "Import module": {
+    "prefix": "imp",
+    "body": [
+      "import ${1:module} from '${2:module-name}';"
+    ],
+    "description": "Import module"
   }
 }
