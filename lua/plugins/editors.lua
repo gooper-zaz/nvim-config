@@ -39,21 +39,27 @@ return {
     'Bekaboo/dropbar.nvim',
     event = 'BufReadPost',
     opts = {},
-    -- config = function(_, opts)
-    --   local dropbar_api = require('dropbar.api')
-    --   vim.keymap.set('n', '<Leader>;', dropbar_api.pick, { desc = 'Pick symbols in winbar' })
-    --   vim.keymap.set('n', '[;', dropbar_api.goto_context_start, { desc = 'Go to start of current context' })
-    --   vim.keymap.set('n', '];', dropbar_api.select_next_context, { desc = 'Select next context' })
-    -- end
   },
   {
     'folke/todo-comments.nvim',
     event = 'BufReadPost',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
+    opts = {},
+  },
+  -- 用来快速生成fucntion class type等文档注释
+  -- 比如可以快速生成jsdoc/tsdoc
+  {
+    'danymat/neogen',
+    cmd = 'Neogen',
+    keys = {
+      {
+        '<leader>cn',
+        function()
+          require('neogen').generate()
+        end,
+        desc = 'Generate Annotations (Neogen)',
+      },
     },
+    opts = {},
   },
 }
