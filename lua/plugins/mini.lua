@@ -63,8 +63,43 @@ return {
   {
     'echasnovski/mini.hipatterns',
     event = 'BufReadPost',
+    -- NOTE: 使用nvim-colorizer.nvim插件代替
+    enabled = false,
     opts = function()
       local hi = require('mini.hipatterns')
+      -- 将css中常用的颜色名称设置为高亮, 比如red blue等
+      local words = {
+        red = '#ff0000',
+        green = '#00ff00',
+        blue = '#0000ff',
+        yellow = '#ffff00',
+        greenyellow = '#adff2f',
+        cyan = '#00ffff',
+        darkblue = '#00008b',
+        magenta = '#ff00ff',
+        black = '#000000',
+        white = '#ffffff',
+        gray = '#808080',
+        lightgray = '#d3d3d3',
+        darkgray = '#a9a9a9',
+        orange = '#ffa500',
+        purple = '#800080',
+        pink = '#ffc0cb',
+        brown = '#a52a2a',
+        aqua = '#00ffff',
+        aquamarine = '#7fffd4',
+        chocolate = '#d2691e',
+        gold = '#ffd700',
+        silver = '#c0c0c0',
+        indigo = '#4b0082',
+      }
+      local word_color_group = function(_, match)
+        local hex = words[match]
+        if hex == nil then
+          return nil
+        end
+        return hi.compute_hex_color_group(hex, 'bg')
+      end
       return {
         highlighters = {
           hex_color = hi.gen_highlighter.hex_color({ priority = 2000 }),
@@ -76,15 +111,56 @@ return {
               local r, g, b = match:sub(2, 2), match:sub(3, 3), match:sub(4, 4)
               local hex_color = '#' .. r .. r .. g .. g .. b .. b
 
-              return MiniHipatterns.compute_hex_color_group(hex_color, 'bg')
+              return hi.compute_hex_color_group(hex_color, 'bg')
             end,
             extmark_opts = { priority = 2000 },
+          },
+          word_color = {
+            -- pattern = '%S+',
+            -- 只在css js ts vue html中高亮颜色单词
+            pattern = function(bufnr)
+              local filetype = vim.bo[bufnr].filetype
+              local cond = filetype == 'css'
+                or filetype == 'javascript'
+                or filetype == 'typescript'
+                or filetype == 'vue'
+                or filetype == 'html'
+              return cond and '%S+' or nil
+            end,
+            group = word_color_group,
           },
         },
       }
     end,
     config = function(_, opts)
       require('mini.hipatterns').setup(opts)
+    end,
+  },
+  {
+    'catgoose/nvim-colorizer.lua',
+    event = 'BufReadPre',
+    opts = {
+      filetypes = {
+        'css',
+        'scss',
+        'html',
+        'vue',
+        'javascript',
+        'javascriptreact',
+        'typescript',
+        'typescriptreact',
+      },
+      user_default_options = {
+        rgb_fn = true, -- Enable RGB function support
+        hsl_fn = true, -- Enable HSL function support
+        sass = {
+          enable = true, -- Enable Sass color support
+          parsers = { 'css' },
+        },
+      },
+    },
+    config = function(_, opts)
+      require('colorizer').setup(opts)
     end,
   },
   {

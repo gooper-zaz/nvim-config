@@ -1,7 +1,7 @@
 return {
   {
     'neovim/nvim-lspconfig',
-    event = 'BufReadPost',
+    event = { 'BufReadPost', 'BufNewFile' },
     dependencies = {
       { 'saghen/blink.cmp' },
       { 'williamboman/mason-lspconfig.nvim' },
