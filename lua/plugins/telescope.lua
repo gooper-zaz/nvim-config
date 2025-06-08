@@ -10,8 +10,8 @@ return {
       { '<leader>fF', '<cmd>Telescope find_files theme=ivy<cr>', desc = 'find files [ivy]' },
       { '<leader>fg', '<cmd>Telescope live_grep<cr>', desc = 'file grep' },
       { '<leader>fG', '<cmd>Telescope live_grep theme=ivy<cr>', desc = 'file grep [ivy]' },
-      { '<leader>fr', '<cmd>Telescope resume<cr>', desc = 'file resume' },
-      { '<leader>fv', '<cmd>Telescope vim_options<cr>', desc = 'find vim opts' },
+      -- { '<leader>fr', '<cmd>Telescope resume<cr>', desc = 'file resume' },
+      -- { '<leader>fv', '<cmd>Telescope vim_options<cr>', desc = 'find vim opts' },
       {
         '<leader>fb',
         '<cmd>Telescope buffers sort_mru=true sort_lastused=true ignore_current_buffer=false<cr>',
@@ -91,5 +91,56 @@ return {
       },
     },
     dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
+  },
+  -- 执行全局搜索和替换的插件
+  {
+    'MagicDuck/grug-far.nvim',
+    opts = { headerMaxWidth = 80 },
+    cmd = 'GrugFar',
+    keys = {
+      {
+        '<leader>sr',
+        function()
+          local grug = require('grug-far')
+          local ext = vim.bo.buftype == '' and vim.fn.expand('%:e')
+          grug.open({
+            transient = true,
+            prefills = {
+              filesFilter = ext and ext ~= '' and '*.' .. ext or nil,
+            },
+          })
+        end,
+        mode = { 'n', 'v' },
+        desc = 'Search and Replace',
+      },
+      {
+        '<leader>sR',
+        function()
+          local grug = require('grug-far')
+          grug.open({
+            transient = true,
+            prefills = {
+              paths = vim.fn.expand('%'),
+            },
+          })
+        end,
+        mode = { 'n', 'v' },
+        desc = 'Search and Replace in Current File',
+      },
+      {
+        '<leader>sw',
+        function()
+          local grug = require('grug-far')
+          grug.open({
+            transient = true,
+            prefills = {
+              search = vim.fn.expand('<cword>'),
+            },
+          })
+        end,
+        mode = { 'n', 'v' },
+        desc = 'Search Word Under Cursor',
+      },
+    },
   },
 }
