@@ -40,6 +40,8 @@ util.set_keymap('n', '<leader>te', ':tabedit<Return>', 'Tab Edit')
 util.set_keymap('n', '<tab>', ':tabnext<Return>', 'Next Tab')
 util.set_keymap('n', '<s-tab>', ':tabprev<Return>', 'Prev Tab')
 
+util.set_keymap('n', '<leader>nh', '<cmd>nohlsearch<cr>', 'Clear Highlight Search')
+
 -- diagnostic
 local diagnostic_goto = function(next, severity)
   local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev

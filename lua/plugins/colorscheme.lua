@@ -80,6 +80,12 @@ return {
         hl.CursorLineNr = { fg = c.green.base, bold = true }
         -- 加强一点行号的颜色, 默认的颜色有点看不清~
         hl.LineNr = { fg = U.blend(c.white0_normal, c.bg, 0.50), bold = false }
+        -- Diagnostic 相关（灰色未使用警告）
+        vim.api.nvim_set_hl(0, 'DiagnosticUnnecessary', { fg = '#5c6779', italic = true })
+        -- LSP Typemod unused 高亮
+        vim.api.nvim_set_hl(0, '@lsp.typemod.variable.unused', { fg = '#5c6779', italic = true })
+        vim.api.nvim_set_hl(0, '@lsp.typemod.parameter.unused', { fg = '#5c6779', italic = true })
+        vim.api.nvim_set_hl(0, '@lsp.typemod.function.unused', { fg = '#5c6779', italic = true })
       end,
     },
     config = function(_, opts)
