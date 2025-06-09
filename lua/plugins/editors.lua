@@ -38,7 +38,30 @@ return {
   {
     'Bekaboo/dropbar.nvim',
     event = 'BufReadPost',
-    opts = {},
+    ---@type dropbar_configs_t
+    opts = {
+      menu = {
+        keymaps = {
+          ['Q'] = function()
+            -- close all menus
+            local utils = require('dropbar.utils')
+            utils.menu.exec('close')
+            utils.bar.exec('update_current_context_hl')
+          end,
+        },
+        win_configs = {
+          border = 'rounded',
+        },
+      },
+    },
+    config = function(_, opts)
+      local util = require('config.util')
+      local api = require('dropbar.api')
+      util.set_keymap('n', '<leader>cp', api.pick, { desc = 'Context Pick (dropbar)' })
+      util.set_keymap('n', '[;', api.goto_context_start, { desc = 'Go to Start of Current Context' })
+      util.set_keymap('n', '];', api.select_next_context, { desc = 'Select Next Context' })
+      require('dropbar').setup(opts)
+    end,
   },
   {
     'folke/todo-comments.nvim',
