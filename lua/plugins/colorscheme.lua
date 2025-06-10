@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 return {
   {
     'folke/tokyonight.nvim',
@@ -89,8 +90,22 @@ return {
       end,
     },
     config = function(_, opts)
-      require('nordic').load(opts)
-      vim.cmd([[colorscheme nordic]])
+      -- require('nordic').load(opts)
+      -- vim.cmd([[colorscheme nordic]])
+    end,
+  },
+  {
+    'rebelot/kanagawa.nvim',
+    priority = 1000,
+    ---@type KanagawaConfig
+    opts = {
+      commentStyle = { italic = false },
+      keywordStyle = { italic = false },
+      statementStyle = { bold = false },
+    },
+    config = function(_, opts)
+      require('kanagawa').setup(opts)
+      vim.cmd([[colorscheme kanagawa]])
     end,
   },
 }

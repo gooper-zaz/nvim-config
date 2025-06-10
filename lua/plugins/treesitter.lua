@@ -56,4 +56,9 @@ return {
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     event = 'BufReadPost',
   },
+  {
+    'HiPhish/rainbow-delimiters.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    event = { 'BufReadPost' },
+  },
 }
