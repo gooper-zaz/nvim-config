@@ -60,5 +60,45 @@ return {
     'HiPhish/rainbow-delimiters.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     event = { 'BufReadPost' },
+    config = function()
+      require('rainbow-delimiters.setup').setup({
+        strategy = {
+          [''] = 'rainbow-delimiters.strategy.global',
+          vim = 'rainbow-delimiters.strategy.local',
+        },
+        query = {
+          [''] = 'rainbow-delimiters',
+          lua = 'rainbow-blocks',
+          -- 这几种文件类型只处理括号对着色
+          javascript = 'rainbow-parens',
+          typescript = 'rainbow-parens',
+          tsx = 'raibaow-parens',
+          vue = 'rainbow-parens',
+          html = 'rainbow-parens',
+          css = 'rainbow-parens',
+          scss = 'rainbow-parens',
+        },
+        highlight = {
+          'RainbowDelimiterRed',
+          'RainbowDelimiterYellow',
+          'RainbowDelimiterBlue',
+          'RainbowDelimiterOrange',
+          'RainbowDelimiterGreen',
+          'RainbowDelimiterViolet',
+          'RainbowDelimiterCyan',
+        },
+        blacklist = {
+          'markdown',
+          'markdown_inline',
+          'text',
+          'txt',
+          'help',
+          'gitcommit',
+          'gitrebase',
+          'diff',
+          'python',
+        },
+      })
+    end,
   },
 }
