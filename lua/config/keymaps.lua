@@ -73,6 +73,9 @@ util.set_keymap('n', 'N', "'nN'[v:searchforward].'zv'", { expr = true, desc = 'P
 util.set_keymap('x', 'N', "'nN'[v:searchforward]", { expr = true, desc = 'Prev Search Result' })
 util.set_keymap('o', 'N', "'nN'[v:searchforward]", { expr = true, desc = 'Prev Search Result' })
 
--- 在normal模式下, 将当前行向上移或向下移; 支持数字前缀, 表示移动的行数, 比如'2[m'.
-util.set_keymap('n', '[m', ":<c-u>execute 'move -1-'. v:count1<cr>", 'Move current line above')
-util.set_keymap('n', ']m', ":<c-u>execute 'move +'. v:count1<cr>", 'Move current line below')
+-- 在normal模式下, 将当前行向上移或向下移; 支持数字前缀, 表示移动的行数, 比如'2<A-j>'.
+util.set_keymap('n', '<A-j>', ":<c-u>execute 'move +'. v:count1<cr>", 'Move Line Down')
+util.set_keymap('n', '<A-k>', ":<c-u>execute 'move -1-'. v:count1<cr>", 'Move Line Up')
+-- 在insert模式下, 将当前行向上移或向下移
+util.set_keymap('i', '<A-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move Line Down (insert mode)' })
+util.set_keymap('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Line Up (insert mode)' })
