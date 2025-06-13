@@ -96,6 +96,7 @@ return {
       scope = { enabled = true },
       input = { enabled = true },
       words = { enabled = true },
+      git = { enabled = true },
       scroll = { enabled = false },
       dashboard = {
         preset = {
