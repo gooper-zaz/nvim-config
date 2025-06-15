@@ -237,8 +237,22 @@ return {
         group = vim.api.nvim_create_augroup('lsp_config_attach', { clear = true }),
         callback = function(event)
           local client = vim.lsp.get_client_by_id(event.data.client_id)
+          if not client then
+            vim.notify(
+              'LSP client not found for id: ' .. event.data.client_id,
+              vim.log.levels.ERROR,
+              { title = 'LSP Attach Error' }
+            )
+            return
+          end
           local buffer = event.buf
           return on_attach(client, buffer)
+        end,
+      })
+      vim.api.nvim_create_autocmd('LspDetach', {
+        group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
+        callback = function(event)
+          vim.lsp.buf.clear_references()
         end,
       })
     end,
