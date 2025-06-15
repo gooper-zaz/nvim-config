@@ -64,6 +64,19 @@ return {
         map('n', '<leader>gB', function()
           gs.blame()
         end, 'Blame Buffer')
+        map({ 'n', 'v' }, '<leader>hs', ':Gitsigns stage_hunk<CR>', 'Stage Hunk')
+        map({ 'n', 'v' }, '<leader>hr', ':Gitsigns reset_hunk<CR>', 'Reset Hunk')
+        map('n', '<leader>hS', gs.stage_buffer, 'Stage Buffer')
+        map('n', '<leader>hR', gs.reset_buffer, 'Reset Buffer')
+        map('n', '<leader>gd', gs.diffthis, 'Git Diff This')
+        map('n', '<leader>gD', function()
+          gs.diffthis('~')
+        end, 'Git Diff This ~')
+        -- text objects, for example, `vih` to select the hunk under cursor
+        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'GitSigns Select Hunk')
+        -- git (telescope)
+        map('n', '<leader>gc', '<cmd>Telescope git_commits<CR>', 'Git Commits')
+        map('n', '<leader>gs', '<cmd>Telescope git_status<CR>', 'Git Status')
       end,
     },
     -- config = function(_, opts)
