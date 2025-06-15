@@ -47,14 +47,19 @@ return {
       local action = require('telescope.actions')
       return {
         defaults = {
-          selection_caret = '󰘍 ',
+          selection_caret = ' ',
           theme = 'dropdown',
           sorting_strategy = 'ascending',
           layout_config = { prompt_position = 'top' },
           file_ignore_patterns = { '.git\\', 'node_modules', 'lazy-lock.json' },
-          mapping = {
+          mappings = {
             n = {
               ['q'] = action.close,
+            },
+            i = {
+              ['<C-v>'] = false, -- conflict in windows terminal
+              -- NOTE: instead of <C-v>, use <C-l> to select vertically
+              ['<C-l>'] = action.select_vertical,
             },
           },
         },
