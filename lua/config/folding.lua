@@ -8,7 +8,7 @@ vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
 vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('lsp_config_attach', { clear = true }),
+  group = vim.api.nvim_create_augroup('lsp_attach_folding', { clear = true }),
   callback = function(event)
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     if not client then
