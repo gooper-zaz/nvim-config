@@ -39,9 +39,6 @@ return {
         end,
         desc = 'Goto Symbol (Workspace)',
       },
-      -- git
-      { '<leader>gc', '<cmd>Telescope git_commits<CR>', desc = 'Commits' },
-      { '<leader>gs', '<cmd>Telescope git_status<CR>', desc = 'Status' },
     },
     opts = function()
       local action = require('telescope.actions')
