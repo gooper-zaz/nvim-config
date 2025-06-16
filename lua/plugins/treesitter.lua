@@ -79,13 +79,13 @@ return {
           scss = 'rainbow-parens',
         },
         highlight = {
-          'RainbowDelimiterRed',
           'RainbowDelimiterYellow',
           'RainbowDelimiterBlue',
           'RainbowDelimiterOrange',
           'RainbowDelimiterGreen',
           'RainbowDelimiterViolet',
           'RainbowDelimiterCyan',
+          'RainbowDelimiterRed',
         },
         blacklist = {
           'markdown',

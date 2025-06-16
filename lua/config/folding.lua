@@ -51,11 +51,10 @@ function _G.custom_foldtext()
   local nline = vim.v.foldend - vim.v.foldstart
   local result = {}
   fold_virt_text(result, start_text, vim.v.foldstart - 1)
-  table.insert(result, { '    ' }) -- add four spaces between start text and number of lines
-  local highlight_name = '@comment.note'
-  -- table.insert(result, { '', highlight_name })
-  table.insert(result, { '... ↙ ' .. nline .. ' lines ', highlight_name })
-  -- table.insert(result, { '', highlight_name })
+  table.insert(result, { '    ' }) -- add 4 spaces between start text and number of lines
+  table.insert(result, { '', 'TodoFgNOTE' }) -- 圆角
+  table.insert(result, { '... ↙ ' .. nline .. ' lines ', 'TodoBgNOTE' })
+  table.insert(result, { '', 'TodoFgNOTE' }) -- 圆角
   return result
 end
 -- NOTE: custom foldtext
