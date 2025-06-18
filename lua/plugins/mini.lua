@@ -73,6 +73,7 @@ return {
         'javascriptreact',
         'typescript',
         'typescriptreact',
+        'lua',
       },
       user_default_options = {
         rgb_fn = true, -- Enable RGB function support

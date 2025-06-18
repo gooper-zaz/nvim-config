@@ -69,14 +69,6 @@ return {
         query = {
           [''] = 'rainbow-delimiters',
           lua = 'rainbow-blocks',
-          -- 这几种文件类型只处理括号对着色
-          javascript = 'rainbow-parens',
-          typescript = 'rainbow-parens',
-          tsx = 'raibaow-parens',
-          vue = 'rainbow-parens',
-          html = 'rainbow-parens',
-          css = 'rainbow-parens',
-          scss = 'rainbow-parens',
         },
         highlight = {
           'RainbowDelimiterYellow',
