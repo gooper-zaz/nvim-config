@@ -102,6 +102,12 @@ return {
       commentStyle = { italic = false },
       keywordStyle = { italic = false },
       statementStyle = { bold = false },
+      overrides = function(colors)
+        return {
+          -- 修改 BufferLine Seperator颜色, 让它更显眼一些
+          BufferLineIndicatorSelected = { fg = colors.fujiWhite, bg = 'NONE', bold = true },
+        }
+      end,
     },
     config = function(_, opts)
       require('kanagawa').setup(opts)
