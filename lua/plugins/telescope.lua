@@ -47,7 +47,12 @@ return {
           selection_caret = ' ',
           theme = 'dropdown',
           sorting_strategy = 'ascending',
-          layout_config = { prompt_position = 'top' },
+          layout_config = {
+            prompt_position = 'top',
+            horizontal = {
+              preview_width = 0.5,
+            },
+          },
           file_ignore_patterns = { '.git\\', 'node_modules', 'lazy-lock.json' },
           mappings = {
             n = {

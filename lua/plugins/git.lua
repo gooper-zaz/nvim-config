@@ -7,7 +7,7 @@ return {
     opts = {
       signs = {
         add = { text = '' },
-        change = { text = '▎' },
+        change = { text = '≋' },
         delete = { text = '' },
         topdelete = { text = '' },
         changedelete = { text = '▎' },
@@ -15,7 +15,7 @@ return {
       },
       signs_staged = {
         add = { text = '' },
-        change = { text = '▎' },
+        change = { text = '≋' },
         delete = { text = '' },
         topdelete = { text = '' },
         changedelete = { text = '▎' },
@@ -75,7 +75,9 @@ return {
         -- text objects, for example, `vih` to select the hunk under cursor
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'GitSigns Select Hunk')
         -- git (telescope)
-        map('n', '<leader>gc', '<cmd>Telescope git_commits<CR>', 'Git Commits')
+        map('n', '<leader>gc', '<cmd>Telescope git_bcommits<CR>', 'Git Commits in Current File')
+        map('n', '<leader>gC', '<cmd>Telescope git_commits<CR>', 'Git Commits in Working Directory')
+        map('v', '<leader>gc', '<cmd>Telescope git_bcommits_range<CR>', 'Git Commits in Current File Range')
         map('n', '<leader>gs', '<cmd>Telescope git_status<CR>', 'Git Status')
       end,
     },
