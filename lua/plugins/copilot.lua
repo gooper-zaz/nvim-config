@@ -3,7 +3,7 @@ return {
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
     build = ':Copilot auth',
-    event = 'BufReadPost',
+    event = 'InsertEnter',
     opts = {
       suggestion = {
         enabled = false,
@@ -22,5 +22,5 @@ return {
       },
     },
   },
-  { 'giuxtaposition/blink-cmp-copilot' },
+  { 'giuxtaposition/blink-cmp-copilot', event = 'InsertEnter' },
 }
