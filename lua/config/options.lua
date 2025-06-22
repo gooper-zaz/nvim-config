@@ -22,7 +22,8 @@ opt.confirm = true
 opt.clipboard = 'unnamedplus'
 opt.undofile = true
 opt.wrap = false
-opt.scrolloff = 8
+opt.scroll = 10
+opt.scrolloff = 4
 
 opt.tabstop = 2
 opt.shiftwidth = 2
@@ -34,12 +35,15 @@ opt.breakindent = true
 opt.signcolumn = 'yes' -- Always show the signcolumn, otherwise it would shift the text each time
 opt.smoothscroll = true
 
+opt.splitright = true
+opt.splitbelow = true
+
 -- neovide 配置
 if vim.g.neovide then
   -- 轨道动画
   vim.g.neovide_cursor_vfx_mode = 'railgun'
   -- 指定neovide字体
-  vim.o.guifont = 'FiraCode Nerd Font,LXGW WenKai Mono,JetBrainsMono Nerd Font'
+  vim.o.guifont = 'Maple Mono NF CN,LXGW WenKai Mono,JetBrainsMono Nerd Font:h14'
   -- vim.o.guifont = 'Fira Code Nerd Font'
   -- 没有空闲
   vim.g.neovide_no_idle = true
