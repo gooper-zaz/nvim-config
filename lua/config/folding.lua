@@ -17,7 +17,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Check if the client supports folding
     if client:supports_method(vim.lsp.protocol.Methods.textDocument_foldingRange, event.buf) then
       local win = vim.api.nvim_get_current_win()
-      vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+      local wo = vim.wo[win][0]
+      wo.foldexpr = 'v:lua.vim.lsp.foldexpr()'
+      -- wo.scroll = 10
     end
   end,
 })
