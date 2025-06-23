@@ -4,7 +4,7 @@ return {
     event = { 'BufReadPost', 'BufNewFile' },
     dependencies = {
       { 'saghen/blink.cmp' },
-      { 'williamboman/mason-lspconfig.nvim' },
+      { 'mason-org/mason-lspconfig.nvim' },
     },
     opts = function()
       local icons = require('config.icons')
@@ -52,10 +52,6 @@ return {
         servers = {
           lua_ls = {
             -- mason = false, -- set to false if you don't want this server to be installed with mason
-            -- Use this to add any additional keymaps
-            -- for specific lsp servers
-            -- ---@type LazyKeysSpec[]
-            -- keys = {},
             settings = {
               Lua = {
                 workspace = {
@@ -82,8 +78,8 @@ return {
             },
           },
         },
-        -- you can do any additional lsp server setup here
-        -- return true if you don't want this server to be setup with lspconfig
+        -- 这里的 setup 函数可以用来配置特定的 LSP 服务器
+        -- 如果返回true, 你需要在setup中手动调用`vim.lsp.config`
         ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
         setup = {},
       }
@@ -198,14 +194,9 @@ return {
           end
         end
 
-        -- lspconfig[server].setup(server_opts)
         vim.lsp.config(server, server_opts)
-        if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
-          -- configure(server)
-          vim.lsp.enable(server)
-          return true
-        end
-        return false
+
+        -- vim.lsp.enable(server)
       end
 
       local ensure_installed = {} ---@type string[]
@@ -214,10 +205,8 @@ return {
           server_opts = server_opts == true and {} or server_opts
           if server_opts.enabled ~= false then
             -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
-            if configure(server) then
-              -- configure(server)
-              exclude_automatic_enable[#exclude_automatic_enable + 1] = server
-            else
+            configure(server)
+            if server_opts.mason ~= false then
               ensure_installed[#ensure_installed + 1] = server
             end
           end
@@ -258,11 +247,11 @@ return {
     end,
   },
   {
-    'williamboman/mason-lspconfig.nvim',
+    'mason-org/mason-lspconfig.nvim',
     config = function() end,
   },
   {
-    'williamboman/mason.nvim',
+    'mason-org/mason.nvim',
     build = ':MasonUpdate',
     opts_extend = { 'ensure_installed' },
     cmd = { 'Mason', 'MasonInstall', 'MasonUpdate', 'MasonUninstall', 'MasonLog', 'MasonUninstallAll' },
