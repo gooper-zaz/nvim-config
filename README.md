@@ -7,6 +7,8 @@
 - [Nerd Font](https://www.nerdfonts.com/)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [fd](https://github.com/sharkdp/fd)
+- [clangd](https://clangd.llvm.org/) (optional, for C/C++ development)
+- [zls](https://github.com/zigtools/zls) (optional, for Zig development)
 
 ## ✨ What I use
 
