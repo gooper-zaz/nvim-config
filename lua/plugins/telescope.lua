@@ -26,18 +26,18 @@ return {
       { '<leader>sd', '<cmd>Telescope diagnostics bufnr=0<cr>', desc = 'Buffer Diagnostics' },
       { '<leader>sD', '<cmd>Telescope diagnostics<cr>', desc = 'Workspace Diagnostics' },
       {
-        '<leader>ss',
+        '<leader>fs',
         function()
           require('telescope.builtin').lsp_document_symbols()
         end,
-        desc = 'Goto Symbol',
+        desc = 'Find Symbols',
       },
       {
-        '<leader>sS',
+        '<leader>fS',
         function()
           require('telescope.builtin').lsp_dynamic_workspace_symbols()
         end,
-        desc = 'Goto Symbol (Workspace)',
+        desc = 'Find Symbols (Workspace)',
       },
     },
     opts = function()

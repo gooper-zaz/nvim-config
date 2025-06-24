@@ -43,7 +43,7 @@ if vim.g.neovide then
   -- 轨道动画
   vim.g.neovide_cursor_vfx_mode = 'railgun'
   -- 指定neovide字体
-  vim.o.guifont = 'Maple Mono NF CN,LXGW WenKai Mono,JetBrainsMono Nerd Font:h14'
+  vim.o.guifont = 'Maple Mono NF CN,LXGW WenKai Mono,JetBrainsMono Nerd Font:h12'
   -- vim.o.guifont = 'Fira Code Nerd Font'
   -- 没有空闲
   vim.g.neovide_no_idle = true

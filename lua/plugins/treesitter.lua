@@ -15,9 +15,13 @@ return {
       highlight = { enable = true },
       indent = { enable = true },
       ensure_installed = {
+        'bash',
+        'c',
         'vim',
         'vimdoc',
         'regex',
+        'query',
+        'diff',
         'lua',
         'luadoc',
         'bash',
@@ -26,7 +30,10 @@ return {
         'html',
         'css',
         'json',
+        'jsonc',
         'yaml',
+        'toml',
+        'xml',
       },
       textobjects = {
         move = {

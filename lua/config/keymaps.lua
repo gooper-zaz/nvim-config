@@ -29,16 +29,16 @@ util.set_keymap({ 'n', 'v', 'o' }, 'H', '^', 'Start Of Line')
 util.set_keymap({ 'n', 'v', 'o' }, 'L', '$', 'End Of Line')
 
 -- Split window
-util.set_keymap('n', 'ss', ':split<Return>', { desc = 'Split Window', noremap = false })
-util.set_keymap('n', 'sv', ':vsplit<Return>', { desc = 'Split Window Vertical', noremap = false })
+util.set_keymap('n', '<leader>ss', ':split<Return>', { desc = 'Split Window', noremap = false })
+util.set_keymap('n', '<leader>sv', ':vsplit<Return>', { desc = 'Split Window Vertical', noremap = false })
 
 -- quickfix
 util.set_keymap('n', '[q', vim.cmd.cprev, 'Prev Quickfix')
 util.set_keymap('n', ']q', vim.cmd.cnext, 'Next Quickfix')
 
 util.set_keymap('n', '<leader>te', ':tabedit<Return>', 'Tab Edit')
-util.set_keymap('n', '<tab>', ':tabnext<Return>', 'Next Tab')
-util.set_keymap('n', '<s-tab>', ':tabprev<Return>', 'Prev Tab')
+-- util.set_keymap('n', '<tab>', ':tabnext<Return>', 'Next Tab')
+-- util.set_keymap('n', '<s-tab>', ':tabprev<Return>', 'Prev Tab')
 
 util.set_keymap('n', '<leader>nh', '<cmd>nohlsearch<cr>', 'Clear Highlight Search')
 
