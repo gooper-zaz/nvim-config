@@ -1,8 +1,8 @@
 return {
-  {
-    'nvim-treesitter/nvim-treesitter',
-    opts = { ensure_installed = { 'html', 'css' } },
-  },
+  -- {
+  --   'nvim-treesitter/nvim-treesitter',
+  --   opts = { ensure_installed = { 'html', 'css' } },
+  -- },
   {
     'neovim/nvim-lspconfig',
     opts = {
