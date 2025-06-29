@@ -110,8 +110,23 @@ return {
       end,
     },
     config = function(_, opts)
-      require('kanagawa').setup(opts)
-      vim.cmd([[colorscheme kanagawa]])
+      -- require('kanagawa').setup(opts)
+      -- vim.cmd([[colorscheme kanagawa]])
+    end,
+  },
+  {
+    'miikanissi/modus-themes.nvim',
+    priority = 1000,
+    config = function()
+      require('modus-themes').setup({
+        styles = {
+          comments = { italic = false },
+          keywords = { italic = false },
+        },
+      })
+      vim.cmd([[colorscheme modus]])
+      -- vim.cmd([[coloerscheme modus_vivendi]])
+      -- vim.cmd([[coloerscheme modus_operandi]])
     end,
   },
 }
