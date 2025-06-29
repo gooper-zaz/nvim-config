@@ -2,7 +2,7 @@
 return {
   {
     'lewis6991/gitsigns.nvim',
-    event = 'BufReadPost',
+    event = { 'User Laziest' },
     ---@type Gitsigns.Config
     opts = {
       signs = {

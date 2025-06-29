@@ -1,7 +1,7 @@
 return {
   {
     'neovim/nvim-lspconfig',
-    event = { 'BufReadPost', 'BufNewFile' },
+    event = { 'User Laziest', 'BufNewFile', 'BufReadPost' },
     dependencies = {
       { 'saghen/blink.cmp' },
       { 'mason-org/mason-lspconfig.nvim' },
@@ -93,7 +93,7 @@ return {
       local servers = opts.servers
       local mlsp = require('mason-lspconfig')
       local blink = require('blink.cmp')
-      local lspconfig = require('lspconfig')
+      -- local lspconfig = require('lspconfig')
       local util = require('config.util')
 
       local capabilities = vim.tbl_deep_extend(
