@@ -9,7 +9,7 @@ return {
     dependencies = {
       'nvim-tree/nvim-web-devicons',
     },
-    event = 'BufReadPost',
+    event = { 'User Laziest' },
     opts = {
       options = {
         theme = 'auto',

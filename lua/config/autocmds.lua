@@ -41,3 +41,36 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     (vim.hl or vim.highlight).on_yank()
   end,
 })
+
+-- 创建一个自定义事件 'Laziest'，在 VeryLazy 事件触发时执行
+-- 用于优化一些插件加载时机, 在不影响nvim启动时间的前提下, 提升nvim打开文件的速度
+-- 通过给插件设置`evetns = 'User Laziest'`, 使插件在这个事件触发时加载
+-- `BufReadPost` `BufNewFile` 能够优化nvim启动时间, 但是当过多插件依赖这几个事件后, 会明显拖慢buffer打开速度, 这种情况下可以考虑使用这个事件
+-- inspired by [IceNvim](https://github.com/Shaobin-Jiang/IceNvim)
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'VeryLazy',
+  callback = function()
+    local function should_trigger()
+      return vim.bo.filetype ~= 'dashboard' and vim.api.nvim_buf_get_name(0) ~= ''
+    end
+
+    local function trigger()
+      vim.api.nvim_exec_autocmds('User', { pattern = 'Laziest' })
+    end
+
+    if should_trigger() then
+      trigger()
+      return
+    end
+
+    local lazy_load
+    lazy_load = vim.api.nvim_create_autocmd('BufEnter', {
+      callback = function()
+        if should_trigger() then
+          trigger()
+          vim.api.nvim_del_autocmd(lazy_load)
+        end
+      end,
+    })
+  end,
+})
