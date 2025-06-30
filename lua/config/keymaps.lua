@@ -79,3 +79,8 @@ util.set_keymap('n', '<A-k>', ":<c-u>execute 'move -1-'. v:count1<cr>", 'Move Li
 -- 在insert模式下, 将当前行向上移或向下移
 util.set_keymap('i', '<A-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move Line Down (insert mode)' })
 util.set_keymap('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Line Up (insert mode)' })
+
+if vim.g.neovide then
+  -- 在neovide中, 使用CTRL+V来粘贴内容
+  util.set_keymap('i', '<C-v>', '<C-r>+', 'Paste in Insert Mode for neovide')
+end

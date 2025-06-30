@@ -1,7 +1,7 @@
 return {
   {
     'windwp/nvim-ts-autotag',
-    event = 'BufReadPost',
+    event = { 'BufReadPre', 'BufNewFile' },
     opts = {},
   },
   {
@@ -37,7 +37,7 @@ return {
   -- 在bufferline下边显示面包屑状态栏, 包含当前文件路径, 当前所在符号等
   {
     'Bekaboo/dropbar.nvim',
-    event = 'BufReadPost',
+    event = { 'User Laziest' },
     ---@type dropbar_configs_t
     opts = {
       menu = {
@@ -80,7 +80,7 @@ return {
   },
   {
     'folke/todo-comments.nvim',
-    event = 'BufReadPost',
+    event = 'User Laziest',
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = {},
   },
