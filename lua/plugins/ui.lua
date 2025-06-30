@@ -32,7 +32,7 @@ return {
   },
   {
     'akinsho/bufferline.nvim',
-    event = 'BufReadPost',
+    event = { 'User Laziest' },
     keys = {
       { '<S-Tab>', '<Cmd>BufferLineCyclePrev<CR>', desc = 'Prev Buffer' },
       { '<Tab>', '<Cmd>BufferLineCycleNext<CR>', desc = 'Next Buffer' },
