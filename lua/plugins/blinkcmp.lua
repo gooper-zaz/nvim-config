@@ -41,7 +41,25 @@ return {
             score_offset = 100,
             async = true,
           },
+          cmdline = {
+            min_keyword_length = function(ctx)
+              -- when typing a command, only show when the keyword is 3 characters or longer
+              if ctx.mode == 'cmdline' and string.find(ctx.line, ' ') == nil then
+                return 3
+              end
+              return 0
+            end,
+          },
         },
+      },
+      appearance = {
+        -- 将后备高亮组设置为 nvim-cmp 的高亮组
+        -- 当您的主题不支持blink.cmp 时很有用
+        -- 将在未来版本中删除
+        use_nvim_cmp_as_default = true,
+        -- 将“Nerd Font Mono”设置为“mono”，将“Nerd Font”设置为“normal”
+        -- 调整间距以确保图标对齐
+        nerd_font_variant = 'mono',
       },
       fuzzy = {
         implementation = 'prefer_rust',
@@ -56,7 +74,12 @@ return {
         },
         completion = {
           -- 自动显示补全窗口
-          menu = { auto_show = true },
+          menu = {
+            -- cmd模式显示补全窗口, 搜索时不显示
+            auto_show = function(ctx)
+              return vim.fn.getcmdtype() == ':'
+            end,
+          },
           -- 不在当前行上显示所选项目的预览
           ghost_text = { enabled = false },
         },
@@ -98,14 +121,16 @@ return {
           border = 'rounded',
           draw = {
             columns = {
-              { 'label', 'label_description', gap = 4 },
-              { 'kind_icon', 'kind', gap = 1 },
+              { 'kind_icon', 'label', 'label_description', gap = 2 },
+              { 'source_name', gap = 1 },
+              { 'kind', gap = 1 },
             },
+            treesitter = { 'lsp' },
           },
         },
         documentation = {
           auto_show = true,
-          auto_show_delay_ms = 500,
+          auto_show_delay_ms = 200,
           window = { border = 'rounded' },
         },
         list = { selection = { preselect = true, auto_insert = false } },

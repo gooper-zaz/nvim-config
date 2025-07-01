@@ -24,7 +24,6 @@ return {
         'diff',
         'lua',
         'luadoc',
-        'bash',
         'markdown',
         'markdown_inline',
         'html',
