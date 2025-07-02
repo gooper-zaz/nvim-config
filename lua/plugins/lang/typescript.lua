@@ -9,6 +9,7 @@ return {
         ts_ls = {
           enabled = false,
         },
+        ---@type vim.lsp.Config
         vtsls = {
           filetypes = {
             'javascript',
@@ -17,6 +18,9 @@ return {
             'typescript',
             'typescriptreact',
             'typescript.tsx',
+          },
+          init_options = {
+            plugins = {},
           },
           settings = {
             complete_function_calls = true,
