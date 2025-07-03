@@ -79,15 +79,6 @@ return {
           enableForWorkspaceTypeScriptVersions = true,
         },
       })
-      util.extend(opts.servers.vtsls, 'init_options.plugins', {
-        {
-          name = '@vue/typescript-plugin',
-          location = location,
-          languages = { 'vue' },
-          configNamespace = 'typescript',
-          enableForWorkspaceTypeScriptVersions = true,
-        },
-      })
       return opts
     end,
   },

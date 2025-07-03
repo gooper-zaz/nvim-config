@@ -19,9 +19,6 @@ return {
             'typescriptreact',
             'typescript.tsx',
           },
-          init_options = {
-            plugins = {},
-          },
           settings = {
             complete_function_calls = true,
             vtsls = {
