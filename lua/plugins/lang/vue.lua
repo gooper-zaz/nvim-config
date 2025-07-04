@@ -9,11 +9,11 @@ return {
       servers = {
         ---@type vim.lsp.Config
         vue_ls = {
-          init_options = {
-            vue = {
-              hybridMode = true,
-            },
-          },
+          -- init_options = {
+          --   vue = {
+          --     hybridMode = true,
+          --   },
+          -- },
           settings = {
             vue = {
               server = {
@@ -21,14 +21,14 @@ return {
               },
             },
           },
-          root_markers = {
-            'tsconfig.json',
-            'package.json',
-            '.git/',
-            'jsconfig.json',
-            'vite.config.js',
-            'vite.config.ts',
-          },
+          -- root_markers = {
+          --   'tsconfig.json',
+          --   'package.json',
+          --   '.git/',
+          --   'jsconfig.json',
+          --   'vite.config.js',
+          --   'vite.config.ts',
+          -- },
           -- for vue_ls v3.0.0
           -- https://github.com/vuejs/language-tools/wiki/Neovim
           on_init = function(client)
@@ -46,7 +46,7 @@ return {
               local param = unpack(result)
               local id, command, payload = unpack(param)
               ts_client:exec_cmd({
-                title = 'tsserver request',
+                title = 'vue_request_forward',
                 command = 'typescript.tsserverRequest',
                 arguments = {
                   command,
@@ -76,7 +76,7 @@ return {
           location = location,
           languages = { 'vue' },
           configNamespace = 'typescript',
-          enableForWorkspaceTypeScriptVersions = true,
+          -- enableForWorkspaceTypeScriptVersions = true,
         },
       })
       return opts
