@@ -9,6 +9,7 @@ return {
         ts_ls = {
           enabled = false,
         },
+        ---@type vim.lsp.Config
         vtsls = {
           filetypes = {
             'javascript',
