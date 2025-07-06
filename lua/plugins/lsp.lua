@@ -117,27 +117,36 @@ return {
         end
 
         -- 注册快捷键
-        util.set_keymap('n', 'gd', vim.lsp.buf.definition, {
+        util.set_keymap('n', 'gd', function()
+          Snacks.picker.lsp_definitions()
+        end, {
           desc = 'Goto Definition',
           buffer = buffer,
         })
-        util.set_keymap('n', 'gr', vim.lsp.buf.references, {
-          desc = 'References',
-          buffer = buffer,
-        })
-        util.set_keymap('n', 'gI', vim.lsp.buf.implementation, {
-          desc = 'Goto Implementation',
-          buffer = buffer,
-        })
-        util.set_keymap('n', 'gy', vim.lsp.buf.type_definition, {
-          desc = 'Goto T[y]pe Definition',
-          buffer = buffer,
-        })
-        util.set_keymap('n', 'gD', vim.lsp.buf.declaration, {
+        util.set_keymap('n', 'gD', function()
+          Snacks.picker.lsp_declarations()
+        end, {
           desc = 'Goto Declaration',
           buffer = buffer,
         })
-
+        util.set_keymap('n', 'gr', function()
+          Snacks.picker.lsp_references()
+        end, {
+          desc = 'References',
+          buffer = buffer,
+        })
+        util.set_keymap('n', 'gI', function()
+          Snacks.picker.lsp_implementations()
+        end, {
+          desc = 'Goto Implementation',
+          buffer = buffer,
+        })
+        util.set_keymap('n', 'gy', function()
+          Snacks.picker.lsp_type_definitions()
+        end, {
+          desc = 'Goto Type Definition',
+          buffer = buffer,
+        })
         util.set_keymap('n', 'K', function()
           vim.lsp.buf.hover()
         end, {
