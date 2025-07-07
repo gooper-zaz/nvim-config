@@ -57,11 +57,15 @@ return {
           mappings = {
             n = {
               ['q'] = action.close,
+              ['<C-l>'] = action.preview_scrolling_right,
+              ['<C-h>'] = action.preview_scrolling_left,
             },
             i = {
               ['<C-v>'] = false, -- conflict in windows terminal
-              -- NOTE: instead of <C-v>, use <C-l> to select vertically
-              ['<C-l>'] = action.select_vertical,
+              -- NOTE: instead of <C-v>, use <C-b> to select vertically
+              ['<C-b>'] = action.select_vertical,
+              ['<C-l>'] = action.preview_scrolling_right,
+              ['<C-h>'] = action.preview_scrolling_left,
             },
           },
         },

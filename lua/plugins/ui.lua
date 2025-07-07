@@ -66,7 +66,7 @@ return {
             buf = n.bufnr,
           })
         end,
-        show_buffer_close_icons = true,
+        show_buffer_close_icons = false,
         diagnostics = 'nvim_lsp',
         diagnostics_indicator = function(count, level, diag)
           local all_icons = require('config.icons').get_icons()
@@ -98,14 +98,32 @@ return {
       words = { enabled = true },
       git = { enabled = true },
       scroll = { enabled = false },
+      picker = {
+        enabled = true,
+        win = {
+          input = {
+            keys = {
+              ['<C-d>'] = { 'preview_scroll_down', mode = { 'i', 'n' } },
+              ['<C-u>'] = { 'preview_scroll_up', mode = { 'i', 'n' } },
+              ['<C-h>'] = { 'preview_scroll_left', mode = { 'i', 'n' } },
+              ['<C-l>'] = { 'preview_scroll_right', mode = { 'i', 'n' } },
+            },
+          },
+        },
+        previewers = {
+          file = {
+            max_size = 100 * 1024 * 5, -- 5 MB
+          },
+        },
+      },
       dashboard = {
         preset = {
           -- stylua: ignore
           ---@type snacks.dashboard.Item[]
           keys = {
-            { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+            { icon = " ", key = "f", desc = "Find File", action = "<cmd>Telescope find_files<cr>" },
             -- { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-            { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+            { icon = " ", key = "g", desc = "Find Text", action = "<cmd>Telescope live_grep<cr>" },
             { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
             { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
             { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
