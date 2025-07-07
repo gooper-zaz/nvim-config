@@ -173,6 +173,10 @@ return {
           desc = 'Code Action',
           buffer = buffer,
         })
+        util.set_keymap('n', '<leader>cc', vim.lsp.codelens.run, {
+          desc = 'Code Lens',
+          buffer = buffer,
+        })
         util.set_keymap('n', '<leader>cr', function()
           -- 如果当前filetype是'vue', 则使用vim内置的rename行为
           local use_inc, inc = pcall(require, 'inc_rename')
