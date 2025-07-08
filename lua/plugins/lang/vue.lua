@@ -76,7 +76,7 @@ return {
           location = location,
           languages = { 'vue' },
           configNamespace = 'typescript',
-          -- enableForWorkspaceTypeScriptVersions = true,
+          enableForWorkspaceTypeScriptVersions = true,
         },
       })
       return opts

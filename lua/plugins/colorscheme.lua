@@ -3,6 +3,7 @@ return {
   {
     'folke/tokyonight.nvim',
     priority = 1000,
+    enabled = false,
     opts = {
       -- transparent = true,
       styles = {
@@ -20,6 +21,7 @@ return {
   {
     'catppuccin/nvim',
     priority = 1000,
+    enabled = false,
     name = 'catppuccin',
     ---@type CatppuccinOptions
     opts = {
@@ -60,6 +62,7 @@ return {
   {
     'AlexvZyl/nordic.nvim',
     lazy = false,
+    enabled = false,
     priority = 1000,
     ---@type NordicOptions
     opts = {
@@ -97,6 +100,7 @@ return {
   {
     'rebelot/kanagawa.nvim',
     priority = 1000,
+    enabled = false,
     ---@type KanagawaConfig
     opts = {
       commentStyle = { italic = false },
