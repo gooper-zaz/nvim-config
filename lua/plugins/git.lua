@@ -7,18 +7,19 @@ return {
     opts = {
       signs = {
         add = { text = '' },
-        change = { text = '≋' },
+        change = { text = '┃' },
         delete = { text = '' },
         topdelete = { text = '' },
         changedelete = { text = '▎' },
-        untracked = { text = '▎' },
+        untracked = { text = '┆' },
       },
       signs_staged = {
         add = { text = '' },
-        change = { text = '≋' },
+        change = { text = '┃' },
         delete = { text = '' },
         topdelete = { text = '' },
         changedelete = { text = '▎' },
+        untracked = { text = '┆' },
       },
       current_line_blame = true,
       current_line_blame_opts = {
@@ -79,6 +80,12 @@ return {
         map('n', '<leader>gC', '<cmd>Telescope git_commits<CR>', 'Git Commits in Working Directory')
         map('v', '<leader>gc', '<cmd>Telescope git_bcommits_range<CR>', 'Git Commits in Current File Range')
         map('n', '<leader>gs', '<cmd>Telescope git_status<CR>', 'Git Status')
+        map('n', '<leader>gq', function()
+          gs.setqflist('attached')
+        end, 'Git Change Quickfix List Of Current Buffer')
+        map('n', '<leader>gQ', function()
+          gs.setqflist('all')
+        end, 'Git Change Quickfix List Of Whole Project')
       end,
     },
     -- config = function(_, opts)
