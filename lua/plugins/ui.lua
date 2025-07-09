@@ -94,14 +94,14 @@ return {
       {
         '<leader>bd',
         function()
-          require('snacks.bufdelete').delete()
+          Snacks.bufdelete.delete()
         end,
         desc = 'Delete Current Buffer',
       },
       {
         '<leader>bo',
         function()
-          require('snacks.bufdelete').other()
+          Snacks.bufdelete.other()
         end,
         desc = 'Delete Other Buffers',
       },
