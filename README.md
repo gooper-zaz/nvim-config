@@ -4,6 +4,7 @@
 
 - Neovim >= 0.11.0 
 - Git >= 2.19.0 (for partial clones support)
+- a **C** compiler for `nvim-treesitter`. See [here](https://github.com/nvim-treesitter/nvim-treesitter#requirements)
 - [Nerd Font](https://www.nerdfonts.com/)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [fd](https://github.com/sharkdp/fd)
