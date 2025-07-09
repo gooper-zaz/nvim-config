@@ -38,7 +38,7 @@ return {
           exclude = { 'vue' },
         },
         codelens = {
-          enabled = true,
+          enabled = false,
         },
         capabilities = {
           workspace = {
@@ -108,12 +108,27 @@ return {
       ---@param client vim.lsp.Client
       ---@param buffer number
       local function on_attach(client, buffer)
-        local filetype = vim.api.nvim_buf_get_option(buffer, 'filetype')
-        -- 只在 vue 文件中禁用 documentHighlight
-        if filetype == 'vue' then
-          if client.server_capabilities.documentHighlightProvider then
-            client.server_capabilities.documentHighlightProvider = false
+        -- 使用lsp api检测是否支持'textDocument/documentHighlight'
+        if not client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, buffer) then
+          client.server_capabilities.documentHighlightProvider = false
+        end
+
+        -- inlay hints
+        if opts.inlay_hints.enabled and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+          local is_excluded = vim.tbl_contains(opts.inlay_hints.exclude or {}, vim.bo[buffer].filetype)
+          if vim.api.nvim_buf_is_valid(buffer) and vim.bo[buffer].buftype == '' and not is_excluded then
+            vim.lsp.inlay_hint.enable(true, {
+              bufnr = buffer,
+            })
           end
+        end
+        -- code lens
+        if opts.codelens.enabled and client:supports_method(vim.lsp.protocol.Methods.textDocument_codeLens) then
+          vim.lsp.codelens.refresh()
+          vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+            buffer = buffer,
+            callback = vim.lsp.codelens.refresh,
+          })
         end
 
         -- 注册快捷键
