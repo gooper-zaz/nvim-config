@@ -10,25 +10,73 @@ return {
       'nvim-tree/nvim-web-devicons',
     },
     event = { 'User Laziest' },
-    opts = {
-      options = {
-        theme = 'auto',
-        globalstatus = vim.o.laststatus == 3,
-        disabled_filetypes = { statusline = { 'dashboard', 'alpha', 'ministarter', 'snacks_dashboard' } },
-      },
-      sections = {
-        lualine_x = { 'filetype' },
-        lualine_y = {
-          { 'progress', separator = ' ', padding = { left = 1, right = 0 } },
-          { 'location', padding = { left = 0, right = 1 } },
+    opts = function()
+      local lualine_require = require('lualine_require')
+      lualine_require.require = require
+
+      local icons = require('config.icons').get_icons()
+
+      vim.o.laststatus = vim.g.lualine_laststatus
+
+      return {
+        options = {
+          theme = 'auto',
+          globalstatus = vim.o.laststatus == 3,
+          disabled_filetypes = { statusline = { 'dashboard', 'alpha', 'ministarter', 'snacks_dashboard' } },
         },
-        lualine_z = {
-          function()
-            return ' ' .. os.date('%R')
-          end,
+        sections = {
+          lualine_a = { 'mode' },
+          lualine_b = {
+            'branch',
+            {
+              'diff',
+              symbols = {
+                added = icons.git.added,
+                modified = icons.git.modified,
+                removed = icons.git.removed,
+              },
+              source = function()
+                local gitsigns = vim.b.gitsigns_status_dict
+                if gitsigns then
+                  return {
+                    added = gitsigns.added,
+                    modified = gitsigns.changed,
+                    removed = gitsigns.removed,
+                  }
+                end
+              end,
+            },
+            {
+              'diagnostics',
+              symbols = {
+                error = icons.diagnostics.Error,
+                warn = icons.diagnostics.Warn,
+                info = icons.diagnostics.Info,
+                hint = icons.diagnostics.Hint,
+              },
+            },
+          },
+          lualine_c = { 'filename' },
+          lualine_x = { Snacks.profiler.status(), 'filetype', 'encoding', 'fileformat' },
+          lualine_y = {
+            { 'progress', separator = ' ', padding = { left = 1, right = 0 } },
+            { 'location', padding = { left = 0, right = 1 } },
+          },
+          lualine_z = {
+            function()
+              return ' ' .. os.date('%R')
+            end,
+          },
         },
-      },
-    },
+      }
+    end,
+    config = function(_, opts)
+      if (vim.g.colors_name or ''):find('catppuccin') then
+        opts.options.theme = 'catppuccin'
+      end
+
+      require('lualine').setup(opts)
+    end,
   },
   {
     'akinsho/bufferline.nvim',
@@ -62,11 +110,12 @@ return {
     opts = {
       options = {
         close_command = function(n)
-          require('snacks.bufdelete').delete({
-            buf = n.bufnr,
-          })
+          Snacks.bufdelete(n)
         end,
-        show_buffer_close_icons = false,
+        right_mouse_command = function(n)
+          Snacks.bufdelete(n)
+        end,
+        show_buffer_close_icons = true,
         diagnostics = 'nvim_lsp',
         diagnostics_indicator = function(count, level, diag)
           local all_icons = require('config.icons').get_icons()
@@ -75,6 +124,17 @@ return {
             .. (diag.warning and icons.Warn .. diag.warning or '')
           return vim.trim(ret)
         end,
+        offsets = {
+          -- {
+          --   filetype = 'neo-tree',
+          --   text = 'Neo-tree',
+          --   highlight = 'Directory',
+          --   text_align = 'left',
+          -- },
+          {
+            filetype = 'snacks_layout_box',
+          },
+        },
       },
     },
     config = function(_, opts)
