@@ -79,6 +79,26 @@ util.set_keymap('n', '<A-k>', ":<c-u>execute 'move -1-'. v:count1<cr>", 'Move Li
 -- 在insert模式下, 将当前行向上移或向下移
 util.set_keymap('i', '<A-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'Move Line Down (insert mode)' })
 util.set_keymap('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Line Up (insert mode)' })
+-- 在visual模式下, 将选中的行向上移或向下移
+util.set_keymap(
+  'v',
+  '<A-j>',
+  ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv",
+  { desc = 'Move Selected Lines Down' }
+)
+util.set_keymap(
+  'v',
+  '<A-k>',
+  ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv",
+  { desc = 'Move Selected Lines Up' }
+)
+
+-- Terminal Mapping
+util.set_keymap('t', '<ESC>', '<C-\\><C-n>', 'Exit Terminal Mode')
+util.set_keymap('t', '<A-h>', '<C-\\><C-n><C-w>h', 'Move to Left Window in Terminal Mode')
+util.set_keymap('t', '<A-j>', '<C-\\><C-n><C-w>j', 'Move to Down Window in Terminal Mode')
+util.set_keymap('t', '<A-k>', '<C-\\><C-n><C-w>k', 'Move to Up Window in Terminal Mode')
+util.set_keymap('t', '<A-l>', '<C-\\><C-n><C-w>l', 'Move to Right Window in Terminal Mode')
 
 if vim.g.neovide then
   -- 在neovide中, 使用CTRL+V来粘贴内容
