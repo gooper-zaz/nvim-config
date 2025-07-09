@@ -10,7 +10,7 @@ return {
         change = { text = '┃' },
         delete = { text = '' },
         topdelete = { text = '' },
-        changedelete = { text = '▎' },
+        changedelete = { text = '┃' },
         untracked = { text = '┆' },
       },
       signs_staged = {
@@ -18,7 +18,7 @@ return {
         change = { text = '┃' },
         delete = { text = '' },
         topdelete = { text = '' },
-        changedelete = { text = '▎' },
+        changedelete = { text = '┃' },
         untracked = { text = '┆' },
       },
       current_line_blame = true,
