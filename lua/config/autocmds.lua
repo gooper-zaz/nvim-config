@@ -75,27 +75,27 @@ vim.api.nvim_create_autocmd('User', {
   end,
 })
 
-local max_size = 1024 * 1024 -- 1MB
-local exclude_filetypes = { 'image', 'binary', 'media', 'pdf', 'zip', 'tar', 'gzip', 'bzip2', 'xz', '7z' }
+-- local max_size = 1024 * 1024 -- 1MB
+-- local exclude_filetypes = { 'image', 'binary', 'media', 'pdf', 'zip', 'tar', 'gzip', 'bzip2', 'xz', '7z' }
 
 -- 在特定条件下开启'cursorcolumn', 只在文件大小小于1MB, 且不是二进制文件时开启
-vim.api.nvim_create_autocmd('BufReadPost', {
-  group = augroup('cursorcolumn'),
-  pattern = '*',
-  callback = function(args)
-    local stat = vim.uv.fs_stat(args.file)
-    if not stat then
-      return
-    end
-    local buf = args.buf
-    local filetype = vim.bo[buf].filetype
-    local file_size = stat.size
-
-    -- 检查文件大小和文件类型
-    if file_size > 0 and file_size < max_size and not vim.tbl_contains(exclude_filetypes, filetype) then
-      vim.opt_local.cursorcolumn = true
-    else
-      vim.opt_local.cursorcolumn = false
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd('BufReadPost', {
+--   group = augroup('cursorcolumn'),
+--   pattern = '*',
+--   callback = function(args)
+--     local stat = vim.uv.fs_stat(args.file)
+--     if not stat then
+--       return
+--     end
+--     local buf = args.buf
+--     local filetype = vim.bo[buf].filetype
+--     local file_size = stat.size
+--
+--     -- 检查文件大小和文件类型
+--     if file_size > 0 and file_size < max_size and not vim.tbl_contains(exclude_filetypes, filetype) then
+--       vim.opt_local.cursorcolumn = true
+--     else
+--       vim.opt_local.cursorcolumn = false
+--     end
+--   end,
+-- })
