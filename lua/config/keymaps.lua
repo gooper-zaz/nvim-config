@@ -28,6 +28,10 @@ util.set_keymap('v', '>', '>gv', 'Indent Right')
 util.set_keymap({ 'n', 'v', 'o' }, 'H', '^', 'Start Of Line')
 util.set_keymap({ 'n', 'v', 'o' }, 'L', '$', 'End Of Line')
 
+-- fast move down/up
+util.set_keymap('n', '<C-j>', '10jzz', 'Move down 10 lines')
+util.set_keymap('n', '<C-k>', '10kzz', 'Move up 10 lines')
+
 -- Split window
 util.set_keymap('n', '<leader>ss', ':split<Return>', { desc = 'Split Window', noremap = false })
 util.set_keymap('n', '<leader>sv', ':vsplit<Return>', { desc = 'Split Window Vertical', noremap = false })
