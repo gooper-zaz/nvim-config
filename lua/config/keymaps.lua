@@ -36,10 +36,6 @@ util.set_keymap('n', '<C-k>', '10kzz', 'Move up 10 lines')
 util.set_keymap('n', '<leader>ss', ':split<Return>', { desc = 'Split Window', noremap = false })
 util.set_keymap('n', '<leader>sv', ':vsplit<Return>', { desc = 'Split Window Vertical', noremap = false })
 
--- quickfix
-util.set_keymap('n', '[q', vim.cmd.cprev, 'Prev Quickfix')
-util.set_keymap('n', ']q', vim.cmd.cnext, 'Next Quickfix')
-
 util.set_keymap('n', '<leader>te', ':tabedit<Return>', 'Tab Edit')
 -- util.set_keymap('n', '<tab>', ':tabnext<Return>', 'Next Tab')
 -- util.set_keymap('n', '<s-tab>', ':tabprev<Return>', 'Prev Tab')
@@ -47,6 +43,9 @@ util.set_keymap('n', '<leader>te', ':tabedit<Return>', 'Tab Edit')
 util.set_keymap('n', '<leader>nh', '<cmd>nohlsearch<cr>', 'Clear Highlight Search')
 
 -- diagnostic
+---@param next boolean
+---@param severity vim.diagnostic.Severity?
+---@return function
 local diagnostic_goto = function(next, severity)
   local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
   severity = severity and vim.diagnostic.severity[severity] or nil
@@ -60,6 +59,10 @@ util.set_keymap('n', ']e', diagnostic_goto(true, 'ERROR'), 'Next Error')
 util.set_keymap('n', '[e', diagnostic_goto(false, 'ERROR'), 'Prev Error')
 util.set_keymap('n', ']w', diagnostic_goto(true, 'WARN'), 'Next Warning')
 util.set_keymap('n', '[w', diagnostic_goto(false, 'WARN'), 'Prev Warning')
+
+-- quickfix
+util.set_keymap('n', '[q', vim.cmd.cprev, 'Prev Quickfix')
+util.set_keymap('n', ']q', vim.cmd.cnext, 'Next Quickfix')
 
 -- lazy
 util.set_keymap('n', '<leader>l', '<cmd>Lazy<cr>', 'Lazy')
