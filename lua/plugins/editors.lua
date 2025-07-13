@@ -12,14 +12,14 @@ return {
   {
     'folke/trouble.nvim',
     keys = {
-      { '<leader>td', '<cmd>Trouble diagnostics toggle<cr>', desc = '[t]rouble [d]iagnostics' },
+      { '<leader>td', '<cmd>Trouble diagnostics toggle<cr>', desc = 'Trouble Diagnostics' },
     },
     opts = {},
   },
   {
     -- 使用'jk'退出insert mode
     'max397574/better-escape.nvim',
-    event = 'VeryLazy',
+    event = 'InsertEnter',
     opts = {
       mappings = {
         i = {
