@@ -1,7 +1,8 @@
 return {
   {
     'neovim/nvim-lspconfig',
-    event = { 'User Laziest', 'BufNewFile', 'BufReadPost' },
+    -- event = { 'User Laziest', 'BufNewFile', 'BufReadPre' },
+    event = { 'User Laziest', 'BufNewFile' },
     dependencies = {
       { 'saghen/blink.cmp' },
       { 'mason-org/mason-lspconfig.nvim' },
@@ -193,9 +194,12 @@ return {
           buffer = buffer,
         })
         util.set_keymap('n', '<leader>cr', function()
-          -- 如果当前filetype是'vue', 则使用vim内置的rename行为
           local use_inc, inc = pcall(require, 'inc_rename')
-          if use_inc ~= true or vim.bo.filetype == 'vue' then
+          -- 如果当前filetype是'vue', 则使用vim内置的rename行为
+          -- if use_inc ~= true or vim.bo.filetype == 'vue' then
+          --   return ':lua vim.lsp.buf.rename()<CR>'
+          -- end
+          if not use_inc then
             return ':lua vim.lsp.buf.rename()<CR>'
           end
           return ':' .. inc.config.cmd_name .. ' ' .. vim.fn.expand('<cword>')

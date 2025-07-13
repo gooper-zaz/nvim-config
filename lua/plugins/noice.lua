@@ -5,6 +5,7 @@ return {
       'MunifTanjim/nui.nvim',
     },
     event = 'VeryLazy',
+    ---@type NoiceConfig
     opts = {
       lsp = {
         override = {
