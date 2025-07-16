@@ -110,7 +110,9 @@ return {
       ---@param buffer number
       local function on_attach(client, buffer)
         -- 使用lsp api检测是否支持'textDocument/documentHighlight'
-        if not client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, buffer) then
+        local buf = vim.bo[buffer]
+        local is_vue = buf.filetype == 'vue'
+        if not client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, buffer) or is_vue then
           client.server_capabilities.documentHighlightProvider = false
         end
 
