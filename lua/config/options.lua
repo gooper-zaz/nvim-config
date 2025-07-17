@@ -38,6 +38,8 @@ opt.smoothscroll = true
 opt.splitright = true
 opt.splitbelow = true
 
+opt.fileformats = 'unix,dos,mac' -- 文件格式
+
 -- neovide 配置
 if vim.g.neovide then
   -- 轨道动画
