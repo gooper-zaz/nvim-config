@@ -9,11 +9,11 @@ return {
       servers = {
         ---@type vim.lsp.Config
         vue_ls = {
-          -- init_options = {
-          --   vue = {
-          --     hybridMode = true,
-          --   },
-          -- },
+          init_options = {
+            vue = {
+              hybridMode = true,
+            },
+          },
           settings = {
             vue = {
               server = {
@@ -31,6 +31,7 @@ return {
           -- },
           -- for vue_ls v3.0.0
           -- https://github.com/vuejs/language-tools/wiki/Neovim
+          -- 在最新的nvim-lspconfig中, 已经内置了这段逻辑
           on_init = function(client)
             client.handlers['tsserver/request'] = function(_, result, context)
               local clients = vim.lsp.get_clients({ bufnr = context.bufnr, name = 'vtsls' })
