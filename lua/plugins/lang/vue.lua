@@ -9,11 +9,11 @@ return {
       servers = {
         ---@type vim.lsp.Config
         vue_ls = {
-          -- init_options = {
-          --   vue = {
-          --     hybridMode = true,
-          --   },
-          -- },
+          init_options = {
+            vue = {
+              hybridMode = true,
+            },
+          },
           settings = {
             vue = {
               server = {
