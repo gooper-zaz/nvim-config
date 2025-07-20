@@ -13,6 +13,11 @@ return {
             vue = {
               hybridMode = true,
             },
+            -- FIXME: https://github.com/mason-org/mason-lspconfig.nvim/issues/587#issuecomment-3064568758
+            -- 这里先加上这两行配置, 否则在进入vue文件时mason-lspconfig会报错, 导致一些插件不能正常启动
+            typescript = {
+              tsdk = '',
+            },
           },
           settings = {
             vue = {
@@ -32,35 +37,35 @@ return {
           -- for vue_ls v3.0.0
           -- https://github.com/vuejs/language-tools/wiki/Neovim
           -- 在最新的nvim-lspconfig中, 已经内置了这段逻辑
-          on_init = function(client)
-            client.handlers['tsserver/request'] = function(_, result, context)
-              local clients = vim.lsp.get_clients({ bufnr = context.bufnr, name = 'vtsls' })
-              if #clients == 0 then
-                vim.notify(
-                  'Could not found `vtsls` lsp client, vue_lsp would not work without it.',
-                  vim.log.levels.ERROR
-                )
-                return
-              end
-              local ts_client = clients[1]
-
-              local param = unpack(result)
-              local id, command, payload = unpack(param)
-              ts_client:exec_cmd({
-                title = 'vue_request_forward',
-                command = 'typescript.tsserverRequest',
-                arguments = {
-                  command,
-                  payload,
-                },
-              }, { bufnr = context.bufnr }, function(_, r)
-                -- r may be nil
-                local response_data = { { id, r and r.body } }
-                ---@diagnostic disable-next-line: param-type-mismatch
-                client:notify('tsserver/response', response_data)
-              end)
-            end
-          end,
+          -- on_init = function(client)
+          --   client.handlers['tsserver/request'] = function(_, result, context)
+          --     local clients = vim.lsp.get_clients({ bufnr = context.bufnr, name = 'vtsls' })
+          --     if #clients == 0 then
+          --       vim.notify(
+          --         'Could not found `vtsls` lsp client, vue_lsp would not work without it.',
+          --         vim.log.levels.ERROR
+          --       )
+          --       return
+          --     end
+          --     local ts_client = clients[1]
+          --
+          --     local param = unpack(result)
+          --     local id, command, payload = unpack(param)
+          --     ts_client:exec_cmd({
+          --       title = 'vue_request_forward',
+          --       command = 'typescript.tsserverRequest',
+          --       arguments = {
+          --         command,
+          --         payload,
+          --       },
+          --     }, { bufnr = context.bufnr }, function(_, r)
+          --       -- r may be nil
+          --       local response_data = { { id, r and r.body } }
+          --       ---@diagnostic disable-next-line: param-type-mismatch
+          --       client:notify('tsserver/response', response_data)
+          --     end)
+          --   end
+          -- end,
         },
         vtsls = {},
       },
