@@ -55,12 +55,33 @@ local defaults = {
       Value = ' ',
       Variable = '󰀫 ',
     },
+    -- icons for lsp clients
+    lsp_client_icon = {
+      clangd = ' ',
+      cssls = ' ',
+      html = ' ',
+      jsonls = ' ',
+      -- lua_ls = ' ',
+      lua_ls = 'lua',
+      vtsls = ' ',
+      vue_ls = ' ',
+      zig = ' ',
+      copilot = ' ',
+    },
   },
 }
 
 -- 获取默认icons
 function M.get_icons()
   return vim.tbl_deep_extend('force', {}, defaults.icons)
+end
+
+--- 获取lsp客户端图标
+---@param name string lsp客户端名称
+---@return string 图标
+function M.get_icon_by_lsp_name(name)
+  local icons = M.get_icons().lsp_client_icon
+  return icons[name] -- 默认图标
 end
 
 return M
