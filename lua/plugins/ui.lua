@@ -14,7 +14,8 @@ return {
       local lualine_require = require('lualine_require')
       lualine_require.require = require
 
-      local icons = require('config.icons').get_icons()
+      local icon_util = require('config.icons')
+      local icons = icon_util.get_icons()
 
       vim.o.laststatus = vim.g.lualine_laststatus
 
@@ -63,7 +64,22 @@ return {
             { 'location', padding = { left = 0, right = 1 } },
           },
           lualine_z = {
-            'lsp_status',
+            -- 'lsp_status',
+            function()
+              local result = {}
+              local current_buf = vim.api.nvim_get_current_buf()
+              local clients = vim.lsp.get_clients({ bufnr = current_buf })
+              local copilot = ''
+              for _, client in ipairs(clients) do
+                local icon = icon_util.get_icon_by_lsp_name(client.name) or client.name
+                if client.name == 'copilot' then
+                  copilot = icon
+                else
+                  table.insert(result, icon)
+                end
+              end
+              return #result > 0 and table.concat(result, ' ') .. (copilot ~= '' and ' ' .. copilot or '') or ''
+            end,
             function()
               return ' ' .. os.date('%R')
             end,
