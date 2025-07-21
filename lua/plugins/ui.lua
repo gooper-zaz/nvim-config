@@ -167,6 +167,7 @@ return {
     priority = 1000,
     ---@type snacks.Config
     opts = {
+      -- indent = { enabled = true, indent = { enabled = true, char = '┊' } },
       indent = { enabled = true },
       bigfile = { enabled = true },
       notifier = { enabled = true },
@@ -175,6 +176,7 @@ return {
       words = { enabled = true },
       git = { enabled = true },
       scroll = { enabled = false },
+      statuscolumn = { enabled = true },
       picker = {
         enabled = true,
         win = {
