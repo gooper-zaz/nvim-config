@@ -37,7 +37,10 @@ return {
             typescript = {
               updateImportsOnFileMove = { enabled = 'always' },
               suggest = {
-                completeFunctionCalls = true,
+                enbaled = true,
+                autoImports = true,
+                completeJSDocs = true,
+                completeFunctionCalls = false, -- just want function name without params while completing
               },
               inlayHints = {
                 enumMemberValues = { enabled = true },
@@ -46,12 +49,18 @@ return {
                 parameterTypes = { enabled = true },
                 propertyDeclarationTypes = { enabled = true },
                 variableTypes = { enabled = false },
+              },
+              preferences = {
+                quoteStyle = 'single',
               },
             },
             javascript = {
               updateImportsOnFileMove = { enabled = 'always' },
               suggest = {
-                completeFunctionCalls = true,
+                enbaled = true,
+                autoImports = true,
+                completeJSDocs = true,
+                completeFunctionCalls = false, -- just want function name without params while completing
               },
               inlayHints = {
                 enumMemberValues = { enabled = true },
@@ -60,6 +69,9 @@ return {
                 parameterTypes = { enabled = true },
                 propertyDeclarationTypes = { enabled = true },
                 variableTypes = { enabled = false },
+              },
+              preferences = {
+                quoteStyle = 'single',
               },
             },
           },
