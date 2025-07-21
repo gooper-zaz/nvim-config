@@ -24,6 +24,23 @@ return {
               server = {
                 maxOldSpaceSize = 8192,
               },
+              autoInsert = {
+                bracketSpacing = true,
+              },
+              inlayHints = {
+                desctructuredProps = true,
+                inlineHandlerLeading = true,
+              },
+              suggest = {
+                componentNameCasing = 'preferPascalCase',
+                propNameCasing = 'preferKebabCase',
+                defineAssignment = true,
+              },
+              format = {
+                template = { initialIndent = true },
+                style = { initialIndent = true },
+                script = { initialIndent = true },
+              },
             },
           },
           -- root_markers = {
