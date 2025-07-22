@@ -221,4 +221,37 @@ return {
     event = { 'BufReadPost' },
     opts = {},
   },
+  {
+    'echasnovski/mini.comment',
+    event = { 'BufReadPost' },
+    opts = {
+      options = {
+        custom_commentstring = function()
+          return require('ts_context_commentstring.internal').calculate_commentstring() or vim.bo.commentstring
+        end,
+      },
+      mappings = {
+        -- Toggle comment (like `gcip` - comment inner paragraph) for both
+        -- Normal and Visual modes
+        comment = 'gc',
+
+        -- Toggle comment on current line
+        comment_line = 'gcc',
+
+        -- Toggle comment on visual selection
+        comment_visual = 'gc',
+
+        -- define 'comment' textobject (like `dic` - delete whole comment block)
+        -- works also in visual mode if mapping differs from `comment_visual`
+        textobject = 'ic',
+      },
+    },
+  },
+  {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    lazy = true,
+    opts = {
+      enable_autocmd = false,
+    },
+  },
 }
