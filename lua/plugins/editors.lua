@@ -7,6 +7,8 @@ return {
   {
     'folke/ts-comments.nvim',
     event = 'BufReadPost',
+    -- NOTE: use `mini.comment` instead
+    enabled = false,
     opts = {},
   },
   {
