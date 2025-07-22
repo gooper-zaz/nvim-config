@@ -161,6 +161,10 @@ return {
         end,
       })
 
+      --- set mini.files buffer keymaps
+      ---@param buf_id number buffer number
+      ---@param lhs string left-hand side of the keymap
+      ---@param direction string direction for split
       local map_split = function(buf_id, lhs, direction)
         local rhs = function()
           -- Make new window and set it as target
@@ -187,8 +191,8 @@ return {
         callback = function(args)
           local buf_id = args.data.buf_id
           -- Tweak keys to your liking
-          map_split(buf_id, 'sp', 'belowright horizontal')
-          map_split(buf_id, 'sl', 'belowright vertical')
+          map_split(buf_id, 'ss', 'belowright horizontal')
+          map_split(buf_id, 'sv', 'belowright vertical')
           -- map_split(buf_id, '<C-t>', 'tab')
         end,
       })
