@@ -170,7 +170,7 @@ return {
       -- indent = { enabled = true, indent = { enabled = true, char = '┊' } },
       indent = { enabled = true },
       bigfile = { enabled = true },
-      notifier = { enabled = true },
+      notifier = { enabled = true, timeout = 2000 },
       scope = { enabled = true },
       input = { enabled = true },
       words = { enabled = true },
@@ -186,12 +186,18 @@ return {
               ['<C-u>'] = { 'preview_scroll_up', mode = { 'i', 'n' } },
               ['<C-h>'] = { 'preview_scroll_left', mode = { 'i', 'n' } },
               ['<C-l>'] = { 'preview_scroll_right', mode = { 'i', 'n' } },
+              ['<C-x>'] = { 'edit_vsplit', mode = { 'i', 'n' } },
             },
           },
         },
         previewers = {
           file = {
             max_size = 100 * 1024 * 5, -- 5 MB
+          },
+        },
+        formatters = {
+          file = {
+            icon_width = 3,
           },
         },
       },
