@@ -19,7 +19,9 @@ opt.cursorline = true
 opt.termguicolors = true
 opt.confirm = true
 
-opt.clipboard = 'unnamedplus'
+vim.schedule(function()
+  vim.opt.clipboard = 'unnamedplus'
+end)
 opt.undofile = true
 opt.wrap = false
 opt.scroll = 10

@@ -213,6 +213,9 @@ return {
           Snacks.rename.on_rename_file(event.data.from, event.data.to)
         end,
       })
+
+      -- git integration
+      -- require('config.mini-files-git')
     end,
   },
   {
