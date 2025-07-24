@@ -127,6 +127,11 @@ return {
           comments = { italic = false },
           keywords = { italic = false },
         },
+        on_highlights = function(highlights, color)
+          highlights.Boolean = { fg = color.green }
+          highlights.String = { fg = color.green_faint }
+          highlights.Character = { fg = color.green_faint }
+        end,
       })
       vim.cmd([[colorscheme modus]])
       -- vim.cmd([[coloerscheme modus_vivendi]])
