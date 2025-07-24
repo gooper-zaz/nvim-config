@@ -53,6 +53,9 @@ return {
               preferences = {
                 quoteStyle = 'single',
               },
+              tsserver = {
+                maxTsServerMemory = 8192, -- 8GB for large projects
+              },
             },
             javascript = {
               updateImportsOnFileMove = { enabled = 'always' },
@@ -72,6 +75,9 @@ return {
               },
               preferences = {
                 quoteStyle = 'single',
+              },
+              tsserver = {
+                maxTsServerMemory = 8192, -- 8GB for large projects
               },
             },
           },

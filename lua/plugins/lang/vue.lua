@@ -20,6 +20,7 @@ return {
             },
           },
           settings = {
+            -- FIXME: seems not working
             vue = {
               server = {
                 maxOldSpaceSize = 8192,
