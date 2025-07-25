@@ -111,7 +111,7 @@ return {
     'stevearc/conform.nvim',
     opts = {
       formatters_by_ft = {
-        vue = { 'custom_prettier' },
+        vue = { 'prettier' },
       },
     },
   },
@@ -120,7 +120,6 @@ return {
     opts = {
       ensure_installed = {
         'prettier',
-        'prettierd',
       },
     },
   },

@@ -89,10 +89,10 @@ return {
     'stevearc/conform.nvim',
     opts = {
       formatters_by_ft = {
-        javascript = { 'custom_prettier' },
-        javascriptreact = { 'custom_prettier' },
-        typescript = { 'custom_prettier' },
-        typescriptreact = { 'custom_prettier' },
+        javascript = { 'prettier' },
+        javascriptreact = { 'prettier' },
+        typescript = { 'prettier' },
+        typescriptreact = { 'prettier' },
       },
     },
   },
