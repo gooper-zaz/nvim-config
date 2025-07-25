@@ -131,6 +131,8 @@ return {
           highlights.Boolean = { fg = color.green }
           highlights.String = { fg = color.green_faint }
           highlights.Character = { fg = color.green_faint }
+          local funcStyle = highlights.Function.style
+          highlights.Function = { fg = color.yellow_faint, style = funcStyle }
         end,
       })
       vim.cmd([[colorscheme modus]])
