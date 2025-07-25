@@ -3,6 +3,22 @@ return {
     'stevearc/conform.nvim',
     event = 'BufWritePre',
     opts_extends = { 'formatters_by_ft' },
+    keys = {
+      {
+        '<leader>cf',
+        function()
+          local formatted = require('conform').format()
+          if not formatted then
+            vim.notify('No Formatter Attached', vim.log.levels.WARN, {
+              title = 'Conform',
+            })
+          end
+        end,
+        mode = { 'n', 'v' },
+        desc = 'Format Injected Langs',
+      },
+    },
+    ---@type conform.setupOpts
     opts = {
       formatters_by_ft = {
         lua = { 'stylua' },
@@ -12,7 +28,7 @@ return {
       },
       format_on_save = {
         timout_ms = 500,
-        lsp_fallback = true,
+        lsp_format = 'fallback',
       },
       formatters = {
         -- 自定义prettier
@@ -38,7 +54,7 @@ return {
               'prettier.config.cjs',
               'prettier.config.mjs',
               -- "package.json",
-            })(nil, ctx)
+            })(self, ctx)
 
             local prettier_args = {
               '--stdin-filepath',
@@ -59,6 +75,9 @@ return {
 
             return prettier_args
           end,
+        },
+        prettier = {
+          require_cwd = true,
         },
       },
     },
