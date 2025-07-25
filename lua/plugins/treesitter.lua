@@ -66,6 +66,7 @@ return {
     'HiPhish/rainbow-delimiters.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     event = { 'BufReadPre' },
+    enabled = false,
     config = function()
       require('rainbow-delimiters.setup').setup({
         strategy = {
