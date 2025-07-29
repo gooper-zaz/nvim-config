@@ -13,11 +13,6 @@ return {
             vue = {
               hybridMode = true,
             },
-            -- FIXME: https://github.com/mason-org/mason-lspconfig.nvim/issues/587#issuecomment-3064568758
-            -- 这里先加上这两行配置, 否则在进入vue文件时mason-lspconfig会报错, 导致一些插件不能正常启动
-            typescript = {
-              tsdk = '',
-            },
           },
           settings = {
             -- FIXME: seems not working

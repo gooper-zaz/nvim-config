@@ -208,7 +208,7 @@ return {
           keys = {
             { icon = " ", key = "f", desc = "Find File", action = "<cmd>Telescope find_files<cr>" },
             -- { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-            { icon = " ", key = "g", desc = "Find Text", action = "<cmd>Telescope live_grep<cr>" },
+            { icon = " ", key = "g", desc = "Grep Text", action = "<cmd>Telescope live_grep<cr>" },
             { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
             { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
             { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
