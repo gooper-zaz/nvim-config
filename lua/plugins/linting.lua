@@ -12,6 +12,21 @@ return {
         vue = { 'oxlint' },
       }
 
+      local oxlint = lint.linters.oxlint
+      oxlint.args = {
+        '--deny',
+        'no-duplicate-imports',
+        'import/no-cycle',
+        '--warn',
+        'no-unused-vars',
+        'typescript/no-explicit-any',
+        '--allow',
+        'unicorn/no-new-array',
+        '--format',
+        'unix',
+        '--import-plugin',
+      }
+
       vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufReadPost', 'InsertLeave' }, {
         group = vim.api.nvim_create_augroup('nvim-lint', { clear = true }),
         callback = function()
