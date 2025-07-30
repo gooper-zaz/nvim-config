@@ -121,6 +121,7 @@ return {
   {
     'miikanissi/modus-themes.nvim',
     priority = 1000,
+    enabled = false,
     config = function()
       require('modus-themes').setup({
         styles = {
