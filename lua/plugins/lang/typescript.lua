@@ -28,6 +28,7 @@ return {
                 maxInlayHintLength = 30,
                 completion = {
                   enableServerSideFuzzyMatch = true,
+                  entriesLimit = 20,
                 },
               },
               tsserver = {
@@ -37,9 +38,9 @@ return {
             typescript = {
               updateImportsOnFileMove = { enabled = 'always' },
               suggest = {
-                enbaled = true,
-                autoImports = true,
-                completeJSDocs = true,
+                -- enbaled = true,
+                -- autoImports = true,
+                -- completeJSDocs = true,
                 completeFunctionCalls = false, -- just want function name without params while completing
               },
               inlayHints = {
@@ -60,9 +61,9 @@ return {
             javascript = {
               updateImportsOnFileMove = { enabled = 'always' },
               suggest = {
-                enbaled = true,
-                autoImports = true,
-                completeJSDocs = true,
+                -- enbaled = true,
+                -- autoImports = true,
+                -- completeJSDocs = true,
                 completeFunctionCalls = false, -- just want function name without params while completing
               },
               inlayHints = {
