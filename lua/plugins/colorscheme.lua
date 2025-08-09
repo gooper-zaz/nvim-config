@@ -128,7 +128,7 @@ return {
           keywords = { italic = false },
         },
         on_highlights = function(highlights, color)
-          highlights.Boolean = { fg = color.green }
+          highlights.Boolean = { fg = color.green, bold = true }
           highlights.String = { fg = color.green_faint }
           highlights.Character = { fg = color.green_faint }
           local funcStyle = highlights.Function.style

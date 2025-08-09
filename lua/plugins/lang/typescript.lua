@@ -102,7 +102,6 @@ return {
     opts = {
       ensure_installed = {
         'prettier',
-        'prettierd',
       },
     },
   },
