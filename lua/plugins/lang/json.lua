@@ -30,4 +30,12 @@ return {
     lazy = true,
     version = false, -- last release is way too old
   },
+  {
+    'stevearc/conform.nvim',
+    opts = {
+      formatters_by_ft = {
+        json = { 'prettier' },
+      },
+    },
+  },
 }
