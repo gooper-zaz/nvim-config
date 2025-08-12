@@ -1,8 +1,8 @@
 return {
+  { "MunifTanjim/nui.nvim", lazy = true },
   {
     'folke/noice.nvim',
     dependencies = {
-      'MunifTanjim/nui.nvim',
       'rcarriga/nvim-notify',
     },
     event = 'VeryLazy',

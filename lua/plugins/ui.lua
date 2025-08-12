@@ -170,7 +170,12 @@ return {
       -- indent = { enabled = true, indent = { enabled = true, char = '┊' } },
       indent = { enabled = true },
       bigfile = { enabled = true },
-      notifier = { enabled = true, timeout = 2000 },
+      notifier = {
+        enabled = true,
+        timeout = 3000,
+        style = 'fancy',
+        padding = false,
+      },
       scope = { enabled = true },
       input = { enabled = true },
       words = { enabled = true },
