@@ -37,8 +37,6 @@ util.set_keymap('n', '<leader>ss', ':split<Return>', { desc = 'Split Window', no
 util.set_keymap('n', '<leader>sv', ':vsplit<Return>', { desc = 'Split Window Vertical', noremap = false })
 
 util.set_keymap('n', '<leader>te', ':tabedit<Return>', 'Tab Edit')
--- util.set_keymap('n', '<tab>', ':tabnext<Return>', 'Next Tab')
--- util.set_keymap('n', '<s-tab>', ':tabprev<Return>', 'Prev Tab')
 
 util.set_keymap('n', '<leader>nh', '<cmd>nohlsearch<cr>', 'Clear Highlight Search')
 

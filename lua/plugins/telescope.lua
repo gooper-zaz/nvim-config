@@ -152,6 +152,21 @@ return {
         mode = { 'n', 'v' },
         desc = 'Search Word Under Cursor',
       },
+      {
+        '<leader>sW',
+        function()
+          local grug = require('grug-far')
+          grug.open({
+            transient = true,
+            prefills = {
+              paths = vim.fn.expand('%'),
+              search = vim.fn.expand('<cword>'),
+            },
+          })
+        end,
+        mode = { 'n', 'v' },
+        desc = 'Search Word Under Cursor in Current File',
+      },
     },
   },
 }

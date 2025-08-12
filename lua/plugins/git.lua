@@ -6,20 +6,20 @@ return {
     ---@type Gitsigns.Config
     opts = {
       signs = {
-        add = { text = '' },
-        change = { text = '┃' },
-        delete = { text = '' },
-        topdelete = { text = '' },
-        changedelete = { text = '┃' },
-        untracked = { text = '┆' },
+        add = { text = ' ' },
+        change = { text = '┃ ' },
+        delete = { text = ' ' },
+        topdelete = { text = ' ' },
+        changedelete = { text = '┃ ' },
+        untracked = { text = '┆ ' },
       },
       signs_staged = {
-        add = { text = '' },
-        change = { text = '┃' },
-        delete = { text = '' },
-        topdelete = { text = '' },
-        changedelete = { text = '┃' },
-        untracked = { text = '┆' },
+        add = { text = ' ' },
+        change = { text = '┃ ' },
+        delete = { text = ' ' },
+        topdelete = { text = ' ' },
+        changedelete = { text = '┃ ' },
+        untracked = { text = '┆ ' },
       },
       current_line_blame = true,
       current_line_blame_opts = {
@@ -93,5 +93,9 @@ return {
     -- config = function(_, opts)
     --   require('gitsigns').setup(opts)
     -- end,
+  },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    opts = { ensure_installed = { 'git_config', 'gitcommit', 'git_rebase', 'gitignore', 'gitattributes' } },
   },
 }

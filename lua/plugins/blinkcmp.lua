@@ -27,7 +27,7 @@ return {
         -- adding any nvim-cmp sources here will enable them
         -- with blink.compat
         -- compat = {},
-        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot', 'lazydev' },
         providers = {
           lazydev = {
             name = 'LazyDev',

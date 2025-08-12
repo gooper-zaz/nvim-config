@@ -53,6 +53,7 @@ return {
               },
               preferences = {
                 quoteStyle = 'single',
+                includePackageJsonAutoImports = 'off',
               },
               tsserver = {
                 maxTsServerMemory = 8192, -- 8GB for large projects
@@ -76,6 +77,7 @@ return {
               },
               preferences = {
                 quoteStyle = 'single',
+                includePackageJsonAutoImports = 'off',
               },
               tsserver = {
                 maxTsServerMemory = 8192, -- 8GB for large projects
