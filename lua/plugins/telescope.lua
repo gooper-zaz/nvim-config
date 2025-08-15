@@ -1,3 +1,5 @@
+---@diagnostic disable: assign-type-mismatch
+---@type LazyPluginSpec[]
 return {
   {
     'nvim-telescope/telescope.nvim',
@@ -7,16 +9,36 @@ return {
     cmd = 'Telescope',
     keys = {
       { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = 'find files' },
-      { '<leader>fF', '<cmd>Telescope find_files theme=ivy<cr>', desc = 'find files [ivy]' },
+      { '<leader>fF', '<cmd>Telescope find_files<cr>', desc = 'find files (cwd)' },
       { '<leader>fg', '<cmd>Telescope live_grep<cr>', desc = 'file grep' },
-      { '<leader>fG', '<cmd>Telescope live_grep theme=ivy<cr>', desc = 'file grep [ivy]' },
-      -- { '<leader>fr', '<cmd>Telescope resume<cr>', desc = 'file resume' },
-      -- { '<leader>fv', '<cmd>Telescope vim_options<cr>', desc = 'find vim opts' },
       {
         '<leader>fb',
         '<cmd>Telescope buffers sort_mru=true sort_lastused=true ignore_current_buffer=false<cr>',
         desc = 'find buffers',
       },
+      {
+        '<leader>sw',
+        function()
+          Snacks.picker.grep_word()
+        end,
+        desc = 'find word under cursor',
+        mode = { 'n', 'v' },
+      },
+      {
+        '<leader>sW',
+        function()
+          Snacks.picker.grep_word({
+            dirs = {
+              -- 当前文件所在目录
+              vim.fn.expand('%:p:h'),
+            },
+          })
+        end,
+        desc = 'find word under cursor in current file',
+        mode = { 'n', 'v' },
+      },
+      {'<leader>sl', function() Snacks.picker.lines() end, 'search inlines in current buffer'},
+      {'<leader>su', function() Snacks.picker.undo() end, 'undo history'},
       { '<leader>sb', '<cmd>Telescope current_buffer_fuzzy_find<cr>', desc = 'search in current buffer' },
       { '<leader>sj', '<cmd>Telescope jumplist<cr>', desc = 'jumplist' },
       { '<leader>sk', '<cmd>Telescope keymaps<cr>', desc = 'keymaps' },
@@ -110,7 +132,7 @@ return {
     cmd = 'GrugFar',
     keys = {
       {
-        '<leader>sr',
+        '<leader>rr',
         function()
           local grug = require('grug-far')
           local ext = vim.bo.buftype == '' and vim.fn.expand('%:e')
@@ -125,7 +147,7 @@ return {
         desc = 'Search and Replace',
       },
       {
-        '<leader>sR',
+        '<leader>rR',
         function()
           local grug = require('grug-far')
           grug.open({
@@ -139,7 +161,7 @@ return {
         desc = 'Search and Replace in Current File',
       },
       {
-        '<leader>sw',
+        '<leader>rw',
         function()
           local grug = require('grug-far')
           grug.open({
@@ -153,7 +175,7 @@ return {
         desc = 'Search Word Under Cursor',
       },
       {
-        '<leader>sW',
+        '<leader>rW',
         function()
           local grug = require('grug-far')
           grug.open({
