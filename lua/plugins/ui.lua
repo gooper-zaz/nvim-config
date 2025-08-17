@@ -181,7 +181,7 @@ return {
       words = { enabled = true },
       git = { enabled = true },
       scroll = { enabled = false },
-      statuscolumn = { enabled = true },
+      statuscolumn = { enabled = false },
       picker = {
         enabled = true,
         win = {
