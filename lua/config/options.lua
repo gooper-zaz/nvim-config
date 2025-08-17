@@ -11,6 +11,9 @@ vim.g.root_spec = { 'lsp', { '.git', 'lua' }, 'cwd' }
 
 local opt = vim.opt
 
+opt.grepformat = '%f:%l:%c:%m'
+opt.grepprg = 'rg --vimgrep'
+
 opt.encoding = 'utf-8'
 opt.fileencoding = 'utf-8'
 opt.number = true
@@ -24,10 +27,10 @@ vim.schedule(function()
 end)
 opt.undofile = true
 opt.wrap = false
-opt.scroll = 10
 opt.scrolloff = 4
 
 opt.tabstop = 2
+opt.shiftround = true
 opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.expandtab = true
@@ -37,10 +40,18 @@ opt.breakindent = true
 opt.signcolumn = 'yes' -- Always show the signcolumn, otherwise it would shift the text each time
 opt.smoothscroll = true
 
+opt.showmode = false -- 关闭模式显示, 因为有lualine
+
 opt.splitright = true
 opt.splitbelow = true
+opt.splitkeep = 'screen' -- 保持分屏时的滚动位置
 
 opt.fileformats = 'unix,dos,mac' -- 文件格式
+
+opt.colorcolumn = '100' -- 100列, 我的prettier配置也是100
+opt.virtualedit = 'block' -- Allow cursor to move where there is no text in visual block mode
+
+opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
 
 -- neovide 配置
 if vim.g.neovide then
