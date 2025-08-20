@@ -12,7 +12,7 @@ return {
       require('nvim-treesitter.query_predicates')
     end,
     keys = {
-      { 'gnn', desc = 'Increment Selection' },
+      { 'gv', desc = 'Increment Selection' },
       { '<bs>', desc = 'Decrement Selection', mode = 'x' },
     },
     opts_extend = { 'ensure_installed' },
@@ -65,7 +65,7 @@ return {
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    event = 'BufReadPre',
+    event = { 'User Laziest' },
   },
   {
     'HiPhish/rainbow-delimiters.nvim',
