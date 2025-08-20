@@ -16,6 +16,7 @@ util.set_keymap('i', '<A-l>', '<Right>', 'Move Cursor Right in insert mode') -- 
 util.set_keymap('n', '<C-a>', 'gg<S-v>G', 'Select All')
 -- Save
 util.set_keymap({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', 'Save')
+util.set_keymap({ 'n', 'v' }, '<leader>ww', '<cmd>w<cr><esc>', 'Save')
 -- Quit
 util.set_keymap('n', '<leader>qq', '<cmd>qa<CR>', 'Quit All')
 

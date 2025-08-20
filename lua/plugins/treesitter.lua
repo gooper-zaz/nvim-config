@@ -51,8 +51,8 @@ return {
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = 'gnn',
-          node_incremental = 'gna',
+          init_selection = 'gv',
+          node_incremental = 'gv',
           scope_incremental = false,
           node_decremental = '<bs>',
         },
