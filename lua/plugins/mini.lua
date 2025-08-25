@@ -132,6 +132,11 @@ return {
         trim_left = '<',
         trim_right = '>',
       },
+      windows = {
+        preview = true,
+        width_focus = 30,
+        width_preview = 30,
+      },
     },
     config = function(_, opts)
       require('mini.files').setup(opts)
@@ -165,24 +170,26 @@ return {
       ---@param buf_id number buffer number
       ---@param lhs string left-hand side of the keymap
       ---@param direction string direction for split
-      local map_split = function(buf_id, lhs, direction)
+      ---@param close_on_file boolean whether to close mini.files on file open
+      local map_split = function(buf_id, lhs, direction, close_on_file)
         local rhs = function()
-          -- Make new window and set it as target
-          local cur_target = MiniFiles.get_explorer_state().target_window
-          local new_target = vim.api.nvim_win_call(cur_target, function()
-            vim.cmd(direction .. ' split')
-            return vim.api.nvim_get_current_win()
-          end)
+          local new_target_window
+          local cur_target_window = require('mini.files').get_explorer_state().target_window
+          if cur_target_window ~= nil then
+            vim.api.nvim_win_call(cur_target_window, function()
+              vim.cmd('belowright ' .. direction .. ' split')
+              new_target_window = vim.api.nvim_get_current_win()
+            end)
 
-          MiniFiles.set_target_window(new_target)
-
-          -- This intentionally doesn't act on file under cursor in favor of
-          -- explicit "go in" action (`l` / `L`). To immediately open file,
-          -- add appropriate `MiniFiles.go_in()` call instead of this comment.
+            require('mini.files').set_target_window(new_target_window)
+            require('mini.files').go_in({ close_on_file = close_on_file })
+          end
         end
 
-        -- Adding `desc` will result into `show_help` entries
-        local desc = 'Split ' .. direction
+        local desc = 'Open in ' .. direction .. ' split'
+        if close_on_file then
+          desc = desc .. ' and close'
+        end
         vim.keymap.set('n', lhs, rhs, { buffer = buf_id, desc = desc })
       end
 
@@ -191,8 +198,8 @@ return {
         callback = function(args)
           local buf_id = args.data.buf_id
           -- Tweak keys to your liking
-          map_split(buf_id, 'ss', 'belowright horizontal')
-          map_split(buf_id, 'sv', 'belowright vertical')
+          map_split(buf_id, 'ss', 'belowright horizontal', false)
+          map_split(buf_id, 'sv', 'belowright vertical', false)
           -- map_split(buf_id, '<C-t>', 'tab')
         end,
       })
