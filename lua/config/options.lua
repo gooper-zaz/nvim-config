@@ -48,6 +48,8 @@ opt.splitkeep = 'screen' -- 保持分屏时的滚动位置
 
 opt.fileformats = 'unix,dos,mac' -- 文件格式
 
+opt.backspace = 'indent,eol,start' -- 允许删除缩进,行首,行尾
+
 opt.colorcolumn = '100' -- 100列, 我的prettier配置也是100
 opt.virtualedit = 'block' -- Allow cursor to move where there is no text in visual block mode
 

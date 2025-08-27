@@ -108,6 +108,7 @@ return {
       { '<leader>br', '<Cmd>BufferLineCloseRight<CR>', desc = 'Delete Buffers to the Right' },
       { '<leader>bl', '<Cmd>BufferLineCloseLeft<CR>', desc = 'Delete Buffers to the Left' },
       { '<leader>bp', '<Cmd>BufferLinePick<CR>', desc = 'Buffer Pick' },
+      { '<leader>pb', '<Cmd>BufferLineTogglePin<CR>', desc = 'Pin Buffer' },
       {
         '<leader>bd',
         function()
@@ -115,6 +116,7 @@ return {
         end,
         desc = 'Delete Current Buffer',
       },
+      { '<leader>bD', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Delete Non-Pinned Buffers' },
       {
         '<leader>bo',
         function()

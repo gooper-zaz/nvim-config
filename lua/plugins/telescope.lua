@@ -69,6 +69,7 @@ return {
           selection_caret = ' ',
           theme = 'dropdown',
           sorting_strategy = 'ascending',
+          dynamic_preview_title = true,
           layout_config = {
             prompt_position = 'top',
             horizontal = {
