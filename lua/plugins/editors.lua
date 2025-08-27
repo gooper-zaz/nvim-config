@@ -113,7 +113,7 @@ return {
       {
         '<leader>cn',
         function()
-          require('neogen').generate()
+          require('neogen').generate({ snippet_engine = 'mini' })
         end,
         desc = 'Generate Annotations (Neogen)',
       },

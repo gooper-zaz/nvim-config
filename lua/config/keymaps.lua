@@ -100,10 +100,10 @@ util.set_keymap(
 
 -- Terminal Mapping
 util.set_keymap('t', '<ESC>', '<C-\\><C-n>', 'Exit Terminal Mode')
-util.set_keymap('t', '<A-h>', '<C-\\><C-n><C-w>h', 'Move to Left Window in Terminal Mode')
-util.set_keymap('t', '<A-j>', '<C-\\><C-n><C-w>j', 'Move to Down Window in Terminal Mode')
-util.set_keymap('t', '<A-k>', '<C-\\><C-n><C-w>k', 'Move to Up Window in Terminal Mode')
-util.set_keymap('t', '<A-l>', '<C-\\><C-n><C-w>l', 'Move to Right Window in Terminal Mode')
+-- util.set_keymap('t', '<A-h>', '<C-\\><C-n><C-w>h', 'Move to Left Window in Terminal Mode')
+-- util.set_keymap('t', '<A-j>', '<C-\\><C-n><C-w>j', 'Move to Down Window in Terminal Mode')
+-- util.set_keymap('t', '<A-k>', '<C-\\><C-n><C-w>k', 'Move to Up Window in Terminal Mode')
+-- util.set_keymap('t', '<A-l>', '<C-\\><C-n><C-w>l', 'Move to Right Window in Terminal Mode')
 
 -- 自动将当前buffer的fileformat修改为dos
 util.set_keymap('n', '<leader>df', function()
