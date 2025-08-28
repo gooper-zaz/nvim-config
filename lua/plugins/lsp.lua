@@ -282,6 +282,7 @@ return {
   },
   {
     'mason-org/mason-lspconfig.nvim',
+    event = { 'User Laziest', 'BufNewFile' },
     config = function() end,
   },
   {

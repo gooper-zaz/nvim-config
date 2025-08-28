@@ -5,13 +5,6 @@ return {
     opts = {},
   },
   {
-    'folke/ts-comments.nvim',
-    event = 'BufReadPost',
-    -- NOTE: use `mini.comment` instead
-    enabled = false,
-    opts = {},
-  },
-  {
     'folke/trouble.nvim',
     keys = {
       { '<leader>td', '<cmd>Trouble diagnostics toggle<cr>', desc = 'Trouble Diagnostics' },
