@@ -1,6 +1,6 @@
 return {
   {
-    'echasnovski/mini.pairs',
+    'nvim-mini/mini.pairs',
     event = { 'InsertEnter' },
     opts = {
       modes = { insert = true, command = false, terminal = false },
@@ -16,7 +16,7 @@ return {
     },
   },
   {
-    'echasnovski/mini.ai',
+    'nvim-mini/mini.ai',
     event = 'BufReadPost',
     opts = function()
       local ai = require('mini.ai')
@@ -46,7 +46,7 @@ return {
     end,
   },
   {
-    'echasnovski/mini.surround',
+    'nvim-mini/mini.surround',
     event = 'BufReadPost',
     opts = {
       mappings = {
@@ -89,7 +89,7 @@ return {
     end,
   },
   {
-    'echasnovski/mini.files',
+    'nvim-mini/mini.files',
     keys = {
       {
         '<leader>e',
@@ -226,17 +226,17 @@ return {
     end,
   },
   {
-    'echasnovski/mini.jump',
+    'nvim-mini/mini.jump',
     event = 'BufReadPost',
     opts = {},
   },
   {
-    'echasnovski/mini.jump2d',
+    'nvim-mini/mini.jump2d',
     event = { 'BufReadPost' },
     opts = {},
   },
   {
-    'echasnovski/mini.comment',
+    'nvim-mini/mini.comment',
     event = { 'BufReadPost' },
     opts = {
       options = {
