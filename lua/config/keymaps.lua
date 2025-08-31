@@ -19,6 +19,8 @@ util.set_keymap({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', 'Save')
 util.set_keymap({ 'n', 'v' }, '<leader>ww', '<cmd>w<cr><esc>', 'Save')
 -- Quit
 util.set_keymap('n', '<leader>qq', '<cmd>qa<CR>', 'Quit All')
+-- Save && Quit
+util.set_keymap({ 'n', 'v' }, '<leader>wq', '<cmd>wq<cr>', 'Save && Quit')
 
 -- 向左缩进
 util.set_keymap('v', '<', '<gv', 'Indent Left')
