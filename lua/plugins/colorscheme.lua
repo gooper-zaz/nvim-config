@@ -1,4 +1,5 @@
 ---@diagnostic disable: missing-fields
+---@type LazyPluginSpec[]
 return {
   {
     'folke/tokyonight.nvim',
@@ -21,11 +22,11 @@ return {
   {
     'catppuccin/nvim',
     priority = 1000,
-    enabled = false,
+    enabled = true,
     name = 'catppuccin',
     ---@type CatppuccinOptions
     opts = {
-      flavour = 'macchiato', -- 选择配色：mocha/latte/frappe/macchiato
+      flavour = 'mocha', -- 选择配色：mocha/latte/frappe/macchiato
       integrations = {
         blink_cmp = true,
         telescope = true, -- 适配 Telescope 插件
@@ -43,6 +44,7 @@ return {
       },
       styles = {
         comments = { 'altfont' },
+        conditionals = { 'altfont' },
       },
       native_lsp = {
         enabled = true,
@@ -53,10 +55,29 @@ return {
           information = { 'undercurl' },
         },
       },
+      color_overrides = {
+        mocha = {
+          base = '#0f0f1a', -- 更深的主背景
+          mantle = '#0b0b11', -- 更深次级背景
+          crust = '#07070d', -- 极深背景
+        },
+      },
+      custom_highlights = function(colors)
+        return {
+          CursorLine = { bg = '#2e2e46' }, -- 更显眼的光标行背景
+          Cursor = { fg = '#cdd6f4', bg = '#f38ba8' }, -- 光标颜色
+          Comment = { fg = '#7f8caa' }, -- 提亮后的注释
+          TSComment = { fg = '#7f8caa' },
+          Normal = { fg = colors.text, bg = '#0f0f1a' }, -- 全局正常背景
+          LineNr = { fg = '#9ca0b0' },
+          CursorLineNr = { fg = colors.yellow, style = { 'bold' } },
+          GitSignsCurrentLineBlame = { fg = '#7f8caa' },
+        }
+      end,
     },
     config = function(_, opts)
-      -- require('catppuccin').setup(opts)
-      -- vim.cmd([[colorscheme catppuccin]])
+      require('catppuccin').setup(opts)
+      vim.cmd([[colorscheme catppuccin-mocha]])
     end,
   },
   {
@@ -121,6 +142,7 @@ return {
   {
     'miikanissi/modus-themes.nvim',
     priority = 1000,
+    enabled = false,
     config = function()
       require('modus-themes').setup({
         styles = {
