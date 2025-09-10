@@ -1,5 +1,5 @@
 ---@diagnostic disable: assign-type-mismatch
----@type LazyPluginSpec[]
+---@type LazySpec[]
 return {
   {
     'nvim-telescope/telescope.nvim',

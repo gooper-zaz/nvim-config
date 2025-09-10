@@ -1,5 +1,5 @@
 ---@diagnostic disable: missing-fields
----@type LazyPluginSpec[]
+---@type LazySpec[]
 return {
   {
     'folke/tokyonight.nvim',
