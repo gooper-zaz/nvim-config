@@ -40,7 +40,6 @@ return {
           enabled = true,
           indentscope_color = '',
         },
-        navic = { enabled = true, custom_bg = 'lualine' },
       },
       styles = {
         comments = { 'altfont' },
@@ -59,7 +58,7 @@ return {
         mocha = {
           base = '#0f0f1a', -- 更深的主背景
           mantle = '#0b0b11', -- 更深次级背景
-          crust = '#07070d', -- 极深背景
+          crust = '#000000', -- 极深背景
         },
       },
       custom_highlights = function(colors)
@@ -68,7 +67,7 @@ return {
           Cursor = { fg = '#cdd6f4', bg = '#f38ba8' }, -- 光标颜色
           Comment = { fg = '#7f8caa' }, -- 提亮后的注释
           TSComment = { fg = '#7f8caa' },
-          Normal = { fg = colors.text, bg = '#0f0f1a' }, -- 全局正常背景
+          Normal = { fg = colors.text, bg = '#000000' }, -- 全局正常背景
           LineNr = { fg = '#9ca0b0' },
           CursorLineNr = { fg = colors.yellow, style = { 'bold' } },
           GitSignsCurrentLineBlame = { fg = '#7f8caa' },
