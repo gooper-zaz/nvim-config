@@ -28,6 +28,7 @@ end)
 opt.undofile = true
 opt.wrap = false
 opt.scrolloff = 4
+opt.jumpoptions = 'stack'
 
 opt.tabstop = 2
 opt.shiftround = true
