@@ -1,3 +1,4 @@
+---@type LazySpec[]
 return {
   {
     'windwp/nvim-ts-autotag',
@@ -115,17 +116,30 @@ return {
   },
   {
     'monaqa/dial.nvim',
-    recommended = true,
     desc = 'Increment and decrement numbers, dates, and more',
     cmd = {
       'DialIncrement',
       'DialDecrement',
     },
     keys = {
-      { '+', '<cmd>DialIncrement<cr>', desc = 'Increment', mode = { 'n', 'v' } },
-      { '-', '<cmd>DialDecrement<cr>', desc = 'Decrement', mode = { 'n', 'v' } },
-      { 'g+', 'g<cmd>DialIncrement<cr>', desc = 'Increment', mode = { 'n', 'v' } },
-      { 'g-', 'g<cmd>DialDecrement<cr>', desc = 'Decrement', mode = { 'n', 'v' } },
+      {
+        '+',
+        function()
+          require('dial.map').manipulate('increment', 'normal')
+        end,
+        desc = 'Increment',
+        mode = { 'n', 'v' },
+      },
+      {
+        '-',
+        function()
+          require('dial.map').manipulate('decrement', 'normal')
+        end,
+        desc = 'Decrement',
+        mode = { 'n', 'v' },
+      },
+      -- { 'g+', 'g<cmd>DialIncrement<cr>', desc = 'Increment', mode = { 'n', 'v' } },
+      -- { 'g-', 'g<cmd>DialDecrement<cr>', desc = 'Decrement', mode = { 'n', 'v' } },
     },
     opts = function()
       local augend = require('dial.augend')
