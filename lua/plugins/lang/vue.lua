@@ -9,7 +9,7 @@ return {
       servers = {
         ---@type vim.lsp.Config
         vue_ls = {
-          filetypes = { 'vue', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+          -- filetypes = { 'vue', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
           init_options = {
             vue = {
               hybridMode = false,
