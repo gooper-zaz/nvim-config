@@ -76,6 +76,9 @@ return {
     },
     config = function(_, opts)
       require('catppuccin').setup(opts)
+      -- 修改lazy.nvim的`LazyButtonActive`的颜色
+      -- vim.api.nvim_set_hl(0, 'LazyButtonActive', { fg = '#ffffff', bg = '#f38ba8', bold = true })
+      vim.api.nvim_set_hl(0, 'LazyButtonActive', { link = '@comment.hint' })
       vim.cmd([[colorscheme catppuccin-mocha]])
     end,
   },
