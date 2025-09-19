@@ -54,9 +54,9 @@ function _G.custom_foldtext()
   local result = {}
   fold_virt_text(result, start_text, vim.v.foldstart - 1)
   table.insert(result, { '    ' }) -- add 4 spaces between start text and number of lines
-  -- table.insert(result, { '', 'TodoFgNOTE' }) -- 圆角
+  table.insert(result, { '', 'TodoFgNOTE' }) -- 圆角
   table.insert(result, { '  ' .. nline .. ' lines... ', 'TodoBgNOTE' })
-  -- table.insert(result, { '', 'TodoFgNOTE' }) -- 圆角
+  table.insert(result, { '', 'TodoFgNOTE' }) -- 圆角
   return result
 end
 -- NOTE: custom foldtext
