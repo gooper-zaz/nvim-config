@@ -74,6 +74,8 @@ local defaults = {
       copilot = ' ',
       dockerls = '󰡨 ',
       bashls = '󰆍 ',
+      stylua = '󰉨 ',
+      prettier = ' ',
     },
   },
 }
