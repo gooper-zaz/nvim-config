@@ -34,7 +34,7 @@ return {
     'stevearc/conform.nvim',
     opts = {
       formatters_by_ft = {
-        json = { 'prettier', 'jq' },
+        json = { 'prettier', 'jq', stop_after_first = true },
       },
     },
   },
