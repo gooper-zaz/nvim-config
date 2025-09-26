@@ -30,22 +30,18 @@ return {
       integrations = {
         blink_cmp = true,
         telescope = true, -- 适配 Telescope 插件
-        treesitter = true, -- 适配 Treesitter
         mason = true, -- 适配 Mason
         notify = true,
         gitsigns = true,
         snacks = true,
         noice = true,
-        mini = {
-          enabled = true,
-          indentscope_color = '',
-        },
+        mini = true,
       },
       styles = {
         comments = { 'altfont' },
         conditionals = { 'altfont' },
       },
-      native_lsp = {
+      lsp_styles = {
         enabled = true,
         underlines = {
           errors = { 'undercurl' },
