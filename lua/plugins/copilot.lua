@@ -22,5 +22,5 @@ return {
       },
     },
   },
-  { 'giuxtaposition/blink-cmp-copilot', event = 'InsertEnter' },
+  { 'fang2hou/blink-copilot', event = 'InsertEnter', opts = {} },
 }

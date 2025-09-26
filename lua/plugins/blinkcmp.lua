@@ -17,7 +17,7 @@ return {
         opts = {},
         version = '*',
       },
-      { 'giuxtaposition/blink-cmp-copilot' },
+      { 'fang2hou/blink-copilot' },
     },
     event = { 'InsertEnter', 'CmdlineEnter' },
     ---@module 'blink.cmp'
@@ -40,9 +40,21 @@ return {
           },
           copilot = {
             name = 'copilot',
-            module = 'blink-cmp-copilot',
+            module = 'blink-copilot',
             score_offset = 100,
             async = true,
+            opts = {
+              max_completions = 3,
+              max_attempts = 4,
+              kind_name = 'Copilot', ---@type string | false
+              kind_icon = ' ', ---@type string | false
+              kind_hl = 'String', ---@type string | false
+              debounce = 200, ---@type integer | false
+              auto_refresh = {
+                backward = true,
+                forward = true,
+              },
+            },
           },
           cmdline = {
             min_keyword_length = function(ctx)
