@@ -147,7 +147,7 @@ return {
           desc = 'Goto Declaration',
           buffer = buffer,
         })
-        util.set_keymap('n', 'gr', function()
+        util.set_keymap('n', 'grr', function()
           Snacks.picker.lsp_references()
         end, {
           desc = 'References',
