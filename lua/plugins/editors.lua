@@ -295,4 +295,29 @@ return {
       vim.g.dials_by_ft = opts.dials_by_ft
     end,
   },
+  -- 显示当前文件的结构大纲, 类似vscode的大纲视图
+  {
+    'hedyhli/outline.nvim',
+    keys = { { '<leader>ol', '<cmd>Outline<cr>', desc = 'Toggle Outline' } },
+    cmd = 'Outline',
+    opts = function()
+      local defaults = require('outline.config').defaults
+      local icons = require('config.icons').get_icons()
+      local opts = {
+        symbols = {
+          icons = {},
+        },
+      }
+      for kind, symbol in pairs(defaults.symbols.icons) do
+        opts.symbols.icons[kind] = {
+          icon = icons.kinds[kind] or symbol.icon,
+          hl = symbol.hl,
+        }
+      end
+      return opts
+    end,
+    -- config = function(_, opts)
+    --   require('outline').setup(opts)
+    -- end,
+  },
 }
