@@ -7,11 +7,6 @@ vim.g.maplocalleader = '\\'
 
 local util = require('config.util')
 
-util.set_keymap('i', '<A-j>', '<Down>', 'Move Cursor Down in insert mode') -- 在insert模式向下移动光标
-util.set_keymap('i', '<A-k>', '<Up>', 'Move Cursor Up in insert mode') -- 在insert模式向上移动光标
-util.set_keymap('i', '<A-h>', '<Left>', 'Move Cursor Left in insert mode') -- 在insert模式向左移动光标
-util.set_keymap('i', '<A-l>', '<Right>', 'Move Cursor Right in insert mode') -- 在insert模式向右移动光标
-
 -- Select all
 util.set_keymap('n', '<C-a>', 'gg<S-v>G', 'Select All')
 -- Save
