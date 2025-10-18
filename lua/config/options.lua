@@ -57,6 +57,19 @@ opt.virtualedit = 'block' -- Allow cursor to move where there is no text in visu
 
 opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
 
+vim.filetype.add({
+  filename = {
+    -- 将git hooks 脚本识别为 shell 脚本
+    ['pre-commit'] = 'sh',
+    ['commit-msg'] = 'sh',
+    ['post-commit'] = 'sh',
+    ['pre-push'] = 'sh',
+    ['pre-rebase'] = 'sh',
+    ['prepare-commit-msg'] = 'sh',
+    ['post-push'] = 'sh',
+  },
+})
+
 -- neovide 配置
 if vim.g.neovide then
   -- 轨道动画
