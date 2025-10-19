@@ -208,8 +208,8 @@ return {
         end, { expr = true, buffer = buffer, desc = 'Code Rename' })
       end
 
-      local all_mslp_servers = vim.tbl_keys(require('mason-lspconfig.mappings').get_all().lspconfig_to_package)
-      local exclude_automatic_enable = {} ---@type string[]
+      -- local all_mslp_servers = vim.tbl_keys(require('mason-lspconfig.mappings').get_all().lspconfig_to_package)
+      local exclude_automatic_enable = { 'stylua' } ---@type string[]
 
       -- setup function
       ---@param server string
