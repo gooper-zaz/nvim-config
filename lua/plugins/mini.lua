@@ -255,9 +255,9 @@ return {
         -- Toggle comment on visual selection
         comment_visual = 'gc',
 
-        -- define 'comment' textobject (like `dic` - delete whole comment block)
+        -- define 'comment' textobject (like `dik` - delete whole comment block)
         -- works also in visual mode if mapping differs from `comment_visual`
-        textobject = 'ic',
+        textobject = 'ik', -- `ic` already used by mini.ai for `class` textobject
       },
     },
   },
