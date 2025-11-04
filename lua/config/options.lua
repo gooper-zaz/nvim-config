@@ -70,6 +70,20 @@ vim.filetype.add({
   },
 })
 
+-- HACK: 根据操作系统设置文件行结束符; 如果一个项目根目录有 .editorconfig 文件, 会被editorconfig插件读取.
+-- 如果使用Windows系统打开这种项目, 换行符可能会被强制设置为 LF, 导致提交时出现大量无意义的换行符变更.
+-- 此处先使用以下方法避免覆盖, 后续再看看有没有其它解决办法.
+require('editorconfig').properties.end_of_line = function(bufnr)
+  -- 如果是windows系统, 则使用dos格式, 否则使用unix格式
+  if vim.uv.os_uname() == 'Windows_NT' then
+    -- vim.b[bufnr].end_of_line = 'crlf'
+    vim.b[bufnr].fileformat = 'dos'
+  else
+    -- vim.b[bufnr].end_of_line = 'lf'
+    vim.b[bufnr].fileformat = 'unix'
+  end
+end
+
 -- neovide 配置
 if vim.g.neovide then
   -- 轨道动画
