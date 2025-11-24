@@ -18,6 +18,7 @@ return {
         version = '*',
       },
       { 'fang2hou/blink-copilot' },
+      { 'Kaiser-Yang/blink-cmp-avante' },
     },
     event = { 'InsertEnter', 'CmdlineEnter' },
     ---@module 'blink.cmp'
@@ -27,7 +28,7 @@ return {
         -- adding any nvim-cmp sources here will enable them
         -- with blink.compat
         -- compat = {},
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot', 'avante' },
         per_filetype = {
           lua = { inherit_defaults = true, 'lazydev' },
         },
@@ -54,6 +55,13 @@ return {
                 backward = true,
                 forward = true,
               },
+            },
+          },
+          avante = {
+            module = 'blink-cmp-avante',
+            name = 'Avante',
+            opts = {
+              -- options for blink-cmp-avante
             },
           },
           cmdline = {
