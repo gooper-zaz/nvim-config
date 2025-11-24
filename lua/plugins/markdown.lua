@@ -1,8 +1,9 @@
 return {
   {
     'MeanderingProgrammer/render-markdown.nvim',
-    ft = { 'markdown' },
+    ft = { 'markdown', 'Avante' },
     opts = {
+      file_types = { 'markdown', 'Avante' },
       callout = {
         abstract = {
           raw = '[!ABSTRACT]',
