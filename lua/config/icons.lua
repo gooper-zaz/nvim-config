@@ -76,6 +76,8 @@ local defaults = {
       bashls = '󰆍 ',
       stylua = '󰉨 ',
       prettier = ' ',
+      ['render-markdown'] = '󰉫 ',
+      marksman = ' ',
     },
   },
 }
