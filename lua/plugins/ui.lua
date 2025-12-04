@@ -3,6 +3,20 @@ return {
   {
     'nvim-tree/nvim-web-devicons',
     lazy = true,
+    opts = {
+      override = {
+        wgsl = {
+          icon = '󰰣',
+          color = '#e0af68',
+          name = 'WGSL',
+        },
+        ['.oxlintrc.json'] = {
+          icon = '',
+          color = '#ff8800',
+          name = 'OXLint',
+        }
+      },
+    },
   },
   {
     'nvim-lualine/lualine.nvim',
