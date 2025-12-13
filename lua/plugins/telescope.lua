@@ -47,7 +47,8 @@ return {
       { '<leader>st', '<cmd>Telescope treesitter<cr>', desc = 'treesitter' },
       { '<leader>sd', '<cmd>Telescope diagnostics bufnr=0<cr>', desc = 'Buffer Diagnostics' },
       { '<leader>sD', '<cmd>Telescope diagnostics<cr>', desc = 'Workspace Diagnostics' },
-      { '<leader>re', '<cmd>Telescope resume<cr>', desc = 'telescope resume' },
+      { '<leader>tr', '<cmd>Telescope resume<cr>', desc = 'telescope resume' },
+      { '<leader>sr', function() Snacks.picker.resume() end, desc = 'snacks resume' },
       {
         '<leader>fs',
         function()
