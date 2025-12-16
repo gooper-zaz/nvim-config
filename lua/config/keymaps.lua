@@ -104,11 +104,11 @@ util.set_keymap('t', '<ESC>', '<C-\\><C-n>', 'Exit Terminal Mode')
 -- util.set_keymap('t', '<A-l>', '<C-\\><C-n><C-w>l', 'Move to Right Window in Terminal Mode')
 
 -- 自动将当前buffer的fileformat修改为dos
-util.set_keymap('n', '<leader>df', function()
-  vim.bo.fileformat = 'dos'
-  vim.cmd('w')
-  vim.notify('FileFormat Set To DOS', vim.log.levels.INFO)
-end, 'Set File Format to DOS')
+-- util.set_keymap('n', '<leader>df', function()
+--   vim.bo.fileformat = 'dos'
+--   vim.cmd('w')
+--   vim.notify('FileFormat Set To DOS', vim.log.levels.INFO)
+-- end, 'Set File Format to DOS')
 
 if vim.g.neovide then
   -- 在neovide中, 使用CTRL+V来粘贴内容
