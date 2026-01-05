@@ -45,7 +45,10 @@ return {
       { '<leader>sm', '<cmd>Telescope marks<cr>', desc = 'marks' },
       { '<leader>sq', '<cmd>Telescope quickfix<cr>', desc = 'quickfix' },
       { '<leader>st', '<cmd>Telescope treesitter<cr>', desc = 'treesitter' },
-      { '<leader>sd', '<cmd>Telescope diagnostics bufnr=0<cr>', desc = 'Buffer Diagnostics' },
+      -- show errors and warnings of current buffer using telescope
+      { '<leader>sd', '<cmd>Telescope diagnostics bufnr=0 severity_limit=2<cr>', desc = 'Buffer Diagnostics (E&W)' },
+      -- show all diagnostics of current buffer using telescope
+      { '<leader>da', '<cmd>Telescope diagnostics bufnr=0<cr>', desc = 'Buffer Diagnostics' },
       { '<leader>sD', '<cmd>Telescope diagnostics<cr>', desc = 'Workspace Diagnostics' },
       { '<leader>tr', '<cmd>Telescope resume<cr>', desc = 'telescope resume' },
       { '<leader>sr', function() Snacks.picker.resume() end, desc = 'snacks resume' },
