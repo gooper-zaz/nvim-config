@@ -1,7 +1,10 @@
+---@type LazySpec[]
 return {
   {
     'mfussenegger/nvim-lint',
     event = { 'User Laziest' },
+    -- NOTE: we just use eslint/oxlint lsp instead of this plugin for now, so disable it.
+    enabled = false,
     opts = {
       -- Event to trigger linters
       events = { 'BufWritePost', 'BufReadPost', 'InsertLeave' },
