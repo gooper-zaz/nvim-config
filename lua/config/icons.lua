@@ -78,6 +78,8 @@ local defaults = {
       prettier = ' ',
       ['render-markdown'] = '󰉫 ',
       marksman = ' ',
+      oxlint = ' ',
+      eslint = '󰱺 ',
     },
   },
 }
