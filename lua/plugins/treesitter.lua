@@ -3,6 +3,8 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     version = false,
+    -- WARN: 指定分支为master, 现在nvim-treesitter的主分支已经改为main, 如果不指定分支, lazy.nvim会默认使用main分支, 导致找不到master分支而报错
+    branch = 'master',
     event = { 'User Laziest' },
     build = ':TSUpdate',
     lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
