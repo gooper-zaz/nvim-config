@@ -31,10 +31,10 @@ util.set_keymap('n', '<C-j>', '10jzz', 'Move down 10 lines')
 util.set_keymap('n', '<C-k>', '10kzz', 'Move up 10 lines')
 
 -- Split window
-util.set_keymap('n', '<leader>ss', ':split<Return>', { desc = 'Split Window', noremap = false })
-util.set_keymap('n', '<leader>sv', ':vsplit<Return>', { desc = 'Split Window Vertical', noremap = false })
+util.set_keymap('n', '<leader>ss', '<cmd>split<Return>', { desc = 'Split Window', noremap = false })
+util.set_keymap('n', '<leader>sv', '<cmd>vsplit<Return>', { desc = 'Split Window Vertical', noremap = false })
 
-util.set_keymap('n', '<leader>te', ':tabedit<Return>', 'Tab Edit')
+util.set_keymap('n', '<leader>te', '<cmd>tabedit<Return>', 'Tab Edit')
 
 util.set_keymap('n', '<leader>nh', '<cmd>nohlsearch<cr>', 'Clear Highlight Search')
 
