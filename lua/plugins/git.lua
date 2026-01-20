@@ -28,8 +28,13 @@ return {
       on_attach = function(buffer)
         local gs = require('gitsigns')
 
+        --- keymap helper
+        ---@param mode string|string[]
+        ---@param l string
+        ---@param r string|function
+        ---@param desc string
         local function map(mode, l, r, desc)
-          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc, silent = true })
         end
 
         map('n', ']h', function()
