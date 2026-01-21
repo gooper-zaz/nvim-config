@@ -24,7 +24,8 @@ util.set_keymap('v', '<', '<gv', 'Indent Left')
 util.set_keymap('v', '>', '>gv', 'Indent Right')
 
 util.set_keymap({ 'n', 'v', 'o' }, 'H', '^', 'Start Of Line')
-util.set_keymap({ 'n', 'v', 'o' }, 'L', '$', 'End Of Line')
+util.set_keymap({ 'n' }, 'L', '$', 'End Of Line')
+util.set_keymap({ 'v', 'o' }, 'L', 'g_', 'End Of Line')
 
 -- fast move down/up
 util.set_keymap('n', '<C-j>', '10jzz', 'Move down 10 lines')
