@@ -7,6 +7,9 @@ vim.g.maplocalleader = '\\'
 
 local util = require('config.util')
 
+util.set_keymap({ 'n', 'x' }, 'j', 'v:count == 0 ? "gj" : "j"', { expr = true, desc = 'Down', silent = true })
+util.set_keymap({ 'n', 'x' }, 'k', 'v:count == 0 ? "gk" : "k"', { expr = true, desc = 'Up', silent = true })
+
 -- Select all
 util.set_keymap('n', '<C-a>', 'gg<S-v>G', 'Select All')
 -- Save
