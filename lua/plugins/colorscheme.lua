@@ -71,11 +71,11 @@ return {
       end,
     },
     config = function(_, opts)
-      require('catppuccin').setup(opts)
-      -- 修改lazy.nvim的`LazyButtonActive`的颜色
-      -- vim.api.nvim_set_hl(0, 'LazyButtonActive', { fg = '#ffffff', bg = '#f38ba8', bold = true })
-      vim.api.nvim_set_hl(0, 'LazyButtonActive', { link = '@comment.hint' })
-      vim.cmd([[colorscheme catppuccin-mocha]])
+      -- require('catppuccin').setup(opts)
+      -- -- 修改lazy.nvim的`LazyButtonActive`的颜色
+      -- -- vim.api.nvim_set_hl(0, 'LazyButtonActive', { fg = '#ffffff', bg = '#f38ba8', bold = true })
+      -- vim.api.nvim_set_hl(0, 'LazyButtonActive', { link = '@comment.hint' })
+      -- vim.cmd([[colorscheme catppuccin-mocha]])
     end,
   },
   {
@@ -158,6 +158,26 @@ return {
       vim.cmd([[colorscheme modus]])
       -- vim.cmd([[coloerscheme modus_vivendi]])
       -- vim.cmd([[coloerscheme modus_operandi]])
+    end,
+  },
+  {
+    'oxfist/night-owl.nvim',
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      -- load the colorscheme here
+      require('night-owl').setup({ italics = false })
+      vim.cmd.colorscheme('night-owl')
+
+      -- customize the highlight groups
+      -- CursorLine
+      vim.api.nvim_set_hl(0, 'CursorLine', { bg = '#2e2e46' })
+      -- ColorColumn
+      vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#1d3b53' })
+      -- GitSignsCurrentLineBlame
+      vim.api.nvim_set_hl(0, 'GitSignsCurrentLineBlame', { fg = '#7f8caa' })
+      -- -- 修改lazy.nvim的`LazyButtonActive`的颜色
+      vim.api.nvim_set_hl(0, 'LazyButtonActive', { bg = '#A6DBFF', fg = '#021727', bold = true })
     end,
   },
 }
