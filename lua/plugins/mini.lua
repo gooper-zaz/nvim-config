@@ -61,34 +61,6 @@ return {
     },
   },
   {
-    'catgoose/nvim-colorizer.lua',
-    event = 'BufReadPre',
-    opts = {
-      filetypes = {
-        'css',
-        'scss',
-        'html',
-        'vue',
-        'javascript',
-        'javascriptreact',
-        'typescript',
-        'typescriptreact',
-        'lua',
-      },
-      user_default_options = {
-        rgb_fn = true, -- Enable RGB function support
-        hsl_fn = true, -- Enable HSL function support
-        sass = {
-          enable = true, -- Enable Sass color support
-          parsers = { 'css' },
-        },
-      },
-    },
-    config = function(_, opts)
-      require('colorizer').setup(opts)
-    end,
-  },
-  {
     'nvim-mini/mini.files',
     keys = {
       {
@@ -193,6 +165,51 @@ return {
         vim.keymap.set('n', lhs, rhs, { buffer = buf_id, desc = desc })
       end
 
+      -- 搜索当前文件夹下的文件
+      local map_find_files = function(buf_id, lhs)
+        vim.keymap.set('n', lhs, function()
+          local entry = MiniFiles.get_fs_entry() or {}
+          -- 如果光标所在的条目是文件, 那么就不进行搜索
+          if entry.fs_type == 'file' then
+            return
+          end
+
+          local path = entry.path
+          if path == nil then
+            return vim.notify('Cursor is not on valid entry')
+          end
+
+          -- WARN: 先关闭 mini.files 窗口, 防止mini.files关闭自身时将搜索结果也关闭了
+          MiniFiles.close()
+
+          -- 这里使用了 Telescope 来进行搜索, 你也可以换成其他的工具
+          require('telescope.builtin').find_files({ cwd = path })
+          -- Snacks.picker.files({ cwd = path })
+        end, { buffer = buf_id, desc = 'find files in current directory' })
+      end
+
+      -- 搜索当前文件夹下的内容
+      local map_search = function(buf_id, lhs)
+        vim.keymap.set('n', lhs, function()
+          local entry = MiniFiles.get_fs_entry() or {}
+          -- 如果光标所在的条目是文件, 那么就不进行搜索
+          if entry.fs_type == 'file' then
+            return
+          end
+          local path = entry.path
+          if path == nil then
+            return vim.notify('Cursor is not on valid entry')
+          end
+
+          -- WARN: 先关闭 mini.files 窗口, 防止mini.files关闭自身时将搜索结果也关闭了
+          MiniFiles.close()
+
+          -- 这里使用了 Telescope 来进行搜索, 你也可以换成其他的工具
+          require('telescope.builtin').live_grep({ cwd = path })
+          -- Snacks.picker.grep({ cwd = path })
+        end, { buffer = buf_id, desc = 'search in current directory' })
+      end
+
       vim.api.nvim_create_autocmd('User', {
         pattern = 'MiniFilesBufferCreate',
         callback = function(args)
@@ -201,6 +218,8 @@ return {
           map_split(buf_id, 'ss', 'belowright horizontal', false)
           map_split(buf_id, 'sv', 'belowright vertical', false)
           -- map_split(buf_id, '<C-t>', 'tab')
+          map_find_files(buf_id, 'sf')
+          map_search(buf_id, 'sg')
         end,
       })
 

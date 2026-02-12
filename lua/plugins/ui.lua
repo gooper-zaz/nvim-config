@@ -14,7 +14,7 @@ return {
           icon = '',
           color = '#ff8800',
           name = 'OXLint',
-        }
+        },
       },
     },
   },
@@ -239,5 +239,33 @@ return {
         },
       },
     },
+  },
+  {
+    'catgoose/nvim-colorizer.lua',
+    event = 'BufReadPre',
+    opts = {
+      filetypes = {
+        'css',
+        'scss',
+        'html',
+        'vue',
+        'javascript',
+        'javascriptreact',
+        'typescript',
+        'typescriptreact',
+        'lua',
+      },
+      user_default_options = {
+        rgb_fn = true, -- Enable RGB function support
+        hsl_fn = true, -- Enable HSL function support
+        sass = {
+          enable = true, -- Enable Sass color support
+          parsers = { 'css' },
+        },
+      },
+    },
+    config = function(_, opts)
+      require('colorizer').setup(opts)
+    end,
   },
 }
