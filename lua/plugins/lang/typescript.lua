@@ -92,10 +92,10 @@ return {
     'stevearc/conform.nvim',
     opts = {
       formatters_by_ft = {
-        javascript = { 'prettier' },
-        javascriptreact = { 'prettier' },
-        typescript = { 'prettier' },
-        typescriptreact = { 'prettier' },
+        javascript = { 'oxfmt', 'prettier' },
+        javascriptreact = { 'oxfmt', 'prettier' },
+        typescript = { 'oxfmt', 'prettier' },
+        typescriptreact = { 'oxfmt', 'prettier' },
       },
     },
   },
@@ -103,6 +103,7 @@ return {
     'mason-org/mason.nvim',
     opts = {
       ensure_installed = {
+        'oxfmt',
         'prettier',
       },
     },

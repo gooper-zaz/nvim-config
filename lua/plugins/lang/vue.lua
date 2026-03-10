@@ -35,7 +35,7 @@ return {
     'stevearc/conform.nvim',
     opts = {
       formatters_by_ft = {
-        vue = { 'prettier' },
+        vue = {'oxfmt', 'prettier' },
       },
     },
   },
@@ -43,6 +43,7 @@ return {
     'mason-org/mason.nvim',
     opts = {
       ensure_installed = {
+        'oxfmt',
         'prettier',
       },
     },
