@@ -79,6 +79,7 @@ local defaults = {
       ['render-markdown'] = '󰉫 ',
       marksman = ' ',
       oxlint = ' ',
+      oxfmt = 'OxF',
       eslint = '󰱺 ',
     },
   },
