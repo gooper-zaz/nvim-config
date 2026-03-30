@@ -140,7 +140,7 @@ return {
   {
     'miikanissi/modus-themes.nvim',
     priority = 1000,
-    enabled = false,
+    enabled = true,
     config = function()
       require('modus-themes').setup({
         styles = {
@@ -164,6 +164,7 @@ return {
     'oxfist/night-owl.nvim',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
+    enabled = false,
     config = function()
       -- load the colorscheme here
       require('night-owl').setup({ italics = false })
