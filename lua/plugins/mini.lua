@@ -62,7 +62,7 @@ return {
   },
   {
     'nvim-mini/mini.files',
-    enabled = false,
+    -- enabled = false,
     keys = {
       {
         '<leader>e',
