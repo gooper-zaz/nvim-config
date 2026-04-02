@@ -22,7 +22,7 @@ return {
   {
     'catppuccin/nvim',
     priority = 1000,
-    enabled = true,
+    enabled = false,
     name = 'catppuccin',
     ---@type CatppuccinOptions
     opts = {
@@ -140,7 +140,7 @@ return {
   {
     'miikanissi/modus-themes.nvim',
     priority = 1000,
-    enabled = true,
+    enabled = false,
     config = function()
       require('modus-themes').setup({
         styles = {
@@ -179,6 +179,23 @@ return {
       vim.api.nvim_set_hl(0, 'GitSignsCurrentLineBlame', { fg = '#7f8caa' })
       -- -- 修改lazy.nvim的`LazyButtonActive`的颜色
       vim.api.nvim_set_hl(0, 'LazyButtonActive', { bg = '#A6DBFF', fg = '#021727', bold = true })
+    end,
+  },
+  {
+    'scottmckendry/cyberdream.nvim',
+    lazy = false,
+    priority = 1000,
+    ---@module 'cyberdream'
+    ---@type cyberdream.Config
+    opts = {
+      extensions = {
+        default = true,
+        lazy = true,
+      },
+    },
+    config = function(_, opts)
+      require('cyberdream').setup(opts)
+      vim.cmd.colorscheme('cyberdream')
     end,
   },
 }
