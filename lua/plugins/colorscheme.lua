@@ -196,6 +196,11 @@ return {
     config = function(_, opts)
       require('cyberdream').setup(opts)
       vim.cmd.colorscheme('cyberdream')
+
+      -- GitSignsCurrentLineBlame
+      vim.api.nvim_set_hl(0, 'GitSignsCurrentLineBlame', { link = 'CursorLineNr' })
+      -- 修改lazy.nvim的`LazyButtonActive`的颜色
+      vim.api.nvim_set_hl(0, 'LazyButtonActive', { bg = '#A6DBFF', fg = '#021727', bold = true })
     end,
   },
 }
