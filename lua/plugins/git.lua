@@ -25,6 +25,12 @@ return {
       current_line_blame_opts = {
         delay = 500,
       },
+      preview_config = {
+        border = 'rounded',
+        -- offset from the cursor position
+        row = 1,
+        col = 1,
+      },
       on_attach = function(buffer)
         local gs = require('gitsigns')
 
