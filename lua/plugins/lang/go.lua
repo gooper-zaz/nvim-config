@@ -1,10 +1,6 @@
 ---@type LazySpec[]
 return {
   {
-    'nvim-treesitter/nvim-treesitter',
-    opts = { ensure_installed = { 'go', 'gomod', 'gowork', 'gosum' } },
-  },
-  {
     'neovim/nvim-lspconfig',
     opts = {
       servers = {

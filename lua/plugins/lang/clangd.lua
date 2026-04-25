@@ -1,9 +1,5 @@
 return {
   {
-    'nvim-treesitter/nvim-treesitter',
-    opts = { ensure_installed = { 'cpp' } },
-  },
-  {
     'p00f/clangd_extensions.nvim',
     lazy = true,
     config = function() end,
