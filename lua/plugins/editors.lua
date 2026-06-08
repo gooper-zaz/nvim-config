@@ -446,4 +446,9 @@ return {
       })
     end,
   },
+  -- pnpm catalog lens, 用于显示pnpm catalog具体的版本号
+  {
+    'Daydreamer-riri/catalog-lens.nvim',
+    opts = {},
+  },
 }
