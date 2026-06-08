@@ -32,7 +32,7 @@ return {
       {
         '<leader>oa',
         function()
-          require('opencode').ask('@buffer: ', { submit = true })
+          require('opencode').ask('@buffer: ')
         end,
         mode = { 'n' },
         desc = 'Opencode Ask (Buffer)',
@@ -40,7 +40,7 @@ return {
       {
         '<leader>oa',
         function()
-          require('opencode').ask('@this: ', { submit = true })
+          require('opencode').ask('@this: ')
         end,
         mode = { 'v' },
         desc = 'Opencode Ask (Selection)',
@@ -48,7 +48,7 @@ return {
       {
         '<leader>ob',
         function()
-          require('opencode').ask('@buffers: ', { submit = true })
+          require('opencode').ask('@buffers: ')
         end,
         mode = { 'n' },
         desc = 'Opencode Ask (All Buffers)',
@@ -56,10 +56,26 @@ return {
       {
         '<leader>od',
         function()
-          require('opencode').ask('@diagnostics: ', { submit = true })
+          require('opencode').ask('@diagnostics: ')
         end,
         mode = { 'n' },
         desc = 'Opencode Ask (Diagnostics)',
+      },
+      {
+        '<leader>oq',
+        function()
+          require('opencode').ask('@quickfix: ')
+        end,
+        mode = { 'n' },
+        desc = 'Opencode Ask (Quickfix)',
+      },
+      {
+        '<leader>og',
+        function()
+          require('opencode').ask('@diff: ')
+        end,
+        mode = { 'n' },
+        desc = 'Opencode Ask (Git Diff)',
       },
     },
     config = function()
