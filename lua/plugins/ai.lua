@@ -69,14 +69,6 @@ return {
         mode = { 'n' },
         desc = 'Opencode Ask (Quickfix)',
       },
-      {
-        '<leader>og',
-        function()
-          require('opencode').ask('@diff: ')
-        end,
-        mode = { 'n' },
-        desc = 'Opencode Ask (Git Diff)',
-      },
     },
     config = function()
       ---@type opencode.Opts
