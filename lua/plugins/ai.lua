@@ -73,27 +73,10 @@ return {
     config = function()
       ---@type opencode.Opts
       vim.g.opencode_opts = {
-        -- server = {
-        --   start = function()
-        --     local ok = vim.fn.jobstart(
-        --       { 'wt.exe', '-w', '0', 'nt', '--title', 'opencode', 'powershell', '-NoExit', 'opencode', '--port' },
-        --       { detach = true }
-        --     )
-        --     if ok <= 0 then
-        --       vim.notify('wt.exe not found, starting opencode directly', vim.log.levels.WARN)
-        --       vim.fn.jobstart({ 'opencode', '--port' }, { detach = true })
-        --     end
-        --   end,
-        --   stop = function()
-        --     vim.fn.jobstart({ 'taskkill', '/f', '/im', 'opencode.exe' }, { detach = true })
-        --   end,
-        --   toggle = function()
-        --     vim.fn.jobstart(
-        --       { 'wt.exe', '-w', '0', 'nt', '--title', 'opencode', 'powershell', '-NoExit', 'opencode', '--port' },
-        --       { detach = true }
-        --     )
-        --   end,
-        -- },
+        server = {
+          url = 'http://localhost:4096',
+          start = false,
+        },
       }
     end,
   },
