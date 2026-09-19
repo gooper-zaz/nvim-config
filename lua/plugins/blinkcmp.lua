@@ -17,7 +17,6 @@ return {
         opts = {},
         version = '*',
       },
-      { 'fang2hou/blink-copilot' },
       { 'Kaiser-Yang/blink-cmp-avante' },
     },
     event = { 'InsertEnter', 'CmdlineEnter' },
@@ -28,7 +27,7 @@ return {
         -- adding any nvim-cmp sources here will enable them
         -- with blink.compat
         -- compat = {},
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot', 'avante' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'avante' },
         per_filetype = {
           lua = { inherit_defaults = true, 'lazydev' },
         },
@@ -38,24 +37,6 @@ return {
             module = 'lazydev.integrations.blink',
             -- make lazydev completions top priority (see `:h blink.cmp`)
             score_offset = 100,
-          },
-          copilot = {
-            name = 'copilot',
-            module = 'blink-copilot',
-            score_offset = 100,
-            async = true,
-            opts = {
-              max_completions = 3,
-              max_attempts = 4,
-              kind_name = 'Copilot', ---@type string | false
-              kind_icon = ' ', ---@type string | false
-              kind_hl = 'String', ---@type string | false
-              debounce = 200, ---@type integer | false
-              auto_refresh = {
-                backward = true,
-                forward = true,
-              },
-            },
           },
           avante = {
             module = 'blink-cmp-avante',

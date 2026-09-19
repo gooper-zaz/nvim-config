@@ -83,16 +83,11 @@ return {
               local result = {}
               local current_buf = vim.api.nvim_get_current_buf()
               local clients = vim.lsp.get_clients({ bufnr = current_buf })
-              local copilot = ''
               for _, client in ipairs(clients) do
                 local icon = icon_util.get_icon_by_lsp_name(client.name) or client.name
-                if client.name == 'copilot' then
-                  copilot = icon
-                else
-                  table.insert(result, icon)
-                end
+                table.insert(result, icon)
               end
-              return #result > 0 and table.concat(result, ' ') .. (copilot ~= '' and ' ' .. copilot or '') or ''
+              return #result > 0 and table.concat(result, ' ') or ''
             end,
             function()
               return ' ' .. os.date('%R')

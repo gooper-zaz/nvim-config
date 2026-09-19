@@ -71,7 +71,6 @@ local defaults = {
       rust_analyzer = '󱘗 ',
       pyright = '󰌠 ',
       gopls = '󰟓 ',
-      copilot = ' ',
       dockerls = '󰡨 ',
       bashls = '󰆍 ',
       stylua = '󰉨 ',
